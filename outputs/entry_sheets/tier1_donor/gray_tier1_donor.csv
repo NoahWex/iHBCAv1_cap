@@ -1,0 +1,17 @@
+donor_id,dataset_id,organism_ontology_term_id,manner_of_death,sex_ontology_term,sex_ontology_term_id
+PM-A,gray2022,NCBITaxon:9606,not applicable,female,PATO:0000383
+PM-B,gray2022,NCBITaxon:9606,not applicable,female,PATO:0000383
+PM-C,gray2022,NCBITaxon:9606,not applicable,female,PATO:0000383
+PM-D,gray2022,NCBITaxon:9606,not applicable,female,PATO:0000383
+PM-E,gray2022,NCBITaxon:9606,not applicable,female,PATO:0000383
+PM-F,gray2022,NCBITaxon:9606,not applicable,female,PATO:0000383
+PM-G,gray2022,NCBITaxon:9606,not applicable,female,PATO:0000383
+PM-H,gray2022,NCBITaxon:9606,not applicable,female,PATO:0000383
+PM-I,gray2022,NCBITaxon:9606,not applicable,female,PATO:0000383
+PM-J,gray2022,NCBITaxon:9606,not applicable,female,PATO:0000383
+PM-K,gray2022,NCBITaxon:9606,not applicable,female,PATO:0000383
+PM-L,gray2022,NCBITaxon:9606,not applicable,female,PATO:0000383
+RM-A,gray2022,NCBITaxon:9606,not applicable,female,PATO:0000383
+RM-B,gray2022,NCBITaxon:9606,not applicable,female,PATO:0000383
+RM-C,gray2022,NCBITaxon:9606,not applicable,female,PATO:0000383
+RM-D,gray2022,NCBITaxon:9606,not applicable,female,PATO:0000383

@@ -1,0 +1,265 @@
+audit_date: '2026-02-18'
+plan: Publication/A9_source_doc_alignment
+input_dir: outputs/source_datasets
+total_files: 7
+all_pass: false
+summary:
+  all_csr: true
+  all_float32: false
+  all_gzip: false
+  all_barcode_ids: true
+  all_unique_obs: true
+  files_with_issues:
+  - gray2022.h5ad
+  - kumar2023.h5ad
+  - murrow2022.h5ad
+  - nee2023.h5ad
+  - pal2021.h5ad
+  - reed2024.h5ad
+  - twigger2022.h5ad
+files:
+  gray2022.h5ad:
+    path: outputs/source_datasets/gray2022.h5ad
+    filename: gray2022.h5ad
+    size_gb: 2.19
+    issues:
+    - X dtype is float64, expected float32
+    - X compression is 'None', expected 'gzip'
+    X_encoding: csr_matrix
+    X_is_csr: true
+    X_dtype: float64
+    X_is_float32: false
+    X_compression: null
+    X_compression_opts: null
+    raw_X_encoding: csr_matrix
+    raw_X_is_csr: true
+    raw_X_dtype: float64
+    raw_X_compression: null
+    n_cells: 52681
+    cell_id_sample:
+    - PM-D_AAACCTGAGAATCTCC
+    - PM-D_AAACCTGAGACTAGGC
+    - PM-D_AAACCTGAGCCAGTTT
+    - PM-D_AAACCTGAGCGACGTA
+    - PM-D_AAACCTGAGCGATTCT
+    - PM-D_AAACCTGAGGGCACTA
+    - PM-D_AAACCTGAGGTTACCT
+    - PM-D_AAACCTGAGTACATGA
+    - PM-D_AAACCTGAGTAGGCCA
+    - PM-D_AAACCTGAGTCTTGCA
+    cell_ids_barcode_format: true
+    obs_unique: true
+    n_duplicates: 0
+    n_genes: 20052
+    n_issues: 2
+    passes: false
+  kumar2023.h5ad:
+    path: outputs/source_datasets/kumar2023.h5ad
+    filename: kumar2023.h5ad
+    size_gb: 31.93
+    issues:
+    - X dtype is int64, expected float32
+    - X compression is 'None', expected 'gzip'
+    X_encoding: csr_matrix
+    X_is_csr: true
+    X_dtype: int64
+    X_is_float32: false
+    X_compression: null
+    X_compression_opts: null
+    raw_X_encoding: csr_matrix
+    raw_X_is_csr: true
+    raw_X_dtype: int64
+    raw_X_compression: null
+    n_cells: 714331
+    cell_id_sample:
+    - r1_hbca_c01_AACCATGGTATGCTTG
+    - r1_hbca_c01_ACGGAGACAAGCTGTT
+    - r1_hbca_c01_ACTGATGGTCATCGGC
+    - r1_hbca_c01_AGGTCATGTGCACCAC
+    - r1_hbca_c01_CAGCCGAAGATATGCA
+    - r1_hbca_c01_CAGCGACCAACACCCG
+    - r1_hbca_c01_CATCAGAGTTGAGTTC
+    - r1_hbca_c01_CCGTACTCAGCCTTTC
+    - r1_hbca_c01_CGTGAGCTCCAATGGT
+    - r1_hbca_c01_CTGCCTATCACCGGGT
+    cell_ids_barcode_format: true
+    obs_unique: true
+    n_duplicates: 0
+    n_genes: 32383
+    n_issues: 2
+    passes: false
+  murrow2022.h5ad:
+    path: outputs/source_datasets/murrow2022.h5ad
+    filename: murrow2022.h5ad
+    size_gb: 4.57
+    issues:
+    - X dtype is int64, expected float32
+    - X compression is 'None', expected 'gzip'
+    X_encoding: csr_matrix
+    X_is_csr: true
+    X_dtype: int64
+    X_is_float32: false
+    X_compression: null
+    X_compression_opts: null
+    raw_X_encoding: csr_matrix
+    raw_X_is_csr: true
+    raw_X_dtype: int64
+    raw_X_compression: null
+    n_cells: 86136
+    cell_id_sample:
+    - V3.RMs_AAACCCAAGAGGATGA-1
+    - V3.RMs_AAACCCACAGCGACCT-1
+    - V3.RMs_AAACCCACAGCGTAGA-1
+    - V3.RMs_AAACCCACAGTGTGCC-1
+    - V3.RMs_AAACCCACATATCTCT-1
+    - V3.RMs_AAACCCAGTGGTCTAT-1
+    - V3.RMs_AAACCCAGTTCGTGCG-1
+    - V3.RMs_AAACGAAAGAGCAGAA-1
+    - V3.RMs_AAACGAAAGCATCAGG-1
+    - V3.RMs_AAACGAAAGCGGTAGT-1
+    cell_ids_barcode_format: true
+    obs_unique: true
+    n_duplicates: 0
+    n_genes: 32738
+    n_issues: 2
+    passes: false
+  nee2023.h5ad:
+    path: outputs/source_datasets/nee2023.h5ad
+    filename: nee2023.h5ad
+    size_gb: 9.21
+    issues:
+    - X dtype is int64, expected float32
+    - X compression is 'None', expected 'gzip'
+    X_encoding: csr_matrix
+    X_is_csr: true
+    X_dtype: int64
+    X_is_float32: false
+    X_compression: null
+    X_compression_opts: null
+    raw_X_encoding: csr_matrix
+    raw_X_is_csr: true
+    raw_X_dtype: int64
+    raw_X_compression: null
+    n_cells: 230100
+    cell_id_sample:
+    - UCI_Patients _BRCA_Ind2_BRCA_Ind2_Epi_AAACATACGCCAAT-1
+    - UCI_Patients _BRCA_Ind2_BRCA_Ind2_Epi_AAACATACGGTGAG-1
+    - UCI_Patients _BRCA_Ind2_BRCA_Ind2_Epi_AAACATACTACGAC-1
+    - UCI_Patients _BRCA_Ind2_BRCA_Ind2_Epi_AAACATACTCAGTG-1
+    - UCI_Patients _BRCA_Ind2_BRCA_Ind2_Epi_AAACATTGACCTAG-1
+    - UCI_Patients _BRCA_Ind2_BRCA_Ind2_Epi_AAACATTGGTTTGG-1
+    - UCI_Patients _BRCA_Ind2_BRCA_Ind2_Epi_AAACATTGTCAGTG-1
+    - UCI_Patients _BRCA_Ind2_BRCA_Ind2_Epi_AAACATTGTGCAGT-1
+    - UCI_Patients _BRCA_Ind2_BRCA_Ind2_Epi_AAACATTGTGCTGA-1
+    - UCI_Patients _BRCA_Ind2_BRCA_Ind2_Epi_AAACCGTGCCTTCG-1
+    cell_ids_barcode_format: true
+    obs_unique: true
+    n_duplicates: 0
+    n_genes: 28950
+    n_issues: 2
+    passes: false
+  pal2021.h5ad:
+    path: outputs/source_datasets/pal2021.h5ad
+    filename: pal2021.h5ad
+    size_gb: 5.3
+    issues:
+    - X dtype is int64, expected float32
+    - X compression is 'None', expected 'gzip'
+    X_encoding: csr_matrix
+    X_is_csr: true
+    X_dtype: int64
+    X_is_float32: false
+    X_compression: null
+    X_compression_opts: null
+    raw_X_encoding: csr_matrix
+    raw_X_is_csr: true
+    raw_X_dtype: int64
+    raw_X_compression: null
+    n_cells: 131288
+    cell_id_sample:
+    - N1105_epi_AAACCTGAGTATGACA-1
+    - N1105_epi_AAACCTGAGTGAACAT-1
+    - N1105_epi_AAACCTGGTTGATTGC-1
+    - N1105_epi_AAACCTGTCCGTTGCT-1
+    - N1105_epi_AAACCTGTCGCTGATA-1
+    - N1105_epi_AAACGGGAGACGCACA-1
+    - N1105_epi_AAACGGGAGAGCTATA-1
+    - N1105_epi_AAACGGGAGAGTGAGA-1
+    - N1105_epi_AAACGGGAGATCCCGC-1
+    - N1105_epi_AAACGGGAGGGAGTAA-1
+    cell_ids_barcode_format: true
+    obs_unique: true
+    n_duplicates: 0
+    n_genes: 12824
+    n_issues: 2
+    passes: false
+  reed2024.h5ad:
+    path: outputs/source_datasets/reed2024.h5ad
+    filename: reed2024.h5ad
+    size_gb: 37.15
+    issues:
+    - X dtype is int64, expected float32
+    - X compression is 'None', expected 'gzip'
+    X_encoding: csr_matrix
+    X_is_csr: true
+    X_dtype: int64
+    X_is_float32: false
+    X_compression: null
+    X_compression_opts: null
+    raw_X_encoding: csr_matrix
+    raw_X_is_csr: true
+    raw_X_dtype: int64
+    raw_X_compression: null
+    n_cells: 803283
+    cell_id_sample:
+    - CGTCAAAAGACGTCGA-SLX-19902-20449_SIGAA3
+    - CACGGGTAGATTGAGT-SLX-19864_SIGAB5
+    - CTTAGGATCGATCCCT-SLX-19902-20449_SIGAB3
+    - TCACTCGCAAATACGA-SLX-20261_SIGAA3
+    - TCATGAGAGGGAGTGG-SLX-19902-20449_SIGAA3
+    - TTCTAGTCACGAGGTA-SLX-20261-20448_SIGAD6
+    - GACTGATCACGCTGTG-SLX-19864-20262_SIGAG6
+    - CCTCAGTAGTGGACTG-SLX-20005-20446_SIGAB6
+    - GAAATGACATTCAGCA-SLX-20261-20448_SIGAB1
+    - CTCTCAGCATTAAAGG-SLX-19902_SIGAB1
+    cell_ids_barcode_format: true
+    obs_unique: true
+    n_duplicates: 0
+    n_genes: 33604
+    n_issues: 2
+    passes: false
+  twigger2022.h5ad:
+    path: outputs/source_datasets/twigger2022.h5ad
+    filename: twigger2022.h5ad
+    size_gb: 5.45
+    issues:
+    - X dtype is float64, expected float32
+    - X compression is 'None', expected 'gzip'
+    X_encoding: csr_matrix
+    X_is_csr: true
+    X_dtype: float64
+    X_is_float32: false
+    X_compression: null
+    X_compression_opts: null
+    raw_X_encoding: csr_matrix
+    raw_X_is_csr: true
+    raw_X_dtype: float64
+    raw_X_compression: null
+    n_cells: 110744
+    cell_id_sample:
+    - RB5_AAACCCAAGAGGTCAC-1
+    - RB5_AAACCCAAGCACAAAT-1
+    - RB5_AAACCCAAGCACTAAA-1
+    - RB5_AAACCCAAGTCTACCA-1
+    - RB5_AAACCCAAGTTGCTCA-1
+    - RB5_AAACCCACAACCACAT-1
+    - RB5_AAACCCACATGGCTGC-1
+    - RB5_AAACCCAGTCGCATTA-1
+    - RB5_AAACCCATCAGCCTTC-1
+    - RB5_AAACCCATCATTCCTA-1
+    cell_ids_barcode_format: true
+    obs_unique: true
+    n_duplicates: 0
+    n_genes: 15153
+    n_issues: 2
+    passes: false

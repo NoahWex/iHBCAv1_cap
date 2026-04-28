@@ -1,0 +1,23 @@
+donor_id,dataset_id,organism_ontology_term_id,manner_of_death,sex_ontology_term,sex_ontology_term_id
+Ctrl_ Pt1,nee2023,NCBITaxon:9606,not applicable,female,PATO:0000383
+Ctrl_ Pt3,nee2023,NCBITaxon:9606,not applicable,female,PATO:0000383
+Ctrl_ Pt2,nee2023,NCBITaxon:9606,not applicable,female,PATO:0000383
+Ctrl_ Pt4,nee2023,NCBITaxon:9606,not applicable,female,PATO:0000383
+Ctrl_ Pt5,nee2023,NCBITaxon:9606,not applicable,female,PATO:0000383
+Ctrl_ Pt6,nee2023,NCBITaxon:9606,not applicable,female,PATO:0000383
+Ctrl_ Pt7,nee2023,NCBITaxon:9606,not applicable,female,PATO:0000383
+Ctrl_ Pt8,nee2023,NCBITaxon:9606,not applicable,female,PATO:0000383
+Ctrl_ Pt9,nee2023,NCBITaxon:9606,not applicable,female,PATO:0000383
+Ctrl_Pt10,nee2023,NCBITaxon:9606,not applicable,female,PATO:0000383
+Ctrl_Pt11,nee2023,NCBITaxon:9606,not applicable,female,PATO:0000383
+BRCA1_ Pt1,nee2023,NCBITaxon:9606,not applicable,female,PATO:0000383
+BRCA1_ Pt2,nee2023,NCBITaxon:9606,not applicable,female,PATO:0000383
+BRCA1_ Pt3,nee2023,NCBITaxon:9606,not applicable,female,PATO:0000383
+BRCA1_ Pt4,nee2023,NCBITaxon:9606,not applicable,female,PATO:0000383
+BRCA1_ Pt5,nee2023,NCBITaxon:9606,not applicable,female,PATO:0000383
+BRCA1_ Pt6,nee2023,NCBITaxon:9606,not applicable,female,PATO:0000383
+BRCA1_ Pt7,nee2023,NCBITaxon:9606,not applicable,female,PATO:0000383
+BRCA1_ Pt8,nee2023,NCBITaxon:9606,not applicable,female,PATO:0000383
+BRCA1_ Pt9,nee2023,NCBITaxon:9606,not applicable,female,PATO:0000383
+BRCA1_Pt10,nee2023,NCBITaxon:9606,not applicable,female,PATO:0000383
+BRCA1_Pt11,nee2023,NCBITaxon:9606,not applicable,female,PATO:0000383

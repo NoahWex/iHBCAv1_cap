@@ -1,0 +1,49 @@
+date: auto
+validators:
+  cap:
+    log_file: outputs/validation_reports/baseline/cap_validator.log
+    total_errors: 3
+    errors:
+    - line_number: 2
+      raw: 'AnnDataMissingObsColumns:'
+      category: unknown
+      fix: Manual review required
+      pattern_matched: null
+    - line_number: 3
+      raw: 'Required obs column(s) missing: file must contain'
+      category: unknown
+      fix: Manual review required
+      pattern_matched: null
+    - line_number: 8
+      raw: https://github.com/cellannotation/cap-validator/wiki/Validation-Errors
+      category: unknown
+      fix: Manual review required
+      pattern_matched: null
+  hca:
+    log_file: outputs/validation_reports/baseline/hca_validator.log
+    total_errors: 0
+    errors: []
+  cxg:
+    log_file: outputs/validation_reports/baseline/cxg_validator.log
+    total_errors: 3
+    errors:
+    - line_number: 11
+      raw: 'KeyError: ''assay_ontology_term_id'''
+      category: unknown
+      fix: Manual review required
+      pattern_matched: null
+    - line_number: 47
+      raw: raise KeyError(key) from err
+      category: unknown
+      fix: Manual review required
+      pattern_matched: null
+    - line_number: 48
+      raw: 'KeyError: ''assay_ontology_term_id'''
+      category: unknown
+      fix: Manual review required
+      pattern_matched: null
+summary:
+  structural: 0
+  content: 0
+  ignorable: 0
+  unknown: 6

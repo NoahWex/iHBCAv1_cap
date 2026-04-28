@@ -1,0 +1,4 @@
+INFO:cellxgene_schema:Loading dependencies
+INFO:cellxgene_schema:Loading validator modules
+INFO:cellxgene_schema.validate:Starting validation...
+INFO:cellxgene_schema.validate:Validation complete in 0:00:33.798925 with status is_valid=True

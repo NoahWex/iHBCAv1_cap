@@ -1,0 +1,5 @@
+INFO:cellxgene_schema:Loading dependencies
+INFO:cellxgene_schema:Loading validator modules
+INFO:cellxgene_schema.validate:Starting validation...
+WARNING:cellxgene_schema.validate:WARNING: Dataframe 'var' only has 15151 rows. Features SHOULD NOT be filtered from expression matrix.
+INFO:cellxgene_schema.validate:Validation complete in 0:00:37.601500 with status is_valid=True

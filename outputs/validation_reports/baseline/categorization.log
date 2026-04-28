@@ -1,0 +1,12 @@
+
+============================================================
+ERROR CATEGORIZATION SUMMARY
+============================================================
+  structural  : 0
+  content     : 0
+  ignorable   : 0
+  unknown     : 6
+  total       : 6
+============================================================
+
+Full report: outputs/validation_reports/baseline/error_categorization.yaml

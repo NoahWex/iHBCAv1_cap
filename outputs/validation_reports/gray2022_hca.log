@@ -1,0 +1,21 @@
+<hpc>/conda_envs/envs/hca_validators/lib/python3.10/site-packages/hca_schema_validator/_vendored/cellxgene_schema/validate.py:650: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+  is_filtered = column[i]
+WARNING: Could not infer organism from feature ID 'ENSG00000241572' in 'var', make sure it is a valid ID.
+WARNING: Could not infer organism from feature ID 'ENSG00000229611' in 'var', make sure it is a valid ID.
+WARNING: Could not infer organism from feature ID 'ENSG00000148362' in 'var', make sure it is a valid ID.
+WARNING: Could not infer organism from feature ID 'ENSG00000248265' in 'var', make sure it is a valid ID.
+WARNING: Could not infer organism from feature ID 'ENSG00000241572' in 'raw.var', make sure it is a valid ID.
+WARNING: Could not infer organism from feature ID 'ENSG00000229611' in 'raw.var', make sure it is a valid ID.
+WARNING: Could not infer organism from feature ID 'ENSG00000148362' in 'raw.var', make sure it is a valid ID.
+WARNING: Could not infer organism from feature ID 'ENSG00000248265' in 'raw.var', make sure it is a valid ID.
+HCA Validator: validating outputs/source_datasets/gray2022.h5ad
+is_valid: True
+warnings (8):
+  WARNING: WARNING: Could not infer organism from feature ID 'ENSG00000241572' in 'var', make sure it is a valid ID.
+  WARNING: WARNING: Could not infer organism from feature ID 'ENSG00000229611' in 'var', make sure it is a valid ID.
+  WARNING: WARNING: Could not infer organism from feature ID 'ENSG00000148362' in 'var', make sure it is a valid ID.
+  WARNING: WARNING: Could not infer organism from feature ID 'ENSG00000248265' in 'var', make sure it is a valid ID.
+  WARNING: WARNING: Could not infer organism from feature ID 'ENSG00000241572' in 'raw.var', make sure it is a valid ID.
+  WARNING: WARNING: Could not infer organism from feature ID 'ENSG00000229611' in 'raw.var', make sure it is a valid ID.
+  WARNING: WARNING: Could not infer organism from feature ID 'ENSG00000148362' in 'raw.var', make sure it is a valid ID.
+  WARNING: WARNING: Could not infer organism from feature ID 'ENSG00000248265' in 'raw.var', make sure it is a valid ID.

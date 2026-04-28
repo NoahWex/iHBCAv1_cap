@@ -1,0 +1,23 @@
+level15_annotation,assigned_cl_term,decision_rationale
+B-cell,CL:0000236,Parent term covering naive/memory/class-switched B cell subtypes
+Basal-myoepithelial,CL:0002324,CLEAR 95.2% dominant
+CD4T,CL:0000624,Parent CD4+ alpha-beta T cell covering naive/helper/Treg subtypes
+CD8T,CL:0000625,Parent CD8+ alpha-beta T cell covering memory/effector subtypes
+Conventional dendritic cell,CL:0000990,Trust level1.5 label over CxG broad macrophage annotation
+Doublet,unknown,Computational artifact - not a cell type
+Fibroblast,CL:0002555,CLEAR 95.9% dominant
+Lactocyte,CL:0002327,Mammary gland epithelial cell; CxG endothelial annotation incorrect for milk-secreting cells
+Luminal adaptive secretory precursor,CL:4033057,DOMINANT 91.6%
+Luminal hormone sensing,CL:4033058,DOMINANT 92.3%
+Lymphatic endothelial,CL:0002138,CLEAR 96.6% dominant
+Macrophage,CL:0000235,CLEAR 98.5% dominant
+Macrophage lipid-associated,CL:0000235,LAM is a macrophage functional state; 89% consistent
+Mast cell,CL:0000097,Trust level1.5 label; scattered CL reflects poor cluster resolution
+Monocyte,CL:0000235,Tissue-resident monocytes are functionally macrophages; 93% consistent
+NK/NKT,CL:0000623,NK broader and more representative in breast tissue; NKT plurality reflects CxG conventions
+Neutrophil,CL:0000775,Trust level1.5 label over CxG broad macrophage annotation
+Perivascular,CL:4033054,CLEAR 95.5% dominant
+Plasma cell,CL:0000786,CLEAR 97.4% dominant
+Plasmacytoid dendritic cell,CL:0000784,Trust level1.5 label despite small N (100 cells)
+Single nuclei,unknown,snRNA-seq quality flag - not a cell type
+Vascular endothelial,CL:0000115,Parent endothelial cell covering vein/artery/capillary/tip subtypes

@@ -1,0 +1,52 @@
+# HANCESTRO Ethnicity Mapping Table
+# Maps ethnicity_verbatim values from harmonized_donor_metadata.csv to HANCESTRO ontology terms.
+#
+# HCA-native: terms are descendants of HANCESTRO:0601 (ethnicity) or :0602 (geography),
+# as required by HCA Data Portal schema. For CxG builds, assembly scripts apply a
+# post-hoc downgrade to :0004 (ancestry) descendants via --target cxg flag.
+#
+# Prohibited terms include HANCESTRO:0290 (genetically isolated population) and children,
+# which means HANCESTRO:0324 (Ashkenazi Jew) CANNOT be used despite being the most specific term.
+# Jewish/Ashkenazi donors are mapped to HANCESTRO:0590 (European American, :0601 ethnicity branch).
+#
+# Status flags:
+#   OK       = high-confidence mapping, no ambiguity
+#   VERIFY   = mapping is reasonable but original verbatim label has ambiguity worth confirming
+#   UNKNOWN  = no ethnicity recorded for these donors
+#
+# 287 total donors. 106 have empty ethnicity_verbatim (pal: 22, murrow: 28, twigger: 18, plus scattered others).
+# 12 rows flagged VERIFY (ambiguous labels, harmonization errors, or Jewish → European forced mapping).
+# Because apparently recording ethnicity was optional for half the field. Science!
+#
+# Source: external_studies/outputs/harmonized_metadata/harmonized_donor_metadata.csv
+# Generated: 2026-02-11, updated 2026-03-03 (HCA-native HANCESTRO branch remapping)
+# Plan: A2_ontology_mappings, Activation/hancestro_branch
+ethnicity_verbatim	ethnicity_grouped	hancestro_term_id	hancestro_label	donor_count	status	notes
+caucasian	white	HANCESTRO:0590	European American	58	OK	Kumar study. Standard mapping.
+White	white	HANCESTRO:0590	European American	15	OK	Gray + Nee studies.
+White-British	white	HANCESTRO:0590	European American	14	OK	Reed study. UK-specific ethnicity classification.
+White-Any_other_background	white	HANCESTRO:0590	European American	3	OK	Reed study. UK census form category.
+White/Non-Hispanic	white	HANCESTRO:0590	European American	2	OK	Nee study. US clinical form.
+White/Non-Hispanic (Northern European)	white	HANCESTRO:0590	European American	1	OK	Nee study. More specific than needed but maps cleanly.
+White/Non--Hispanic	white	HANCESTRO:0590	European American	1	OK	Nee study. Extra hyphen is a typo in source data.
+White/Non-Hispanic (Caucasian/Japanese)	white	HANCESTRO:0590	European American	1	VERIFY	Nee study. Mixed Caucasian/Japanese — mapped to European as primary self-report. Could also be HANCESTRO:0005,HANCESTRO:0009 (European,East Asian) if dual-ancestry reporting is preferred.
+White-Irish	white	HANCESTRO:0590	European American	1	OK	Reed study. UK census form category.
+White/Mexican	white	HANCESTRO:0612	Hispanic or Latin	2	VERIFY	Nee study. Self-reported as White/Mexican. Could be European or Hispanic depending on interpretation. Mapped to Hispanic per Mexican ancestry component. The ethnicity_grouped column says "white" but the Mexican specificity suggests Hispanic reporting.
+White/Hispanic	white	HANCESTRO:0612	Hispanic or Latin	1	OK	Nee study. Explicitly Hispanic.
+White/Hispanic (Mexican)	white	HANCESTRO:0612	Hispanic or Latin	1	OK	Nee study. Hispanic with Mexican specificity.
+hispanic	hispanic	HANCESTRO:0612	Hispanic or Latin	9	OK	Kumar study. Standard mapping.
+african-american	black	HANCESTRO:0568	African American	51	OK	Kumar study. Standard mapping. HANCESTRO:0568 is the specific term; HANCESTRO:0016 is the broader "African American or Afro-Caribbean" parent.
+Black	black	HANCESTRO:0568	African American	3	OK	Gray study. Mapped to broader term since "Black" does not specify African American vs Afro-Caribbean.
+Black/Non-Hispanic	hispanic	HANCESTRO:0568	African American	2	VERIFY	Nee study. ethnicity_grouped says "hispanic" but verbatim says "Black/Non-Hispanic". Mapped to African American/Afro-Caribbean per self-reported race. The grouped column appears to be a harmonization error — Non-Hispanic is a modifier, not an ethnicity.
+Black_or_Black_British-Any_other_Black_background	white	HANCESTRO:0568	African American	2	VERIFY	Reed study (UK). ethnicity_grouped says "white" which appears to be a harmonization error for this verbatim value. Mapped to African American/Afro-Caribbean per self-report.
+White & Black/Non-Hispanic	white	HANCESTRO:0568 || HANCESTRO:0590	African American || European American	1	VERIFY	Nee study. Multi-racial. HCA requires ' || '-separated terms in ascending lexical order.
+Jewish	jewish	HANCESTRO:0590	European American	2	VERIFY	Gray study. Jewish without further specificity. HANCESTRO:0324 (Ashkenazi Jew) is PROHIBITED by CxG schema 6.0.0. Mapped to European as the closest permitted broad category. Could also be HANCESTRO:0015 (Greater Middle Eastern) — depends on interpretation.
+White/Non-Hispanic (Jewish/Ashkenazi)	jewish	HANCESTRO:0590	European American	2	VERIFY	Nee study. Ashkenazi Jewish. Same prohibition issue — mapped to European. See notes on Jewish above.
+asian	asian	HANCESTRO:0847	Asian	1	VERIFY	Kumar study. No further specificity. HANCESTRO:0008 is the broadest Asian term. Could be East/South/Southeast — unknown.
+Asian/Non-Hispanic (Filipino)	hispanic	HANCESTRO:0850	Southeast Asian	1	VERIFY	Nee study. Filipino ancestry. ethnicity_grouped says "hispanic" which is a harmonization error. HANCESTRO:0498 (Filipino) exists but is a population-level term. Mapped to South East Asian as the accepted broader category.
+Asian/Non-Hispanic (indian)	hispanic	HANCESTRO:0848	South Asian	1	VERIFY	Nee study. Indian ancestry. ethnicity_grouped says "hispanic" which is a harmonization error. HANCESTRO:0487 (Indian) exists. Mapped to South Asian as the broader accepted category.
+Asian_or_Asian_British-Bangladeshi	white	HANCESTRO:0848	South Asian	1	VERIFY	Reed study (UK). Bangladeshi. ethnicity_grouped says "white" which appears to be a harmonization error. South Asian is the correct broad category.
+Asian_or_Asian_British-Any_other_Asian_background	white	HANCESTRO:0847	Asian	1	VERIFY	Reed study (UK). ethnicity_grouped says "white" which appears to be a harmonization error. No further specificity available, mapped to broadest Asian term.
+Other_ethnic_group-Any_other_ethnic_group	other	unknown	unknown	2	UNKNOWN	Reed study (UK). No informative ethnicity data. CxG accepts "unknown".
+Other_ethnic_group-Not_stated	other	unknown	unknown	2	UNKNOWN	Reed study (UK). Explicitly not stated. CxG accepts "unknown".
+	(empty)	unknown	unknown	106	UNKNOWN	No ethnicity recorded. 106 donors across pal (22), murrow (28), twigger (18), and scattered others.

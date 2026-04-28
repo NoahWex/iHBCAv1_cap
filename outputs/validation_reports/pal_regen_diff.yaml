@@ -1,0 +1,138 @@
+timestamp: '2026-03-08T18:35:03.889510'
+new_file: outputs/source_datasets/pal2021.h5ad
+reference_file: outputs/source_datasets/pal2021.h5ad
+checks:
+  shape:
+    new:
+      cells: 131288
+      genes: 12800
+    ref:
+      cells: 131288
+      genes: 12824
+    pass: false
+    detail: 'Shape mismatch: (131288, 12800) vs (131288, 12824)'
+  obs_columns:
+    new_only:
+    - alignment_software
+    - cell_enrichment
+    - gene_annotation_version
+    - in_ihbca_integrated
+    - institute
+    - library_id
+    - library_preparation_batch
+    - library_sequencing_run
+    - manner_of_death
+    - metadata_notes
+    - reference_genome
+    - sample_collection_method
+    - sample_id
+    - sample_preservation_method
+    - sample_source
+    - sampled_site_condition
+    - sequenced_fragment
+    - tissue_type
+    ref_only: []
+    shared: 42
+    pass: false
+  obs_dtypes:
+    mismatches:
+    - column: age_continuous
+      new: float64
+      ref: int64
+    - column: bmi_category
+      new: category
+      ref: float64
+    - column: ethnicity_grouped
+      new: category
+      ref: float64
+    - column: ethnicity_verbatim
+      new: category
+      ref: float64
+    - column: sample_preservation
+      new: category
+      ref: float64
+    total_mismatches: 5
+    pass: false
+  var_index:
+    new_only: 5
+    ref_only: 29
+    shared: 12795
+    order_match: false
+    pass: false
+    new_only_examples:
+    - ENSG00000136999
+    - ENSG00000160953
+    - ENSG00000167524
+    - ENSG00000258667
+    - ENSG00000273036
+    ref_only_examples:
+    - AKAP2
+    - ENSG00000112096
+    - ENSG00000114554-1
+    - ENSG00000130723
+    - ENSG00000137265
+    - ENSG00000182584
+    - ENSG00000205663
+    - ENSG00000215271
+    - ENSG00000234449
+    - ENSG00000242349
+  var_columns:
+    new_only:
+    - chromosome
+    - feature_biotype_gencode
+    - feature_is_filtered
+    ref_only: []
+    pass: false
+  obsm:
+    new_only:
+    - X_ihbca_scvi_100
+    - X_umap_ihbca_scvi_100
+    ref_only: []
+    shared:
+    - X_umap
+    pass: true
+    shape_mismatches: []
+  uns:
+    new_only:
+    - alignment_software
+    - contact_email
+    - description
+    - doi
+    - gene_annotation_version
+    - geo_accession
+    - ihbca_provenance
+    - obs_field_descriptions
+    - obsm_descriptions
+    - obsm_key_descriptions
+    - reference_genome
+    - sequenced_fragment
+    - study_pi
+    ref_only: []
+    shared:
+    - schema_version
+    - title
+    pass: true
+  X_matrix:
+    new_format: csr_matrix
+    ref_format: csr_matrix
+    new_dtype: float32
+    ref_dtype: int64
+    new_nnz: 235183300
+    ref_nnz: 235535697
+    nnz_match: false
+    format_match: true
+    dtype_match: false
+    pass: false
+  raw:
+    new_has_raw: true
+    ref_has_raw: true
+    pass: true
+  obs_spot_check:
+    columns_checked:
+    - donor_id
+    - tissue_ontology_term_id
+    - assay_ontology_term_id
+    - sex_ontology_term_id
+    mismatches: []
+    pass: true
+overall_pass: false

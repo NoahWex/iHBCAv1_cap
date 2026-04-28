@@ -1,0 +1,7 @@
+<hpc>/conda_envs/envs/hca_validators/lib/python3.10/site-packages/hca_schema_validator/_vendored/cellxgene_schema/validate.py:650: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+  is_filtered = column[i]
+WARNING: Dataframe 'var' only has 15151 rows. Features SHOULD NOT be filtered from expression matrix.
+HCA Validator: validating outputs/cxg_build/source_datasets/twigger2022.h5ad
+is_valid: True
+warnings (1):
+  WARNING: WARNING: Dataframe 'var' only has 15151 rows. Features SHOULD NOT be filtered from expression matrix.

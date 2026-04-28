@@ -1,0 +1,35 @@
+INFO:cellxgene_schema:Loading dependencies
+INFO:cellxgene_schema:Loading validator modules
+INFO:cellxgene_schema.validate:Starting validation...
+WARNING:cellxgene_schema.validate:WARNING: Dataframe 'var' only has 15176 rows. Features SHOULD NOT be filtered from expression matrix.
+WARNING:cellxgene_schema.validate:WARNING: Validation of raw layer was not performed due to current errors, try again after fixing current errors.
+ERROR:cellxgene_schema.validate:ERROR: Could not infer organism from feature ID 'ENSG00000270188' in 'var', make sure it is a valid ID.
+ERROR:cellxgene_schema.validate:ERROR: Could not infer organism from feature ID 'ENSG00000269028' in 'var', make sure it is a valid ID.
+ERROR:cellxgene_schema.validate:ERROR: Could not infer organism from feature ID 'ENSG00000112096' in 'var', make sure it is a valid ID.
+ERROR:cellxgene_schema.validate:ERROR: Could not infer organism from feature ID 'ENSG00000270672' in 'var', make sure it is a valid ID.
+ERROR:cellxgene_schema.validate:ERROR: Could not infer organism from feature ID 'ENSG00000256045' in 'var', make sure it is a valid ID.
+ERROR:cellxgene_schema.validate:ERROR: Could not infer organism from feature ID 'ENSG00000269900' in 'var', make sure it is a valid ID.
+ERROR:cellxgene_schema.validate:ERROR: Could not infer organism from feature ID 'ENSG00000255823' in 'var', make sure it is a valid ID.
+ERROR:cellxgene_schema.validate:ERROR: Could not infer organism from feature ID 'ENSG00000215271' in 'var', make sure it is a valid ID.
+ERROR:cellxgene_schema.validate:ERROR: Could not infer organism from feature ID 'ENSG00000232196' in 'var', make sure it is a valid ID.
+ERROR:cellxgene_schema.validate:ERROR: Could not infer organism from feature ID 'ENSG00000256618' in 'var', make sure it is a valid ID.
+ERROR:cellxgene_schema.validate:ERROR: Could not infer organism from feature ID 'ENSG00000221995' in 'var', make sure it is a valid ID.
+ERROR:cellxgene_schema.validate:ERROR: Could not infer organism from feature ID 'ENSG00000256222' in 'var', make sure it is a valid ID.
+ERROR:cellxgene_schema.validate:ERROR: Could not infer organism from feature ID 'ENSG00000270188' in 'raw.var', make sure it is a valid ID.
+ERROR:cellxgene_schema.validate:ERROR: Could not infer organism from feature ID 'ENSG00000269028' in 'raw.var', make sure it is a valid ID.
+ERROR:cellxgene_schema.validate:ERROR: Could not infer organism from feature ID 'ENSG00000112096' in 'raw.var', make sure it is a valid ID.
+ERROR:cellxgene_schema.validate:ERROR: Could not infer organism from feature ID 'ENSG00000270672' in 'raw.var', make sure it is a valid ID.
+ERROR:cellxgene_schema.validate:ERROR: Could not infer organism from feature ID 'ENSG00000256045' in 'raw.var', make sure it is a valid ID.
+ERROR:cellxgene_schema.validate:ERROR: Could not infer organism from feature ID 'ENSG00000269900' in 'raw.var', make sure it is a valid ID.
+ERROR:cellxgene_schema.validate:ERROR: Could not infer organism from feature ID 'ENSG00000255823' in 'raw.var', make sure it is a valid ID.
+ERROR:cellxgene_schema.validate:ERROR: Could not infer organism from feature ID 'ENSG00000215271' in 'raw.var', make sure it is a valid ID.
+ERROR:cellxgene_schema.validate:ERROR: Could not infer organism from feature ID 'ENSG00000232196' in 'raw.var', make sure it is a valid ID.
+ERROR:cellxgene_schema.validate:ERROR: Could not infer organism from feature ID 'ENSG00000256618' in 'raw.var', make sure it is a valid ID.
+ERROR:cellxgene_schema.validate:ERROR: Could not infer organism from feature ID 'ENSG00000221995' in 'raw.var', make sure it is a valid ID.
+ERROR:cellxgene_schema.validate:ERROR: Could not infer organism from feature ID 'ENSG00000256222' in 'raw.var', make sure it is a valid ID.
+ERROR:cellxgene_schema.validate:ERROR: 'HANCESTRO:0612' in 'self_reported_ethnicity_ontology_term_id' is not a valid ontology term id of 'HANCESTRO'. When 'organism_ontology_term_id' is 'NCBITaxon:9606' (Homo sapiens), self_reported_ethnicity_ontology_term_id MUST be formatted as one or more comma-separated (with no leading or trailing spaces) HANCESTRO terms in ascending lexical order, or 'unknown' if unavailable. Cannot match any forbidden HANCESTRO terms listed in schema definition.
+ERROR:cellxgene_schema.validate:ERROR: 'HANCESTRO:0850' in 'self_reported_ethnicity_ontology_term_id' is not a valid ontology term id of 'HANCESTRO'. When 'organism_ontology_term_id' is 'NCBITaxon:9606' (Homo sapiens), self_reported_ethnicity_ontology_term_id MUST be formatted as one or more comma-separated (with no leading or trailing spaces) HANCESTRO terms in ascending lexical order, or 'unknown' if unavailable. Cannot match any forbidden HANCESTRO terms listed in schema definition.
+ERROR:cellxgene_schema.validate:ERROR: 'HANCESTRO:0568 || HANCESTRO:0590' in 'self_reported_ethnicity_ontology_term_id' is not a valid ontology term id of 'HANCESTRO'. When 'organism_ontology_term_id' is 'NCBITaxon:9606' (Homo sapiens), self_reported_ethnicity_ontology_term_id MUST be formatted as one or more comma-separated (with no leading or trailing spaces) HANCESTRO terms in ascending lexical order, or 'unknown' if unavailable. Cannot match any forbidden HANCESTRO terms listed in schema definition.
+ERROR:cellxgene_schema.validate:ERROR: 'HANCESTRO:0848' in 'self_reported_ethnicity_ontology_term_id' is not a valid ontology term id of 'HANCESTRO'. When 'organism_ontology_term_id' is 'NCBITaxon:9606' (Homo sapiens), self_reported_ethnicity_ontology_term_id MUST be formatted as one or more comma-separated (with no leading or trailing spaces) HANCESTRO terms in ascending lexical order, or 'unknown' if unavailable. Cannot match any forbidden HANCESTRO terms listed in schema definition.
+ERROR:cellxgene_schema.validate:ERROR: 'HANCESTRO:0847' in 'self_reported_ethnicity_ontology_term_id' is not a valid ontology term id of 'HANCESTRO'. When 'organism_ontology_term_id' is 'NCBITaxon:9606' (Homo sapiens), self_reported_ethnicity_ontology_term_id MUST be formatted as one or more comma-separated (with no leading or trailing spaces) HANCESTRO terms in ascending lexical order, or 'unknown' if unavailable. Cannot match any forbidden HANCESTRO terms listed in schema definition.
+INFO:cellxgene_schema.validate:Validation complete in 0:08:54.938965 with status is_valid=False

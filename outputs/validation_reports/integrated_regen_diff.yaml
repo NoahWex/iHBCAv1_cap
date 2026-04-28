@@ -1,0 +1,245 @@
+timestamp: '2026-03-08T18:35:32.984812'
+new_file: outputs/integrated_objects/all-breast-cells.h5ad
+reference_file: <author-share>/iHBCA_Reed_2024/integrated_atlas/integration_iHBCA.h5ad
+checks:
+  shape:
+    new:
+      cells: 2119033
+      genes: 15164
+    ref:
+      cells: 2122065
+      genes: 15153
+    pass: false
+    detail: 'Shape mismatch: (2119033, 15164) vs (2122065, 15153)'
+  obs_columns:
+    new_only:
+    - BRCA_tested
+    - age
+    - age_at_first_birth
+    - age_binary
+    - age_continuous
+    - alignment_software
+    - before
+    - bmi_category
+    - bmi_continuous
+    - brca_genotype
+    - brca_status
+    - brca_testing
+    - cancer_history
+    - cellTypist_annotation_kumar
+    - cellTypist_annotation_reed
+    - cell_enrichment
+    - comparison_type
+    - dissociation_minutes
+    - ethnicity_grouped
+    - ethnicity_verbatim
+    - facs_status
+    - gene_annotation_version
+    - ihbca_donor_id
+    - institute
+    - leiden_0_05
+    - leiden_0_1
+    - leiden_0_2
+    - leiden_0_3
+    - leiden_0_4
+    - leiden_0_5
+    - leiden_0_6
+    - leiden_0_7
+    - leiden_0_8
+    - leiden_0_9
+    - leiden_1_0
+    - leiden_pca_res0.1
+    - leiden_pca_res0.5
+    - leiden_pca_res1.0
+    - leiden_scPoli50_res0.1
+    - leiden_scPoli50_res0.5
+    - leiden_scPoli50_res1.0
+    - leiden_scVI100_res0.1
+    - leiden_scVI100_res0.5
+    - leiden_scVI100_res1.0
+    - level0
+    - level0_annotation
+    - level1
+    - level1.5_annotation
+    - level1_annotation
+    - library_id
+    - library_preparation_batch
+    - library_sequencing_run
+    - manner_of_death
+    - menopausal_status_binary
+    - menopausal_status_detailed
+    - metadata_notes
+    - n_counts
+    - n_genes
+    - organism_ontology_term_id
+    - parity_binary
+    - parity_count
+    - patientID
+    - patient_age
+    - percent_mito
+    - poolID
+    - pred_spikein
+    - prob_spikein
+    - prob_spikein_dblt
+    - processing_date
+    - reference_genome
+    - replicate
+    - risk_genotype_only
+    - risk_status2
+    - risk_status_binary
+    - sampleID
+    - sample_barcode
+    - sample_collection_method
+    - sample_id
+    - sample_preservation
+    - sample_preservation_method
+    - sample_source
+    - sample_type_coarse
+    - sampled_site_condition
+    - sequenced_fragment
+    - tissue_indication
+    ref_only:
+    - assay
+    - cell_type
+    - development_stage
+    - disease
+    - doi
+    - donor_age
+    - map_celltype_map2gray
+    - map_celltype_map2kumar
+    - map_celltype_map2murrow
+    - map_celltype_map2nee
+    - map_celltype_map2pal
+    - map_celltype_map2reed
+    - map_celltype_map2twigger
+    - observation_joinid
+    - original_celltype
+    - reported_ethnicity
+    - self_reported_ethnicity
+    - sex
+    - tissue
+    shared: 19
+    pass: false
+  obs_dtypes:
+    mismatches: []
+    total_mismatches: 0
+    pass: true
+  var_index:
+    new_only: 13
+    ref_only: 2
+    shared: 15151
+    order_match: false
+    pass: false
+    new_only_examples:
+    - ENSG00000203441
+    - ENSG00000223797
+    - ENSG00000224204
+    - ENSG00000227540
+    - ENSG00000230565
+    - ENSG00000236094
+    - ENSG00000237975
+    - ENSG00000238266
+    - ENSG00000239332
+    - ENSG00000240875
+    ref_only_examples:
+    - ENSG00000290292
+    - ENSG00000291237
+  var_columns:
+    new_only:
+    - chromosome
+    - feature_biotype_gencode
+    - gene_id
+    - gene_symbol
+    - symbol
+    ref_only:
+    - feature_biotype
+    - feature_length
+    - feature_name
+    - feature_reference
+    - feature_type
+    pass: false
+  obsm:
+    new_only:
+    - X_scvi_100
+    ref_only:
+    - X_diffmap
+    - X_scVI
+    - X_umap_seed_0
+    - X_umap_seed_1
+    - X_umap_seed_2
+    shared:
+    - X_umap
+    pass: false
+    shape_mismatches:
+    - key: X_umap
+      new:
+      - 2119033
+      - 2
+      ref:
+      - 2122065
+      - 2
+  uns:
+    new_only:
+    - atlas_metadata
+    - doi
+    - geo_accession
+    - ihbca_provenance
+    - integration_method
+    - obs_field_descriptions
+    - obsm_key_descriptions
+    - study_pi
+    ref_only:
+    - citation
+    - dataset_colors
+    - diffmap_evals
+    - doi_colors
+    - hvg
+    - leiden
+    - level2_colors
+    - neighbors
+    - normalization
+    - schema_reference
+    - umap
+    shared:
+    - organism
+    - organism_ontology_term_id
+    - schema_version
+    - title
+    pass: true
+  X_matrix:
+    new_format: csr_matrix
+    ref_format: csr_matrix
+    new_dtype: float32
+    ref_dtype: float32
+    new_nnz: 3916307723
+    ref_nnz: 3919768513
+    nnz_match: false
+    format_match: true
+    dtype_match: true
+    pass: false
+  raw:
+    new_has_raw: false
+    ref_has_raw: true
+    pass: false
+  obs_spot_check:
+    columns_checked:
+    - donor_id
+    - tissue_ontology_term_id
+    - assay_ontology_term_id
+    - sex_ontology_term_id
+    mismatches:
+    - column: donor_id
+      new_sample:
+      - Gray_PM-A
+      - Gray_PM-A
+      - Gray_PM-A
+      - Gray_PM-A
+      - Gray_PM-A
+      ref_sample:
+      - Gray_PM-D
+      - Gray_PM-D
+      - Gray_PM-D
+      - Gray_PM-D
+      - Gray_PM-D
+    pass: false
+overall_pass: false

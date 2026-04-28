@@ -1,0 +1,573 @@
+level15_annotation,cl_term,n_cells,total_label_cells,pct_of_label
+B-cell,CL:0000972,4568,10411,43.88
+B-cell,CL:0000788,4084,10411,39.23
+B-cell,CL:0000970,1100,10411,10.57
+B-cell,unknown,374,10411,3.59
+B-cell,CL:0000917,41,10411,0.39
+B-cell,CL:4033057,40,10411,0.38
+B-cell,CL:4033054,35,10411,0.34
+B-cell,CL:0000704,27,10411,0.26
+B-cell,CL:0000895,25,10411,0.24
+B-cell,CL:4033058,24,10411,0.23
+B-cell,CL:0000786,17,10411,0.16
+B-cell,CL:0002555,15,10411,0.14
+B-cell,CL:0002543,14,10411,0.13
+B-cell,CL:0000909,9,10411,0.09
+B-cell,CL:0000492,8,10411,0.08
+B-cell,CL:0000235,6,10411,0.06
+B-cell,CL:0000451,6,10411,0.06
+B-cell,CL:0002324,6,10411,0.06
+B-cell,CL:1000413,4,10411,0.04
+B-cell,CL:0002138,3,10411,0.03
+B-cell,CL:0000913,2,10411,0.02
+B-cell,CL:0002144,2,10411,0.02
+B-cell,CL:0001065,1,10411,0.01
+B-cell,CL:0000623,0,10411,0.0
+B-cell,CL:0000814,0,10411,0.0
+B-cell,CL:0002327,0,10411,0.0
+Basal-myoepithelial,CL:0002324,238742,250795,95.19
+Basal-myoepithelial,CL:4033057,2731,250795,1.09
+Basal-myoepithelial,unknown,2508,250795,1.0
+Basal-myoepithelial,CL:0000895,1562,250795,0.62
+Basal-myoepithelial,CL:4033054,1131,250795,0.45
+Basal-myoepithelial,CL:0002555,1092,250795,0.44
+Basal-myoepithelial,CL:0000704,1014,250795,0.4
+Basal-myoepithelial,CL:4033058,582,250795,0.23
+Basal-myoepithelial,CL:0002543,365,250795,0.15
+Basal-myoepithelial,CL:0000909,330,250795,0.13
+Basal-myoepithelial,CL:0000492,131,250795,0.05
+Basal-myoepithelial,CL:0002327,125,250795,0.05
+Basal-myoepithelial,CL:0000972,114,250795,0.05
+Basal-myoepithelial,CL:1000413,88,250795,0.04
+Basal-myoepithelial,CL:0000917,67,250795,0.03
+Basal-myoepithelial,CL:0002144,61,250795,0.02
+Basal-myoepithelial,CL:0002138,59,250795,0.02
+Basal-myoepithelial,CL:0000970,35,250795,0.01
+Basal-myoepithelial,CL:0000913,22,250795,0.01
+Basal-myoepithelial,CL:0000788,16,250795,0.01
+Basal-myoepithelial,CL:0000235,14,250795,0.01
+Basal-myoepithelial,CL:0000786,4,250795,0.0
+Basal-myoepithelial,CL:0000451,1,250795,0.0
+Basal-myoepithelial,CL:0001065,1,250795,0.0
+Basal-myoepithelial,CL:0000623,0,250795,0.0
+Basal-myoepithelial,CL:0000814,0,250795,0.0
+CD4T,CL:0000895,19716,47930,41.13
+CD4T,CL:0000492,16461,47930,34.34
+CD4T,CL:0000917,5553,47930,11.59
+CD4T,CL:0000909,2820,47930,5.88
+CD4T,CL:0000913,846,47930,1.77
+CD4T,unknown,677,47930,1.41
+CD4T,CL:4033057,368,47930,0.77
+CD4T,CL:0001065,249,47930,0.52
+CD4T,CL:4033054,239,47930,0.5
+CD4T,CL:0002555,170,47930,0.35
+CD4T,CL:0000704,158,47930,0.33
+CD4T,CL:4033058,136,47930,0.28
+CD4T,CL:0000972,100,47930,0.21
+CD4T,CL:0000814,97,47930,0.2
+CD4T,CL:0000788,62,47930,0.13
+CD4T,CL:0002144,51,47930,0.11
+CD4T,CL:0002324,46,47930,0.1
+CD4T,CL:0000623,40,47930,0.08
+CD4T,CL:0000970,28,47930,0.06
+CD4T,CL:1000413,27,47930,0.06
+CD4T,CL:0000235,26,47930,0.05
+CD4T,CL:0002543,24,47930,0.05
+CD4T,CL:0002138,18,47930,0.04
+CD4T,CL:0000786,15,47930,0.03
+CD4T,CL:0000451,2,47930,0.0
+CD4T,CL:0002327,1,47930,0.0
+CD8T,CL:0000909,23671,44924,52.69
+CD8T,CL:0000913,6984,44924,15.55
+CD8T,CL:0000895,4153,44924,9.24
+CD8T,CL:0000917,3814,44924,8.49
+CD8T,CL:0000492,1982,44924,4.41
+CD8T,unknown,1366,44924,3.04
+CD8T,CL:0000814,606,44924,1.35
+CD8T,CL:4033057,500,44924,1.11
+CD8T,CL:0001065,341,44924,0.76
+CD8T,CL:4033054,320,44924,0.71
+CD8T,CL:0000623,295,44924,0.66
+CD8T,CL:0002555,194,44924,0.43
+CD8T,CL:0000704,192,44924,0.43
+CD8T,CL:4033058,166,44924,0.37
+CD8T,CL:0000972,61,44924,0.14
+CD8T,CL:0000788,54,44924,0.12
+CD8T,CL:0002324,45,44924,0.1
+CD8T,CL:1000413,37,44924,0.08
+CD8T,CL:0002138,35,44924,0.08
+CD8T,CL:0002144,32,44924,0.07
+CD8T,CL:0002543,29,44924,0.06
+CD8T,CL:0000235,20,44924,0.04
+CD8T,CL:0000970,18,44924,0.04
+CD8T,CL:0000786,4,44924,0.01
+CD8T,CL:0000451,3,44924,0.01
+CD8T,CL:0002327,2,44924,0.0
+Conventional dendritic cell,CL:0000235,5930,7827,75.76
+Conventional dendritic cell,CL:0000451,1644,7827,21.0
+Conventional dendritic cell,unknown,74,7827,0.95
+Conventional dendritic cell,CL:4033057,42,7827,0.54
+Conventional dendritic cell,CL:0000704,29,7827,0.37
+Conventional dendritic cell,CL:0000895,17,7827,0.22
+Conventional dendritic cell,CL:0002555,15,7827,0.19
+Conventional dendritic cell,CL:0000972,14,7827,0.18
+Conventional dendritic cell,CL:4033054,11,7827,0.14
+Conventional dendritic cell,CL:4033058,8,7827,0.1
+Conventional dendritic cell,CL:0000492,6,7827,0.08
+Conventional dendritic cell,CL:0000970,5,7827,0.06
+Conventional dendritic cell,CL:0002543,5,7827,0.06
+Conventional dendritic cell,CL:0000788,4,7827,0.05
+Conventional dendritic cell,CL:0000909,4,7827,0.05
+Conventional dendritic cell,CL:0002324,4,7827,0.05
+Conventional dendritic cell,CL:0002144,3,7827,0.04
+Conventional dendritic cell,CL:1000413,3,7827,0.04
+Conventional dendritic cell,CL:0000814,2,7827,0.03
+Conventional dendritic cell,CL:0000917,2,7827,0.03
+Conventional dendritic cell,CL:0001065,2,7827,0.03
+Conventional dendritic cell,CL:0000786,1,7827,0.01
+Conventional dendritic cell,CL:0000913,1,7827,0.01
+Conventional dendritic cell,CL:0002327,1,7827,0.01
+Conventional dendritic cell,CL:0000623,0,7827,0.0
+Conventional dendritic cell,CL:0002138,0,7827,0.0
+Doublet,unknown,7266,14291,50.84
+Doublet,CL:0000704,1642,14291,11.49
+Doublet,CL:4033058,1337,14291,9.36
+Doublet,CL:0002543,846,14291,5.92
+Doublet,CL:4033054,635,14291,4.44
+Doublet,CL:4033057,587,14291,4.11
+Doublet,CL:0002555,515,14291,3.6
+Doublet,CL:0002324,451,14291,3.16
+Doublet,CL:1000413,358,14291,2.51
+Doublet,CL:0002144,250,14291,1.75
+Doublet,CL:0000895,147,14291,1.03
+Doublet,CL:0000909,82,14291,0.57
+Doublet,CL:0002138,66,14291,0.46
+Doublet,CL:0002327,43,14291,0.3
+Doublet,CL:0000972,18,14291,0.13
+Doublet,CL:0000492,15,14291,0.1
+Doublet,CL:0000917,12,14291,0.08
+Doublet,CL:0000235,5,14291,0.03
+Doublet,CL:0000788,5,14291,0.03
+Doublet,CL:0000913,4,14291,0.03
+Doublet,CL:0000814,3,14291,0.02
+Doublet,CL:0000970,3,14291,0.02
+Doublet,CL:0000786,1,14291,0.01
+Doublet,CL:0000451,0,14291,0.0
+Doublet,CL:0000623,0,14291,0.0
+Doublet,CL:0001065,0,14291,0.0
+Fibroblast,CL:0002555,466819,486873,95.88
+Fibroblast,unknown,11243,486873,2.31
+Fibroblast,CL:4033054,2070,486873,0.43
+Fibroblast,CL:4033057,1704,486873,0.35
+Fibroblast,CL:0000895,1141,486873,0.23
+Fibroblast,CL:0000704,1028,486873,0.21
+Fibroblast,CL:0000909,686,486873,0.14
+Fibroblast,CL:4033058,559,486873,0.11
+Fibroblast,CL:0002324,379,486873,0.08
+Fibroblast,CL:0002543,217,486873,0.04
+Fibroblast,CL:0000972,214,486873,0.04
+Fibroblast,CL:0000917,209,486873,0.04
+Fibroblast,CL:0000492,149,486873,0.03
+Fibroblast,CL:0002138,139,486873,0.03
+Fibroblast,CL:0002144,86,486873,0.02
+Fibroblast,CL:1000413,55,486873,0.01
+Fibroblast,CL:0002327,43,486873,0.01
+Fibroblast,CL:0000235,35,486873,0.01
+Fibroblast,CL:0000788,32,486873,0.01
+Fibroblast,CL:0000913,24,486873,0.0
+Fibroblast,CL:0000970,22,486873,0.0
+Fibroblast,CL:0000786,15,486873,0.0
+Fibroblast,CL:0000814,3,486873,0.0
+Fibroblast,CL:0000623,1,486873,0.0
+Fibroblast,CL:0000451,0,486873,0.0
+Fibroblast,CL:0001065,0,486873,0.0
+Lactocyte,CL:0000704,26606,53711,49.54
+Lactocyte,CL:4033057,10462,53711,19.48
+Lactocyte,unknown,4944,53711,9.2
+Lactocyte,CL:4033054,3053,53711,5.68
+Lactocyte,CL:0002555,2740,53711,5.1
+Lactocyte,CL:0002144,1880,53711,3.5
+Lactocyte,CL:0002324,1506,53711,2.8
+Lactocyte,CL:4033058,1000,53711,1.86
+Lactocyte,CL:0000895,317,53711,0.59
+Lactocyte,CL:0002138,291,53711,0.54
+Lactocyte,CL:0002327,196,53711,0.36
+Lactocyte,CL:0000917,138,53711,0.26
+Lactocyte,CL:0000972,124,53711,0.23
+Lactocyte,CL:0000492,122,53711,0.23
+Lactocyte,CL:0000909,83,53711,0.15
+Lactocyte,CL:0002543,66,53711,0.12
+Lactocyte,CL:1000413,42,53711,0.08
+Lactocyte,CL:0000913,40,53711,0.07
+Lactocyte,CL:0000788,36,53711,0.07
+Lactocyte,CL:0000235,25,53711,0.05
+Lactocyte,CL:0000786,20,53711,0.04
+Lactocyte,CL:0000970,18,53711,0.03
+Lactocyte,CL:0000623,2,53711,0.0
+Lactocyte,CL:0000451,0,53711,0.0
+Lactocyte,CL:0000814,0,53711,0.0
+Lactocyte,CL:0001065,0,53711,0.0
+Luminal adaptive secretory precursor,CL:4033057,341645,372978,91.6
+Luminal adaptive secretory precursor,unknown,13981,372978,3.75
+Luminal adaptive secretory precursor,CL:0000704,2481,372978,0.67
+Luminal adaptive secretory precursor,CL:0000895,2306,372978,0.62
+Luminal adaptive secretory precursor,CL:4033054,2165,372978,0.58
+Luminal adaptive secretory precursor,CL:0002555,2087,372978,0.56
+Luminal adaptive secretory precursor,CL:4033058,1956,372978,0.52
+Luminal adaptive secretory precursor,CL:0002324,1730,372978,0.46
+Luminal adaptive secretory precursor,CL:0002327,1565,372978,0.42
+Luminal adaptive secretory precursor,CL:0002543,830,372978,0.22
+Luminal adaptive secretory precursor,CL:0000909,599,372978,0.16
+Luminal adaptive secretory precursor,CL:0000972,325,372978,0.09
+Luminal adaptive secretory precursor,CL:0002144,263,372978,0.07
+Luminal adaptive secretory precursor,CL:0000917,260,372978,0.07
+Luminal adaptive secretory precursor,CL:0000492,203,372978,0.05
+Luminal adaptive secretory precursor,CL:1000413,164,372978,0.04
+Luminal adaptive secretory precursor,CL:0002138,153,372978,0.04
+Luminal adaptive secretory precursor,CL:0000970,71,372978,0.02
+Luminal adaptive secretory precursor,CL:0000788,69,372978,0.02
+Luminal adaptive secretory precursor,CL:0000913,61,372978,0.02
+Luminal adaptive secretory precursor,CL:0000235,42,372978,0.01
+Luminal adaptive secretory precursor,CL:0000786,17,372978,0.0
+Luminal adaptive secretory precursor,CL:0000451,3,372978,0.0
+Luminal adaptive secretory precursor,CL:0000623,1,372978,0.0
+Luminal adaptive secretory precursor,CL:0000814,1,372978,0.0
+Luminal adaptive secretory precursor,CL:0001065,0,372978,0.0
+Luminal hormone sensing,CL:4033058,273619,296319,92.34
+Luminal hormone sensing,unknown,13413,296319,4.53
+Luminal hormone sensing,CL:4033057,2261,296319,0.76
+Luminal hormone sensing,CL:0000895,1353,296319,0.46
+Luminal hormone sensing,CL:0000704,1256,296319,0.42
+Luminal hormone sensing,CL:4033054,1011,296319,0.34
+Luminal hormone sensing,CL:0002555,823,296319,0.28
+Luminal hormone sensing,CL:0000909,628,296319,0.21
+Luminal hormone sensing,CL:0002543,564,296319,0.19
+Luminal hormone sensing,CL:0002324,297,296319,0.1
+Luminal hormone sensing,CL:0002327,234,296319,0.08
+Luminal hormone sensing,CL:0000492,160,296319,0.05
+Luminal hormone sensing,CL:0000972,139,296319,0.05
+Luminal hormone sensing,CL:0000917,120,296319,0.04
+Luminal hormone sensing,CL:0002138,108,296319,0.04
+Luminal hormone sensing,CL:1000413,89,296319,0.03
+Luminal hormone sensing,CL:0002144,84,296319,0.03
+Luminal hormone sensing,CL:0000788,51,296319,0.02
+Luminal hormone sensing,CL:0000970,40,296319,0.01
+Luminal hormone sensing,CL:0000913,30,296319,0.01
+Luminal hormone sensing,CL:0000235,27,296319,0.01
+Luminal hormone sensing,CL:0000786,9,296319,0.0
+Luminal hormone sensing,CL:0000814,2,296319,0.0
+Luminal hormone sensing,CL:0000623,1,296319,0.0
+Luminal hormone sensing,CL:0000451,0,296319,0.0
+Luminal hormone sensing,CL:0001065,0,296319,0.0
+Lymphatic endothelial,CL:0002138,24538,25393,96.63
+Lymphatic endothelial,unknown,503,25393,1.98
+Lymphatic endothelial,CL:0000704,91,25393,0.36
+Lymphatic endothelial,CL:0002543,64,25393,0.25
+Lymphatic endothelial,CL:0002555,44,25393,0.17
+Lymphatic endothelial,CL:4033054,32,25393,0.13
+Lymphatic endothelial,CL:4033057,30,25393,0.12
+Lymphatic endothelial,CL:0000895,28,25393,0.11
+Lymphatic endothelial,CL:1000413,21,25393,0.08
+Lymphatic endothelial,CL:0002144,16,25393,0.06
+Lymphatic endothelial,CL:0000909,6,25393,0.02
+Lymphatic endothelial,CL:0002324,6,25393,0.02
+Lymphatic endothelial,CL:0000492,5,25393,0.02
+Lymphatic endothelial,CL:0000972,3,25393,0.01
+Lymphatic endothelial,CL:4033058,3,25393,0.01
+Lymphatic endothelial,CL:0000786,1,25393,0.0
+Lymphatic endothelial,CL:0000970,1,25393,0.0
+Lymphatic endothelial,CL:0001065,1,25393,0.0
+Lymphatic endothelial,CL:0000235,0,25393,0.0
+Lymphatic endothelial,CL:0000451,0,25393,0.0
+Lymphatic endothelial,CL:0000623,0,25393,0.0
+Lymphatic endothelial,CL:0000788,0,25393,0.0
+Lymphatic endothelial,CL:0000814,0,25393,0.0
+Lymphatic endothelial,CL:0000913,0,25393,0.0
+Lymphatic endothelial,CL:0000917,0,25393,0.0
+Lymphatic endothelial,CL:0002327,0,25393,0.0
+Macrophage,CL:0000235,20268,20582,98.47
+Macrophage,CL:0000451,81,20582,0.39
+Macrophage,unknown,56,20582,0.27
+Macrophage,CL:0000704,39,20582,0.19
+Macrophage,CL:0002555,22,20582,0.11
+Macrophage,CL:4033057,22,20582,0.11
+Macrophage,CL:4033054,17,20582,0.08
+Macrophage,CL:0000917,15,20582,0.07
+Macrophage,CL:4033058,11,20582,0.05
+Macrophage,CL:0002138,8,20582,0.04
+Macrophage,CL:0002144,8,20582,0.04
+Macrophage,CL:0000972,6,20582,0.03
+Macrophage,CL:0000895,5,20582,0.02
+Macrophage,CL:0000970,5,20582,0.02
+Macrophage,CL:0002324,4,20582,0.02
+Macrophage,CL:0002543,4,20582,0.02
+Macrophage,CL:0000786,3,20582,0.01
+Macrophage,CL:0000788,3,20582,0.01
+Macrophage,CL:0000492,2,20582,0.01
+Macrophage,CL:0000909,2,20582,0.01
+Macrophage,CL:1000413,1,20582,0.0
+Macrophage,CL:0000623,0,20582,0.0
+Macrophage,CL:0000814,0,20582,0.0
+Macrophage,CL:0000913,0,20582,0.0
+Macrophage,CL:0001065,0,20582,0.0
+Macrophage,CL:0002327,0,20582,0.0
+Macrophage lipid-associated,CL:0000235,1683,1891,89.0
+Macrophage lipid-associated,CL:0000704,90,1891,4.76
+Macrophage lipid-associated,unknown,27,1891,1.43
+Macrophage lipid-associated,CL:4033054,14,1891,0.74
+Macrophage lipid-associated,CL:0000451,13,1891,0.69
+Macrophage lipid-associated,CL:0002555,12,1891,0.63
+Macrophage lipid-associated,CL:0000895,10,1891,0.53
+Macrophage lipid-associated,CL:0000909,8,1891,0.42
+Macrophage lipid-associated,CL:4033057,7,1891,0.37
+Macrophage lipid-associated,CL:0000492,5,1891,0.26
+Macrophage lipid-associated,CL:0002324,5,1891,0.26
+Macrophage lipid-associated,CL:0002543,4,1891,0.21
+Macrophage lipid-associated,CL:4033058,4,1891,0.21
+Macrophage lipid-associated,CL:0000972,3,1891,0.16
+Macrophage lipid-associated,CL:0002138,2,1891,0.11
+Macrophage lipid-associated,CL:0002144,2,1891,0.11
+Macrophage lipid-associated,CL:0002327,1,1891,0.05
+Macrophage lipid-associated,CL:1000413,1,1891,0.05
+Macrophage lipid-associated,CL:0000623,0,1891,0.0
+Macrophage lipid-associated,CL:0000786,0,1891,0.0
+Macrophage lipid-associated,CL:0000788,0,1891,0.0
+Macrophage lipid-associated,CL:0000814,0,1891,0.0
+Macrophage lipid-associated,CL:0000913,0,1891,0.0
+Macrophage lipid-associated,CL:0000917,0,1891,0.0
+Macrophage lipid-associated,CL:0000970,0,1891,0.0
+Macrophage lipid-associated,CL:0001065,0,1891,0.0
+Mast cell,CL:0000235,288,868,33.18
+Mast cell,CL:0002555,109,868,12.56
+Mast cell,CL:4033054,63,868,7.26
+Mast cell,CL:0000909,48,868,5.53
+Mast cell,CL:0000492,47,868,5.41
+Mast cell,unknown,45,868,5.18
+Mast cell,CL:4033057,44,868,5.07
+Mast cell,CL:0000972,41,868,4.72
+Mast cell,CL:0000704,37,868,4.26
+Mast cell,CL:4033058,33,868,3.8
+Mast cell,CL:0000451,19,868,2.19
+Mast cell,CL:0000895,16,868,1.84
+Mast cell,CL:0002324,16,868,1.84
+Mast cell,CL:0000917,15,868,1.73
+Mast cell,CL:0001065,10,868,1.15
+Mast cell,CL:0002138,10,868,1.15
+Mast cell,CL:1000413,9,868,1.04
+Mast cell,CL:0002144,4,868,0.46
+Mast cell,CL:0000786,3,868,0.35
+Mast cell,CL:0000788,3,868,0.35
+Mast cell,CL:0000814,3,868,0.35
+Mast cell,CL:0000623,2,868,0.23
+Mast cell,CL:0000970,2,868,0.23
+Mast cell,CL:0002543,1,868,0.12
+Mast cell,CL:0000913,0,868,0.0
+Mast cell,CL:0002327,0,868,0.0
+Monocyte,CL:0000235,5813,6239,93.17
+Monocyte,unknown,174,6239,2.79
+Monocyte,CL:0000451,160,6239,2.56
+Monocyte,CL:4033058,16,6239,0.26
+Monocyte,CL:0002555,14,6239,0.22
+Monocyte,CL:0000704,12,6239,0.19
+Monocyte,CL:4033057,10,6239,0.16
+Monocyte,CL:4033054,8,6239,0.13
+Monocyte,CL:0002543,7,6239,0.11
+Monocyte,CL:0000895,6,6239,0.1
+Monocyte,CL:0000972,4,6239,0.06
+Monocyte,CL:0000492,3,6239,0.05
+Monocyte,CL:1000413,3,6239,0.05
+Monocyte,CL:0000786,2,6239,0.03
+Monocyte,CL:0000788,2,6239,0.03
+Monocyte,CL:0000917,2,6239,0.03
+Monocyte,CL:0000909,1,6239,0.02
+Monocyte,CL:0000913,1,6239,0.02
+Monocyte,CL:0002144,1,6239,0.02
+Monocyte,CL:0000623,0,6239,0.0
+Monocyte,CL:0000814,0,6239,0.0
+Monocyte,CL:0000970,0,6239,0.0
+Monocyte,CL:0001065,0,6239,0.0
+Monocyte,CL:0002138,0,6239,0.0
+Monocyte,CL:0002324,0,6239,0.0
+Monocyte,CL:0002327,0,6239,0.0
+NK/NKT,CL:0000814,6918,11743,58.91
+NK/NKT,CL:0000913,896,11743,7.63
+NK/NKT,CL:0000909,886,11743,7.54
+NK/NKT,CL:0000623,840,11743,7.15
+NK/NKT,CL:0000492,638,11743,5.43
+NK/NKT,CL:0000917,458,11743,3.9
+NK/NKT,CL:0000895,215,11743,1.83
+NK/NKT,CL:4033057,185,11743,1.58
+NK/NKT,unknown,184,11743,1.57
+NK/NKT,CL:4033054,89,11743,0.76
+NK/NKT,CL:0000704,78,11743,0.66
+NK/NKT,CL:0002555,68,11743,0.58
+NK/NKT,CL:4033058,61,11743,0.52
+NK/NKT,CL:0001065,51,11743,0.43
+NK/NKT,CL:0000972,46,11743,0.39
+NK/NKT,CL:0002144,28,11743,0.24
+NK/NKT,CL:0000788,24,11743,0.2
+NK/NKT,CL:0002543,21,11743,0.18
+NK/NKT,CL:0002324,18,11743,0.15
+NK/NKT,CL:0000970,10,11743,0.09
+NK/NKT,CL:0002138,10,11743,0.09
+NK/NKT,CL:0000235,9,11743,0.08
+NK/NKT,CL:1000413,5,11743,0.04
+NK/NKT,CL:0000786,4,11743,0.03
+NK/NKT,CL:0002327,1,11743,0.01
+NK/NKT,CL:0000451,0,11743,0.0
+Neutrophil,CL:0000235,1488,1935,76.9
+Neutrophil,unknown,68,1935,3.51
+Neutrophil,CL:0000972,48,1935,2.48
+Neutrophil,CL:4033054,41,1935,2.12
+Neutrophil,CL:0002555,40,1935,2.07
+Neutrophil,CL:0000451,37,1935,1.91
+Neutrophil,CL:0000895,34,1935,1.76
+Neutrophil,CL:4033057,33,1935,1.71
+Neutrophil,CL:0000704,27,1935,1.4
+Neutrophil,CL:4033058,24,1935,1.24
+Neutrophil,CL:0000788,17,1935,0.88
+Neutrophil,CL:0000909,15,1935,0.78
+Neutrophil,CL:0000917,15,1935,0.78
+Neutrophil,CL:0000492,14,1935,0.72
+Neutrophil,CL:1000413,13,1935,0.67
+Neutrophil,CL:0002543,6,1935,0.31
+Neutrophil,CL:0002138,5,1935,0.26
+Neutrophil,CL:0002324,3,1935,0.16
+Neutrophil,CL:0000786,2,1935,0.1
+Neutrophil,CL:0000913,2,1935,0.1
+Neutrophil,CL:0000814,1,1935,0.05
+Neutrophil,CL:0002144,1,1935,0.05
+Neutrophil,CL:0002327,1,1935,0.05
+Neutrophil,CL:0000623,0,1935,0.0
+Neutrophil,CL:0000970,0,1935,0.0
+Neutrophil,CL:0001065,0,1935,0.0
+Perivascular,CL:4033054,175386,183601,95.53
+Perivascular,unknown,2523,183601,1.37
+Perivascular,CL:0002555,2104,183601,1.15
+Perivascular,CL:0000704,899,183601,0.49
+Perivascular,CL:0000895,588,183601,0.32
+Perivascular,CL:4033057,575,183601,0.31
+Perivascular,CL:0000909,344,183601,0.19
+Perivascular,CL:4033058,255,183601,0.14
+Perivascular,CL:0002324,249,183601,0.14
+Perivascular,CL:0002543,197,183601,0.11
+Perivascular,CL:0000917,76,183601,0.04
+Perivascular,CL:0000972,75,183601,0.04
+Perivascular,CL:0002138,66,183601,0.04
+Perivascular,CL:1000413,64,183601,0.03
+Perivascular,CL:0000492,58,183601,0.03
+Perivascular,CL:0002144,47,183601,0.03
+Perivascular,CL:0000788,25,183601,0.01
+Perivascular,CL:0000970,21,183601,0.01
+Perivascular,CL:0000235,19,183601,0.01
+Perivascular,CL:0000913,13,183601,0.01
+Perivascular,CL:0000786,8,183601,0.0
+Perivascular,CL:0002327,6,183601,0.0
+Perivascular,CL:0000814,2,183601,0.0
+Perivascular,CL:0001065,1,183601,0.0
+Perivascular,CL:0000451,0,183601,0.0
+Perivascular,CL:0000623,0,183601,0.0
+Plasma cell,CL:0000786,7594,7800,97.36
+Plasma cell,unknown,45,7800,0.58
+Plasma cell,CL:0000704,39,7800,0.5
+Plasma cell,CL:4033057,26,7800,0.33
+Plasma cell,CL:0002555,18,7800,0.23
+Plasma cell,CL:4033054,16,7800,0.21
+Plasma cell,CL:4033058,10,7800,0.13
+Plasma cell,CL:0000788,9,7800,0.12
+Plasma cell,CL:0000909,6,7800,0.08
+Plasma cell,CL:0000972,6,7800,0.08
+Plasma cell,CL:0000970,5,7800,0.06
+Plasma cell,CL:0002144,5,7800,0.06
+Plasma cell,CL:0000895,4,7800,0.05
+Plasma cell,CL:0002543,4,7800,0.05
+Plasma cell,CL:0002324,3,7800,0.04
+Plasma cell,CL:0000235,2,7800,0.03
+Plasma cell,CL:0001065,2,7800,0.03
+Plasma cell,CL:1000413,2,7800,0.03
+Plasma cell,CL:0000451,1,7800,0.01
+Plasma cell,CL:0000492,1,7800,0.01
+Plasma cell,CL:0000623,1,7800,0.01
+Plasma cell,CL:0002138,1,7800,0.01
+Plasma cell,CL:0000814,0,7800,0.0
+Plasma cell,CL:0000913,0,7800,0.0
+Plasma cell,CL:0000917,0,7800,0.0
+Plasma cell,CL:0002327,0,7800,0.0
+Plasmacytoid dendritic cell,CL:0000451,43,100,43.0
+Plasmacytoid dendritic cell,CL:0000786,10,100,10.0
+Plasmacytoid dendritic cell,CL:0000704,8,100,8.0
+Plasmacytoid dendritic cell,CL:0000970,7,100,7.0
+Plasmacytoid dendritic cell,CL:4033054,7,100,7.0
+Plasmacytoid dendritic cell,CL:4033058,7,100,7.0
+Plasmacytoid dendritic cell,CL:4033057,4,100,4.0
+Plasmacytoid dendritic cell,CL:0000235,3,100,3.0
+Plasmacytoid dendritic cell,CL:0000788,2,100,2.0
+Plasmacytoid dendritic cell,CL:0000909,2,100,2.0
+Plasmacytoid dendritic cell,CL:0000972,2,100,2.0
+Plasmacytoid dendritic cell,CL:0002555,2,100,2.0
+Plasmacytoid dendritic cell,CL:0002324,1,100,1.0
+Plasmacytoid dendritic cell,CL:0002543,1,100,1.0
+Plasmacytoid dendritic cell,unknown,1,100,1.0
+Plasmacytoid dendritic cell,CL:0000492,0,100,0.0
+Plasmacytoid dendritic cell,CL:0000623,0,100,0.0
+Plasmacytoid dendritic cell,CL:0000814,0,100,0.0
+Plasmacytoid dendritic cell,CL:0000895,0,100,0.0
+Plasmacytoid dendritic cell,CL:0000913,0,100,0.0
+Plasmacytoid dendritic cell,CL:0000917,0,100,0.0
+Plasmacytoid dendritic cell,CL:0001065,0,100,0.0
+Plasmacytoid dendritic cell,CL:0002138,0,100,0.0
+Plasmacytoid dendritic cell,CL:0002144,0,100,0.0
+Plasmacytoid dendritic cell,CL:0002327,0,100,0.0
+Plasmacytoid dendritic cell,CL:1000413,0,100,0.0
+Single nuclei,unknown,5394,6734,80.1
+Single nuclei,CL:4033058,1189,6734,17.66
+Single nuclei,CL:4033057,25,6734,0.37
+Single nuclei,CL:4033054,24,6734,0.36
+Single nuclei,CL:0002324,20,6734,0.3
+Single nuclei,CL:0002555,20,6734,0.3
+Single nuclei,CL:0000704,18,6734,0.27
+Single nuclei,CL:0002543,10,6734,0.15
+Single nuclei,CL:0000895,9,6734,0.13
+Single nuclei,CL:0002138,5,6734,0.07
+Single nuclei,CL:0002144,5,6734,0.07
+Single nuclei,CL:0000492,3,6734,0.04
+Single nuclei,CL:0000909,3,6734,0.04
+Single nuclei,CL:0000786,2,6734,0.03
+Single nuclei,CL:0000913,2,6734,0.03
+Single nuclei,CL:0000917,2,6734,0.03
+Single nuclei,CL:1000413,2,6734,0.03
+Single nuclei,CL:0000970,1,6734,0.01
+Single nuclei,CL:0000235,0,6734,0.0
+Single nuclei,CL:0000451,0,6734,0.0
+Single nuclei,CL:0000623,0,6734,0.0
+Single nuclei,CL:0000788,0,6734,0.0
+Single nuclei,CL:0000814,0,6734,0.0
+Single nuclei,CL:0000972,0,6734,0.0
+Single nuclei,CL:0001065,0,6734,0.0
+Single nuclei,CL:0002327,0,6734,0.0
+Vascular endothelial,CL:0002543,116066,269120,43.13
+Vascular endothelial,CL:0000704,65522,269120,24.35
+Vascular endothelial,CL:1000413,47751,269120,17.74
+Vascular endothelial,CL:0002144,30936,269120,11.5
+Vascular endothelial,unknown,5343,269120,1.99
+Vascular endothelial,CL:4033057,796,269120,0.3
+Vascular endothelial,CL:4033054,646,269120,0.24
+Vascular endothelial,CL:0000895,463,269120,0.17
+Vascular endothelial,CL:0002138,431,269120,0.16
+Vascular endothelial,CL:0002555,258,269120,0.1
+Vascular endothelial,CL:4033058,239,269120,0.09
+Vascular endothelial,CL:0002324,184,269120,0.07
+Vascular endothelial,CL:0000909,152,269120,0.06
+Vascular endothelial,CL:0000917,80,269120,0.03
+Vascular endothelial,CL:0000972,70,269120,0.03
+Vascular endothelial,CL:0000492,66,269120,0.02
+Vascular endothelial,CL:0000235,39,269120,0.01
+Vascular endothelial,CL:0000970,25,269120,0.01
+Vascular endothelial,CL:0000788,23,269120,0.01
+Vascular endothelial,CL:0002327,11,269120,0.0
+Vascular endothelial,CL:0000913,10,269120,0.0
+Vascular endothelial,CL:0000786,6,269120,0.0
+Vascular endothelial,CL:0000814,3,269120,0.0
+Vascular endothelial,CL:0000451,0,269120,0.0
+Vascular endothelial,CL:0000623,0,269120,0.0
+Vascular endothelial,CL:0001065,0,269120,0.0

@@ -1,0 +1,1003 @@
+# ============================================================================
+# Integrated Object Pre-Upload Audit
+# Object: all-breast-cells.h5ad
+# Date: 2026-03-10
+# Sequence: submission_prep (plans 1-5 complete)
+# Verified: 2026-03-10 from live h5ad audit dump
+# ============================================================================
+
+object:
+  filename: all-breast-cells.h5ad
+  path: publication/outputs/integrated_objects/all-breast-cells.h5ad
+  size_gb: 88.9           # VERIFIED: 95,421,442,934 bytes = 88.9 GB (template had 95.4 — was wrong)
+  n_cells: 2119033        # VERIFIED: matches raw dump n_obs
+  n_genes: 15164          # VERIFIED: matches raw dump n_vars
+  n_obs_columns: 104      # VERIFIED: 104 unique obs columns in raw dump
+  n_obsm_keys: 2          # VERIFIED: X_scvi_100, X_umap
+  n_layers: 0             # POST-RESTRUCTURE: layers empty; X=normalized, raw.X=counts
+  schema_version: "5.3.2" # CxG schema; NOT stored in uns (validator sets it)
+  is_primary_data: false
+  target_build: hca
+
+# ============================================================================
+# PROVENANCE
+# ============================================================================
+
+provenance:
+  build_mode: author_share  # Preferred; legacy mode uses stale CxG h5ad
+  assembly_script: publication/scripts/assemble_integrated.py
+  enrichment_scripts:
+    - publication/scripts/enrich_h5ads.py          # var, obs, uns, log_normalized
+    - publication/scripts/patch_obs_h5py.py         # L1 broadcast (h5py direct)
+    - publication/scripts/patch_var_uns_h5py.py     # CxG fixes (feature_biotype rename, layer_descriptions removal)
+    - publication/scripts/patch_remove_schema_version.py  # schema_version removal from uns
+
+  input_files:
+    counts:
+      file: counts_matrix.npz
+      source: <author-share>/
+      description: UMI count matrix (2.12M × 15,176 sparse)
+    gene_data:
+      file: gene_data.csv
+      source: <author-share>/
+      description: scVI output gene list (15,176 genes)
+    annotations:
+      file: ihbca_level1.5_annotations.csv
+      source: <author-share>/
+      description: Austin's refined cell type annotations (level0/1/1.5)
+    umap:
+      file: X_scVI100_UMAP.csv
+      source: <author-share>/
+      description: 2D UMAP from scVI 100D latent
+    embeddings:
+      file: X_scVI100.csv
+      source: <author-share>/
+      description: scVI 100D latent representation
+    harmonized_donors:
+      file: publication/config/metadata_stages/L1_harmonized_donor.csv
+      source: Activation/donor_metadata_alignment
+      description: 287 donors × 21 clinical/demographic columns
+    hancestro_mapping:
+      file: publication/mappings/hancestro_ethnicity_mapping.tsv
+      source: Activation/hancestro_branch
+      description: Ethnicity verbatim → HANCESTRO term ID (~500 entries)
+    dataset_metadata:
+      file: publication/config/dataset_metadata.yaml
+      source: Activation/dataset_metadata
+      description: 7 studies × 12 tracker fields
+    cl_mapping:
+      file: publication/mappings/level15_to_cl_mapping.csv
+      source: Publication/hca_field_backfill
+      description: 24 level1.5 labels → CL ontology terms
+    gencode:
+      file: publication/mappings/gene_symbol_to_ensembl_v24.tsv
+      source: GENCODE v24 GTF
+      description: Gene symbol ↔ Ensembl ID + biotype + chromosome
+    sra_run_tables:
+      files:
+        - publication/mappings/sra_run_table_gray.csv
+        - publication/mappings/sra_run_table_kumar.csv
+        - publication/mappings/sra_run_table_murrow.csv
+        - publication/mappings/sra_run_table_nee.csv
+        - publication/mappings/sra_run_table_twigger.csv
+        - publication/mappings/sra_run_table_reed.csv
+        - publication/mappings/sra_run_table_pal.csv
+      source: Publication/hca_field_backfill
+      description: Per-study library_id, sequencing_run, preparation_batch
+    donor_id_translations:
+      files:
+        - publication/mappings/donor_id_translation_reed.csv
+        - publication/mappings/donor_id_translation_pal.csv
+      source: Activation/donor_id_bridge
+      description: ID mismatches between source studies and integrated object
+    harmonized_donor_metadata:
+      file: external_studies/harmonization/outputs/harmonized_metadata/harmonized_donor_metadata.csv
+      source: Publication supplemental tables (per-study)
+      description: Donor-level ethnicity mappings for HANCESTRO enrichment; consumed by assemble_integrated.py:enrich_ethnicity_from_harmonized()
+    cxg_approved_genes:
+      file: publication/mappings/cxg_approved_genes.txt
+      source: CxG schema 5.3.2
+      description: 62,700 approved Ensembl IDs; 15,164 present in object
+
+  pipeline_dag:
+    # Full 9-stage DAG; integrated path is stages 3 → 6
+    - stage: assemble_integrated
+      script: publication/run/assemble_integrated.sh
+      resources: 180GB, 2hr
+      output: all-breast-cells.h5ad (pre-enrichment)
+    - stage: enrich_integrated
+      script: publication/run/enrich_integrated.sh
+      resources: 256GB, 6hr
+      output: all-breast-cells.h5ad (enriched in-place)
+      depends_on: [assemble_integrated]
+
+# ============================================================================
+# X MATRIX (RAW COUNTS)
+# ============================================================================
+
+X:
+  description: Log-normalized expression (post-restructure)
+  shape: [2119033, 15164]
+  dtype: float32           # VERIFIED
+  format: sparse CSR       # VERIFIED: csr_matrix
+  density: 0.121878        # Same sparsity pattern as raw counts
+  nnz: 3916307723          # Same nnz as raw counts (same nonzero positions)
+  origin: "Moved from layers/log_normalized via restructure_raw_x.py (2026-03-17, job 50031446)"
+  computation: "log1p(normalize_total(X, target_sum=1e4))"
+  audit_status: PASS
+  notes: >
+    POST-RESTRUCTURE (2026-03-17): X now holds log-normalized data.
+    Raw counts moved to raw.X per HCA recommendation. This resolves
+    HCA validator warning "STRONGLY RECOMMENDED to provide normalized data".
+
+# ============================================================================
+# LAYERS
+# ============================================================================
+
+layers:
+  status: EMPTY (post-restructure)
+  notes: >
+    POST-RESTRUCTURE (2026-03-17): layers/log_normalized moved to /X.
+    /layers group removed entirely. All expression data now in X (normalized)
+    and raw.X (raw counts). This is the HCA-preferred layout.
+
+# ============================================================================
+# RAW
+# ============================================================================
+
+raw:
+  exists: true  # POST-RESTRUCTURE (2026-03-17)
+  X:
+    description: Raw UMI counts (moved from /X)
+    shape: [2119033, 15164]
+    dtype: float32
+    format: sparse CSR
+    nnz: 3916307723
+    origin: "Moved from /X via restructure_raw_x.py (2026-03-17, job 50031446)"
+  var:
+    description: "Copy of /var (required by anndata raw layer spec)"
+    n_columns: 10  # Same columns as /var
+
+# ============================================================================
+# OBS (PER-CELL METADATA) — 104 COLUMNS
+# ============================================================================
+
+obs:
+  total_columns: 104  # VERIFIED: 104 unique columns in raw dump
+  index: cell barcodes (string, format varies by study)
+
+  tier1_required:
+    # 12 CxG/HCA required fields
+    organism_ontology_term_id:
+      value: "NCBITaxon:9606"
+      dtype: category       # VERIFIED
+      n_unique: 1            # VERIFIED
+      origin: assemble_integrated.py:fix_tier1_fields()
+      coverage: 100%         # VERIFIED: pct_null=0.0
+      audit_status: PASS
+
+    assay_ontology_term_id:
+      values: [EFO:0009922, EFO:0009899]  # VERIFIED: only 2 values (template had 3 — EFO:0011025 not present)
+      value_counts:
+        EFO:0009922: 1714494  # 10x 3' v3
+        EFO:0009899: 404539   # 10x 3' v2
+      dtype: category       # VERIFIED
+      n_unique: 2            # VERIFIED (template said 3 — DISCREPANCY: EFO:0011025 absent)
+      origin: assemble_integrated.py:populate_hca_obs_fields_integrated() via dataset_metadata.yaml
+      coverage: 100%         # VERIFIED: pct_null=0.0
+      audit_status: DISCREPANCY
+      discrepancy_detail: >
+        Template listed EFO:0011025 (10x 3' v3.1) but raw dump shows only 2 assay terms.
+        EFO:0011025 is not present in the actual h5ad.
+
+    tissue_ontology_term_id:
+      value: "UBERON:0000310"
+      dtype: category       # VERIFIED
+      n_unique: 1            # VERIFIED
+      origin: assemble_integrated.py:set_tier1_constants()
+      coverage: 100%         # VERIFIED: pct_null=0.0
+      audit_status: PASS
+
+    tissue_type:
+      value: "tissue"
+      dtype: category       # VERIFIED
+      n_unique: 1            # VERIFIED
+      origin: assemble_integrated.py:fix_tier1_fields()
+      coverage: 100%         # VERIFIED: pct_null=0.0
+      audit_status: PASS
+
+    disease_ontology_term_id:
+      value: "PATO:0000461"  # normal
+      dtype: category       # VERIFIED
+      n_unique: 1            # VERIFIED
+      origin: assemble_integrated.py:populate_hca_obs_fields_integrated() via dataset_metadata.yaml
+      coverage: 100%         # VERIFIED: pct_null=0.0
+      audit_status: PASS
+
+    donor_id:
+      format: "{Study}_{ihbca_donor_id}"
+      dtype: category       # VERIFIED
+      origin: author share annotations CSV
+      n_unique: 287          # VERIFIED
+      coverage: 100%         # VERIFIED: pct_null=0.0
+      audit_status: PASS
+
+    sex_ontology_term_id:
+      value: "PATO:0000383"  # female
+      dtype: category       # VERIFIED
+      n_unique: 1            # VERIFIED
+      origin: assemble_integrated.py:set_tier1_constants()
+      coverage: 100%         # VERIFIED: pct_null=0.0
+      audit_status: PASS
+
+    development_stage_ontology_term_id:
+      values: [HsapDv:0000227, HsapDv:0000266, HsapDv:0000267]  # VERIFIED
+      value_counts:
+        HsapDv:0000227: 1365250  # 60+
+        HsapDv:0000266: 479138   # <40
+        HsapDv:0000267: 274645   # 40-60
+      mapping: "age <40 → 0000266, 40-60 → 0000267, 60+ → 0000227"
+      dtype: category       # VERIFIED
+      n_unique: 3            # VERIFIED
+      origin: assemble_integrated.py:_map_age_to_hsapdv()
+      coverage: 100%         # VERIFIED: pct_null=0.0
+      audit_status: PASS
+
+    self_reported_ethnicity_ontology_term_id:
+      dtype: category       # VERIFIED
+      n_unique: 8            # VERIFIED
+      origin: assemble_integrated.py:enrich_ethnicity() + enrich_ethnicity_from_harmonized()
+      input: publication/mappings/hancestro_ethnicity_mapping.tsv
+      coverage: 100%         # VERIFIED: pct_null=0.0 (NB: "unknown" is a valid category, not null)
+      top_values:
+        unknown: 845942      # 39.9% of cells
+        HANCESTRO:0590: 679560
+        HANCESTRO:0568: 428758
+        HANCESTRO:0612: 89854
+        HANCESTRO:0848: 31099
+      audit_status: KNOWN-GAP
+      gap_detail: >
+        39.9% of cells (845,942) have "unknown" ethnicity.
+        Affected studies: pal (22/22), twigger (18/18), murrow (28/28), plus scattered.
+        Requires author outreach — not fixable from available data.
+        Coverage is technically 100% (no NaN) but semantically ~60% (non-unknown).
+      hancestro_issues:
+        - term: "HANCESTRO:0612"
+          label: "Hispanic or Latin"
+          status: "Invalid in CxG schema; valid for HCA"
+        - term: "HANCESTRO:0850"
+          label: "Southeast Asian"
+          status: "Invalid in CxG schema; valid for HCA"
+        - term: "HANCESTRO:0848"
+          label: "South Asian"
+          status: "Invalid in CxG schema; valid for HCA"
+        - term: "HANCESTRO:0847"
+          label: "Asian"
+          status: "Invalid in CxG schema; valid for HCA"
+        - term: "HANCESTRO:0568 || HANCESTRO:0590"
+          label: "African American || European American"
+          status: "Wrong separator (|| vs ,); CxG rejects"
+
+    is_primary_data:
+      value: false
+      dtype: bool            # VERIFIED
+      n_unique: 1            # VERIFIED
+      origin: assemble_integrated.py:fix_tier1_fields()
+      coverage: 100%         # VERIFIED: pct_null=0.0
+      audit_status: PASS
+
+    suspension_type:
+      value: "cell"
+      dtype: category       # VERIFIED
+      n_unique: 1            # VERIFIED
+      origin: assemble_integrated.py:set_tier1_constants()
+      coverage: 100%         # VERIFIED: pct_null=0.0
+      audit_status: PASS
+
+    cell_type_ontology_term_id:
+      dtype: category       # VERIFIED
+      n_unique: 19           # VERIFIED (template said 22 — DISCREPANCY)
+      origin: assemble_integrated.py:apply_cl_level15_fallback() via level15_to_cl_mapping.csv
+      coverage: 100%         # VERIFIED: pct_null=0.0
+      top_values:
+        CL:0002555: 486554   # Fibroblast
+        CL:4033057: 371339   # LASP
+        CL:4033058: 296558   # LHS
+        CL:0000115: 269115   # Vascular endothelial
+        CL:0002324: 249848
+      audit_status: DISCREPANCY
+      discrepancy_detail: >
+        Template estimated ~95% coverage and 22 CL terms. Raw dump shows
+        100% coverage (no NaN) and 19 unique terms. The 22-term estimate
+        was from the 24-entry mapping table minus expected unknowns.
+        Actual: 19 CL terms assigned to 22 level1.5 labels (some labels
+        share CL terms or were unmapped differently than expected).
+
+  cxg_label_columns:
+    # 7 human-readable label columns paired with ontology IDs
+    columns:
+      - cell_type_label
+      - assay_label
+      - disease_label
+      - sex_label
+      - tissue_label
+      - self_reported_ethnicity_label
+      - development_stage_label
+    dtype: categorical
+    origin: assemble_integrated.py:fix_tier1_fields() (renamed from short names)
+    audit_status: MISSING
+    discrepancy_detail: >
+      None of the 7 CxG label columns appear in the raw dump.
+      These columns are NOT present in the h5ad. The CxG validator
+      may auto-generate them, or they were never written. Needs investigation.
+
+  donor_identity:
+    ihbca_donor_id:
+      description: Raw donor ID without study prefix
+      dtype: category       # VERIFIED (template said string — minor: categorical with string semantics)
+      n_unique: 287          # VERIFIED
+      origin: enrich_h5ads.py:enrich_obs() via L1_harmonized_donor.csv
+      coverage: 100%         # VERIFIED: pct_null=0.0
+      audit_status: PASS
+    dataset:
+      description: Source study name (gray, kumar, murrow, nee, twigger, reed, pal)
+      dtype: category       # VERIFIED
+      n_unique: 7            # VERIFIED
+      origin: author share annotations CSV
+      coverage: 100%         # VERIFIED: pct_null=0.0
+      audit_status: PASS
+
+  l1_harmonized_donor:
+    # 21 columns broadcast from L1_harmonized_donor.csv via patch_obs_h5py.py
+    origin_script: publication/scripts/patch_obs_h5py.py
+    origin_plan: Submission/metadata_var_expression
+    source_file: publication/config/metadata_stages/L1_harmonized_donor.csv
+    broadcast_key: donor_id
+    n_donors: 287
+    columns:
+      age_continuous:       { dtype: float64, n_unique: 44, n_null: 719870, coverage: "66.0%", notes: "VERIFIED: 34.0% null (template said ~95% — DISCREPANCY: much lower)" }
+      age_binary:           { dtype: category, n_unique: 3, coverage: "100%", notes: "VERIFIED: pct_null=0.0 (includes unknown category)" }
+      parity_count:         { dtype: float64, n_unique: 5, n_null: 315596, coverage: "85.1%", notes: "VERIFIED: 14.9% null (template ~84% — close)" }
+      parity_binary:        { dtype: category, n_unique: 3, coverage: "100%", notes: "VERIFIED: pct_null=0.0 (includes unknown category)" }
+      age_at_first_birth:   { dtype: float64, n_unique: 14, n_null: 1728312, coverage: "18.4%", notes: "VERIFIED: 81.6% null (template said ~50% — DISCREPANCY: much lower)" }
+      brca_genotype:        { dtype: category, n_unique: 5, coverage: "100%", notes: "VERIFIED: pct_null=0.0 (includes unknown categories). HARMONIZED field — supersedes BRCA_tested, brca_status, brca_testing (see cleanup_candidates)" }
+      cancer_history:       { dtype: category, n_unique: 3, coverage: "100%", notes: "VERIFIED: pct_null=0.0" }
+      tissue_indication:    { dtype: category, n_unique: 4, coverage: "100%", notes: "VERIFIED: pct_null=0.0" }
+      risk_status_binary:   { dtype: category, n_unique: 2, coverage: "100%", notes: "VERIFIED: pct_null=0.0 (template said ~60%)" }
+      risk_genotype_only:   { dtype: category, n_unique: 3, coverage: "100%", notes: "VERIFIED: pct_null=0.0 (template said ~30%)" }
+      menopausal_status_detailed: { dtype: category, n_unique: 4, coverage: "100%", notes: "VERIFIED: pct_null=0.0" }
+      menopausal_status_binary:   { dtype: category, n_unique: 3, coverage: "100%", notes: "VERIFIED: pct_null=0.0" }
+      ethnicity_verbatim:   { dtype: category, n_unique: 28, coverage: "100%", notes: "VERIFIED: pct_null=0.0 (includes unknown)" }
+      ethnicity_grouped:    { dtype: category, n_unique: 7, coverage: "100%", notes: "VERIFIED: pct_null=0.0" }
+      bmi_continuous:       { dtype: float64, n_unique: 154, n_null: 941959, coverage: "55.5%", notes: "VERIFIED: 44.5% null (template said ~15% — DISCREPANCY: much higher coverage)" }
+      bmi_category:         { dtype: category, n_unique: 5, coverage: "100%", notes: "VERIFIED: pct_null=0.0 (includes unknown category)" }
+      sample_preservation:  { dtype: category, n_unique: 3, coverage: "100%", notes: "VERIFIED: pct_null=0.0" }
+      sample_type:          { dtype: category, n_unique: 4, coverage: "100%", notes: "VERIFIED: pct_null=0.0" }
+      facs_status:          { dtype: category, n_unique: 4, coverage: "100%", notes: "VERIFIED: pct_null=0.0" }
+      dissociation_minutes: { dtype: float64, n_unique: 3, n_null: 1315750, coverage: "37.9%", notes: "VERIFIED: 62.1% null (template said ~30% — close, coverage is at cell level)" }
+      metadata_notes:       { dtype: category, n_unique: 6, coverage: "100%", notes: "VERIFIED: pct_null=0.0 (includes placeholder values)" }
+    coverage_note: >
+      IMPORTANT: Template coverage estimates were at the DONOR level (287 donors).
+      Raw dump coverage is at the CELL level (2,119,033 cells). Many categorical
+      columns show 100% coverage because NaN was encoded as an explicit category
+      (e.g., "unknown", "not_reported"). Float columns retain true NaN. The large
+      discrepancies in age_continuous (66% vs ~95%), age_at_first_birth (18% vs ~50%),
+      and bmi_continuous (55.5% vs ~15%) reflect cell-level weighting by study size
+      plus NaN-as-category differences.
+    audit_status: PASS
+
+  hca_obs_fields:
+    # 15 HCA-required fields populated by assemble_integrated.py
+    origin_script: assemble_integrated.py:populate_hca_obs_fields_integrated()
+    origin_plan: Publication/hca_field_backfill
+    columns:
+      sample_id:                  { dtype: category, n_unique: 287, coverage: "100%", source: "donor_id proxy" }
+      manner_of_death:            { dtype: category, n_unique: 1, value: "not applicable", coverage: "100%" }
+      sample_source:              { dtype: category, n_unique: 1, value: "surgical donor", coverage: "100%" }
+      sampled_site_condition:     { dtype: category, n_unique: 1, value: "normal", coverage: "100%" }
+      sample_collection_method:   { dtype: category, n_unique: 1, value: "biopsy", coverage: "100%" }
+      sample_preservation_method: { dtype: category, n_unique: 3, source: "FACS_TO_ENRICHMENT mapping", coverage: "100%" }
+      cell_enrichment:            { dtype: category, n_unique: 1, source: "FACS_TO_ENRICHMENT_INT mapping", coverage: "100%" }
+      institute:                  { dtype: category, n_unique: 6, source: "dataset_metadata.yaml per study", coverage: "100%" }
+      library_id:                 { dtype: category, n_unique: 232, source: "sra_run_table_{study}.csv", coverage: "100%" }
+      library_sequencing_run:     { dtype: category, n_unique: 232, source: "sra_run_table_{study}.csv (SRR accession)", coverage: "100%" }
+      library_preparation_batch:  { dtype: category, n_unique: 19, source: "sra_run_table_{study}.csv", coverage: "100%" }
+      alignment_software:         { dtype: category, n_unique: 5, source: "dataset_metadata.yaml", coverage: "100%" }
+      sequenced_fragment:         { dtype: category, n_unique: 1, source: "dataset_metadata.yaml", coverage: "100%" }
+      reference_genome:           { dtype: category, n_unique: 1, value: "GRCh38", coverage: "100%" }
+      gene_annotation_version:    { dtype: category, n_unique: 3, source: "dataset_metadata.yaml", coverage: "100%" }
+    audit_status: PASS
+    notes: All 15 HCA obs fields verified present with 100% coverage.
+
+  annotation_columns:
+    # Austin's cell type hierarchy + clustering + QC
+    origin: author share annotations CSV
+    columns:
+      # Refined annotations (3)
+      level0_annotation:     { dtype: category, n_unique: 3, coverage: "100%", description: "Broad lineage (epithelial/stromal/immune)" }
+      level1_annotation:     { dtype: category, n_unique: 11, coverage: "100%", description: "Major cell type" }
+      level1.5_annotation:   { dtype: category, n_unique: 22, coverage: "100%", description: "Refined cell type (22 labels)", notes: "VERIFIED: 22 unique (template said 24 — DISCREPANCY)" }
+      # Original annotations (2)
+      level0:                { dtype: category, n_unique: 3, coverage: "100%", description: "Original broad lineage" }
+      level1:                { dtype: category, n_unique: 44, coverage: "100%", description: "Original cell type" }
+      # CellTypist (2)
+      cellTypist_annotation_reed:  { dtype: category, n_unique: 41, coverage: "100%", description: "CellTypist prediction (Reed model)" }
+      cellTypist_annotation_kumar: { dtype: category, n_unique: 58, coverage: "100%", description: "CellTypist prediction (Kumar model)" }
+      # QC metrics (3) — NOTE: stored as category, not numeric
+      n_genes:               { dtype: category, n_unique: 6698, n_null: 1315750, coverage: "37.9%", description: "Genes detected per cell", notes: "DISCREPANCY: template said int64, actual is category; 62.1% null (reed-only?)" }
+      percent_mito:          { dtype: category, n_unique: 527511, n_null: 1315750, coverage: "37.9%", description: "Mitochondrial read fraction", notes: "DISCREPANCY: template said float64, actual is category; 62.1% null" }
+      n_counts:              { dtype: category, n_unique: 44036, coverage: "100%", description: "Total UMI counts per cell", notes: "DISCREPANCY: template said float64, actual is category" }
+      # Doublet scores (3) — NOTE: stored as category, not numeric
+      prob_spikein:          { dtype: category, n_unique: 284, n_null: 1315750, coverage: "37.9%", description: "Spike-in doublet probability", notes: "DISCREPANCY: template said float64, actual is category; 62.1% null" }
+      prob_spikein_dblt:     { dtype: category, n_unique: 134857, n_null: 1315750, coverage: "37.9%", description: "Spike-in doublet probability (doublet)", notes: "DISCREPANCY: template said float64, actual is category; 62.1% null" }
+      pred_spikein:          { dtype: category, n_unique: 1, n_null: 1315750, coverage: "37.9%", description: "Spike-in doublet prediction", notes: "62.1% null" }
+      # Clinical/risk (2)
+      risk_status2:          { dtype: category, n_unique: 8, coverage: "100%", description: "Risk stratification" }
+      BRCA_tested:           { dtype: category, n_unique: 2, n_null: 1614480, coverage: "23.8%", description: "BRCA testing status", notes: "76.2% null" }
+      # Sample metadata (5)
+      sample_type_coarse:    { dtype: category, n_unique: 3, n_null: 1315750, coverage: "37.9%", description: "Coarse tissue source", notes: "62.1% null" }
+      sampleID:              { dtype: category, n_unique: 472, coverage: "100%", description: "Original sample identifier" }
+      sample_barcode:        { dtype: category, n_unique: 91, n_null: 1315750, coverage: "37.9%", description: "Cell barcode", notes: "DISCREPANCY: template said string, actual is category; 62.1% null" }
+      poolID:                { dtype: category, n_unique: 6, n_null: 1315750, coverage: "37.9%", description: "Sequencing pool", notes: "62.1% null" }
+      replicate:             { dtype: category, n_unique: 2, n_null: 1315750, coverage: "37.9%", description: "Technical replicate", notes: "62.1% null" }
+
+    leiden_clustering:
+      description: >
+        Leiden clustering at multiple resolutions across multiple embedding bases.
+        20 columns total covering scVI-20D (11), scVI-100D (3), PCA (3), scPoli-50D (3) bases
+        at resolutions 0.05-1.0.
+      dtype: category
+      origin: author share annotations CSV
+      columns_scVI_20D:
+        - { name: leiden_0_05, n_unique: 10, n_null: 1315750 }
+        - { name: leiden_0_1, n_unique: 11, n_null: 1315750 }
+        - { name: leiden_0_2, n_unique: 11, n_null: 1315750 }
+        - { name: leiden_0_3, n_unique: 15, n_null: 1315750 }
+        - { name: leiden_0_4, n_unique: 18, n_null: 1315750 }
+        - { name: leiden_0_5, n_unique: 18, n_null: 1315750 }
+        - { name: leiden_0_6, n_unique: 21, n_null: 1315750 }
+        - { name: leiden_0_7, n_unique: 24, n_null: 1315750 }
+        - { name: leiden_0_8, n_unique: 24, n_null: 1315750 }
+        - { name: leiden_0_9, n_unique: 27, n_null: 1315750 }
+        - { name: leiden_1_0, n_unique: 27, n_null: 1315750 }
+      columns_scVI_100D:
+        - { name: leiden_scVI100_res0.1, n_unique: 12, n_null: 0 }
+        - { name: leiden_scVI100_res0.5, n_unique: 20, n_null: 0 }
+        - { name: leiden_scVI100_res1.0, n_unique: 28, n_null: 0 }
+      columns_PCA:
+        - { name: leiden_pca_res0.1, n_unique: 16, n_null: 0 }
+        - { name: leiden_pca_res0.5, n_unique: 38, n_null: 0 }
+        - { name: leiden_pca_res1.0, n_unique: 48, n_null: 0 }
+      columns_scPoli_50D:
+        - { name: leiden_scPoli50_res0.1, n_unique: 10, n_null: 0 }
+        - { name: leiden_scPoli50_res0.5, n_unique: 12, n_null: 0 }
+        - { name: leiden_scPoli50_res1.0, n_unique: 17, n_null: 0 }
+      note: >
+        scVI-20D leiden columns have 1,315,750 null values (62.1%), consistent
+        with reed-only presence. scVI-100D, PCA, and scPoli columns have 0% null.
+
+    audit_status: PASS
+
+  unexpected_columns:
+    # Columns found in raw dump NOT explicitly listed in the original template.
+    # These are legacy/passthrough columns from the CxG h5ad or source annotations.
+    description: >
+      14 columns present in the h5ad that were not individually documented
+      in the template. All are passthrough from the original CxG download
+      or source study annotations. Most have 62.1% null (1,315,750 cells),
+      consistent with reed-only or non-reed-only provenance.
+    columns:
+      age:               { dtype: category, n_unique: 66, n_null: 34927, coverage: "98.4%", audit_status: UNEXPECTED, notes: "Original age column from CxG; differs from age_continuous (float)" }
+      FACS_status:       { dtype: category, n_unique: 4, n_null: 0, coverage: "100%", audit_status: UNEXPECTED, notes: "Uppercase variant; coexists with lowercase facs_status" }
+      batch:             { dtype: category, n_unique: 244, n_null: 0, coverage: "100%", audit_status: UNEXPECTED, notes: "Original batch column from CxG h5ad" }
+      before:            { dtype: category, n_unique: 4, n_null: 1315750, coverage: "37.9%", audit_status: UNEXPECTED, notes: "Legacy column, 62.1% null" }
+      brca_status:       { dtype: category, n_unique: 5, n_null: 1315750, coverage: "37.9%", audit_status: UNEXPECTED, notes: "Legacy BRCA status, 62.1% null" }
+      brca_testing:      { dtype: category, n_unique: 3, n_null: 1315750, coverage: "37.9%", audit_status: UNEXPECTED, notes: "Legacy BRCA testing, 62.1% null" }
+      comparison_type:   { dtype: category, n_unique: 6, n_null: 1315750, coverage: "37.9%", audit_status: UNEXPECTED, notes: "Legacy, 62.1% null" }
+      level2:            { dtype: category, n_unique: 119, n_null: 1125700, coverage: "46.9%", audit_status: UNEXPECTED, notes: "Fine-grained annotation; 53.1% null" }
+      parity:            { dtype: category, n_unique: 11, n_null: 378285, coverage: "82.2%", audit_status: UNEXPECTED, notes: "Original parity column; differs from parity_binary/parity_count" }
+      patientID:         { dtype: category, n_unique: 287, n_null: 0, coverage: "100%", audit_status: UNEXPECTED, notes: "Original patient ID from CxG h5ad" }
+      patient_age:       { dtype: category, n_unique: 33, n_null: 1315750, coverage: "37.9%", audit_status: UNEXPECTED, notes: "Legacy age column, 62.1% null" }
+      processing_date:   { dtype: category, n_unique: 45, n_null: 1315750, coverage: "37.9%", audit_status: UNEXPECTED, notes: "Sample processing date, 62.1% null" }
+      risk_status:       { dtype: category, n_unique: 8, n_null: 0, coverage: "100%", audit_status: UNEXPECTED, notes: "Original risk status; coexists with risk_status2" }
+      tissue_origin:     { dtype: category, n_unique: 2, n_null: 0, coverage: "100%", audit_status: UNEXPECTED, notes: "Tissue origin (likely breast left/right or similar)" }
+
+  null_pattern_note: >
+    The recurring n_null=1,315,750 (62.09%) across many columns corresponds to cells
+    from studies that did not have these annotations in the original CxG h5ad.
+    These are passthrough columns where only a subset of the 7 studies contributed values.
+
+# ============================================================================
+# VAR (GENE METADATA)
+# ============================================================================
+
+var:
+  index:
+    name: ensembl_id       # VERIFIED: index_name = ensembl_id
+    dtype: object           # VERIFIED
+    n_unique: 15164         # VERIFIED
+    example: "ENSG00000177757"  # VERIFIED: first index entry
+
+  columns:
+    gene_symbol:
+      dtype: object         # VERIFIED
+      n_unique: 15164       # VERIFIED
+      origin_script: enrich_h5ads.py:enrich_var()
+      source: GENCODE v24 GTF reverse lookup
+      coverage: 100%        # VERIFIED: pct_null=0.0
+      audit_status: PASS
+
+    gene_id:
+      dtype: object         # VERIFIED (additional var column not in template)
+      n_unique: 15164       # VERIFIED
+      coverage: 100%        # VERIFIED: pct_null=0.0
+      audit_status: UNEXPECTED
+      notes: Ensembl ID stored as column in addition to index
+
+    symbol:
+      dtype: object         # VERIFIED (additional var column not in template)
+      n_unique: 15164       # VERIFIED
+      coverage: 100%        # VERIFIED: pct_null=0.0
+      audit_status: UNEXPECTED
+      notes: Gene symbol duplicate column; likely legacy from original CxG h5ad
+
+    feature_biotype_gencode:
+      dtype: category       # VERIFIED
+      n_unique: 5           # VERIFIED
+      n_categories: 5       # VERIFIED
+      categories: [TEC, antisense, lincRNA, processed_transcript, protein_coding]  # VERIFIED
+      origin_script: enrich_h5ads.py:enrich_var()
+      source: GENCODE v24 GTF
+      coverage: 99.97%      # VERIFIED: pct_null=0.03 (5 genes unmapped)
+      n_null: 5             # VERIFIED
+      audit_status: PASS
+      notes: >
+        Originally named "feature_biotype" but CxG 5.3.2 reserves that name.
+        Renamed to "feature_biotype_gencode" via patch_var_uns_h5py.py.
+        Template listed [protein_coding, lncRNA, processed_pseudogene, misc_RNA, etc.]
+        — actual categories differ: [TEC, antisense, lincRNA, processed_transcript, protein_coding].
+        Category names reflect GENCODE biotype naming (lincRNA not lncRNA).
+
+    chromosome:
+      dtype: category       # VERIFIED
+      n_unique: 24          # VERIFIED
+      n_categories: 24      # VERIFIED
+      categories: [chr1-chr22, chrX, chrY]  # VERIFIED (no chrM)
+      origin_script: enrich_h5ads.py:enrich_var()
+      source: GENCODE v24 GTF
+      coverage: 99.97%      # VERIFIED: pct_null=0.03 (5 genes unmapped)
+      n_null: 5             # VERIFIED
+      audit_status: PASS
+      notes: Template listed chrM but no chrM genes present in 15,164-gene set.
+
+    feature_is_filtered:
+      dtype: bool            # VERIFIED
+      n_unique: 1            # VERIFIED (all false)
+      value: false
+      origin: CxG schema requirement
+      coverage: 100%        # VERIFIED: pct_null=0.0
+      audit_status: PASS
+
+    highly_variable:
+      dtype: bool            # VERIFIED (not in original template)
+      n_unique: 2            # VERIFIED
+      coverage: 100%        # VERIFIED: pct_null=0.0
+      audit_status: UNEXPECTED
+      notes: HVG flag from original scVI feature selection (5,000 genes)
+
+    means:
+      dtype: float64         # VERIFIED (not in original template)
+      n_unique: 15164        # VERIFIED
+      coverage: 100%        # VERIFIED: pct_null=0.0
+      audit_status: UNEXPECTED
+      notes: Mean expression per gene
+
+    dispersions:
+      dtype: float64         # VERIFIED (not in original template)
+      n_unique: 15164        # VERIFIED
+      coverage: 100%        # VERIFIED: pct_null=0.0
+      audit_status: UNEXPECTED
+      notes: Gene expression dispersions
+
+    dispersions_norm:
+      dtype: float64         # VERIFIED (not in original template)
+      n_unique: 15161        # VERIFIED (3 ties)
+      coverage: 100%        # VERIFIED: pct_null=0.0
+      audit_status: UNEXPECTED
+      notes: Normalized dispersions
+
+  gene_filtering:
+    input_genes: 15176
+    cxg_approved_genes: 62700  # Full approved list
+    genes_dropped: 12
+    final_genes: 15164
+    origin_script: enrich_h5ads.py:filter_genes()
+    audit_status: PASS
+    notes: >
+      12 Ensembl IDs not in CxG approved gene list. Dropped during
+      enrichment to ensure CxG compatibility. Not individually documented
+      in codebase; identified via set difference.
+
+# ============================================================================
+# OBSM (EMBEDDINGS)
+# ============================================================================
+
+obsm:
+  X_scvi_100:
+    shape: [2119033, 100]    # VERIFIED
+    dtype: float32           # VERIFIED
+    n_nan: 0                 # VERIFIED
+    dim0_range: [-0.0571, 0.0632]  # VERIFIED from raw dump
+    dim0_mean: -0.00271      # VERIFIED
+    description: "scVI 100D latent representation"
+    origin: author share X_scVI100.csv
+    origin_plan: assembly (native to integrated object)
+    parameters:
+      method: scVI
+      n_latent: 100
+      n_layers: 2
+      batch_key: donor_id
+      n_top_genes: 5000
+      gene_likelihood: nb
+      max_epochs: 400
+    audit_status: PASS
+    notes: >
+      Primary embedding for integration. Used by geosketch for sketch object.
+      No NaN values — all cells have embeddings (Pal dedup cells were matched).
+
+  X_umap:
+    shape: [2119033, 2]      # VERIFIED
+    dtype: float32           # VERIFIED
+    n_nan: 0                 # VERIFIED
+    dim0_range: [-7.654, 23.055]  # VERIFIED from raw dump
+    dim0_mean: 9.145         # VERIFIED
+    description: "2D UMAP from scVI 100D latent"
+    origin: author share X_scVI100_UMAP.csv
+    origin_plan: assembly (native to integrated object)
+    audit_status: PASS
+    notes: >
+      Austin's harmonization UMAP, not original publication UMAPs.
+      Coordinator decision (2026-03-06): keep with corrected documentation.
+
+  keys_not_present:
+    - X_scVI_joint    # Dropped by enrich_source_embeddings.py (misleading name)
+    - X_scVI_native   # Dropped (same reason)
+    - X_umap_ihbca_scvi_100  # Source h5ads only (per-study UMAP from joint embedding)
+    - X_ihbca_scvi_100       # Source h5ads only (ported joint embedding)
+
+  cap_freeze_note: >
+    CAP freezes obsm after upload. All embeddings must be correct on first
+    submission. Current state has been verified — 0 NaN in either embedding.
+
+# ============================================================================
+# UNS (DATASET-LEVEL METADATA)
+# ============================================================================
+
+uns:
+  obsm_key_descriptions:
+    type: dict
+    keys: [X_scvi_100, X_umap]  # VERIFIED
+    origin_script: enrich_h5ads.py:enrich_uns()
+    origin_plan: Submission/metadata_var_expression
+    audit_status: PASS
+
+  obs_field_descriptions:
+    type: dict
+    n_keys: 104              # VERIFIED: one entry per obs column (from raw dump listing)
+    origin_script: enrich_h5ads.py:enrich_uns()
+    origin_plan: Submission/metadata_var_expression
+    audit_status: PASS
+
+  atlas_metadata:
+    type: dict
+    value:
+      atlas_name: "integrated Human Breast Cell Atlas (iHBCA)"  # VERIFIED
+      atlas_version: "1.0"           # VERIFIED
+      total_cells: 2119033           # VERIFIED (template note was correct — not stale)
+      total_donors: 287              # VERIFIED
+      total_studies: 7               # VERIFIED
+      source_studies: [gray, kumar, murrow, nee, twigger, reed, pal]  # VERIFIED (ndarray)
+      citation: "Reed et al. 2024, Nature Genetics"  # VERIFIED
+    origin_script: enrich_h5ads.py:enrich_uns()
+    audit_status: PASS
+
+  integration_method:
+    type: dict
+    value:
+      method: scVI               # VERIFIED
+      library: scvi-tools         # VERIFIED
+      n_latent: 100               # VERIFIED
+      n_layers: 2                 # VERIFIED
+      gene_likelihood: nb         # VERIFIED
+      use_layer_norm: both        # VERIFIED
+      use_batch_norm: none        # VERIFIED
+      encode_covariates: true     # VERIFIED
+      dropout_rate: 0.2           # VERIFIED
+      batch_key: "batch (donor_id)"  # VERIFIED
+      n_top_genes: 5000           # VERIFIED
+      train_size: 0.9             # VERIFIED
+      early_stopping: true        # VERIFIED
+      early_stopping_patience: 45 # VERIFIED
+      max_epochs: 400             # VERIFIED
+      batch_size: 1024            # VERIFIED
+      limit_train_batches: 20     # VERIFIED
+    origin_script: enrich_h5ads.py:enrich_uns()
+    audit_status: PASS
+
+  hca_compatibility:
+    # NOTE: These are 3 separate top-level uns keys, not a nested dict
+    organism_ontology_term_id: "NCBITaxon:9606"   # VERIFIED
+    organism: "Homo sapiens"                       # VERIFIED
+    title: "An integrated single-cell breast atlas of 2.1 million cells"  # VERIFIED
+    origin_script: assemble_integrated.py:update_schema()
+    audit_status: PASS
+
+  doi:
+    type: dict
+    audit_status: UNEXPECTED
+    notes: >
+      Not in original template. Contains DOI strings per study.
+    value:
+      gray: "10.1016/j.devcel.2022.05.003"
+      kumar: "10.1038/s41586-023-06252-9"
+      murrow: "10.1016/j.cels.2022.06.005"
+      nee: "10.1038/s41588-023-01298-x"
+      pal: "10.15252/embj.2020107333"
+      reed: "10.1038/s41588-024-01688-9"
+      twigger: "10.1038/s41467-021-27895-0"
+
+  geo_accession:
+    type: dict
+    audit_status: UNEXPECTED
+    notes: >
+      Not in original template. Contains GEO/ArrayExpress accession per study.
+    value:
+      gray: GSE180878
+      kumar: GSE195665
+      murrow: GSE198732
+      nee: GSE174588
+      pal: GSE161529
+      reed: E-MTAB-13664
+      twigger: E-MTAB-9841
+
+  ihbca_provenance:
+    type: dict
+    audit_status: UNEXPECTED
+    notes: >
+      Not in original template. Build provenance recorded during assembly.
+    value:
+      build_script: assemble_integrated.py
+      cell_count: 2119033
+      gene_count: 15176  # Pre-filter count
+      git_branch: dev
+      git_hash: f78d0212f9d8bd86e3cbbb47a269a33981346956
+      python_version: "3.10.2"
+      slurm_job_id: "49215972"
+      study: integrated
+      timestamp: "2026-03-06T00:37:07.583505+00:00"
+
+  study_pi:
+    type: ndarray
+    shape: [6]
+    audit_status: UNEXPECTED
+    notes: >
+      Not in original template. Array of 6 PI names (7 studies but some share PIs).
+
+  keys_removed:
+    - schema_version      # CxG reserves; validator sets automatically
+    - schema_reference    # CxG reserves
+    - citation            # CxG reserves
+    - layer_descriptions  # CxG 5.3.2 rejects
+
+# ============================================================================
+# VALIDATION STATUS
+# ============================================================================
+
+validation:
+  cap:
+    status: PASS
+    log: publication/outputs/validation_reports/all-breast-cells_cap.log
+    result: "Validation passed!"
+    warnings: 0
+    errors: 0
+
+  hca:
+    status: PASS
+    log: publication/outputs/validation_reports/all-breast-cells_hca.log
+    result: "is_valid: True"
+    warnings: 15
+    warning_detail:
+      - "13 gene IDs cannot infer organism (ENSG00000237975 + 12 others)"
+      - "var has only 15,164 rows — features SHOULD NOT be filtered"
+    warning_note: >
+      POST-RESTRUCTURE (2026-03-17): The "Only raw data found, no raw.X" warning
+      should now be RESOLVED. X=log_normalized, raw.X=raw counts. Re-validation
+      running (jobs 50032358, 50032359). Previous 3rd warning removed from list.
+    errors: 0
+
+  cxg:
+    status: FAIL
+    category: KNOWN-ACCEPTABLE
+    log: publication/outputs/validation_reports/all-breast-cells_cxg.log
+    result: "is_valid: False"
+    errors: 5
+    error_detail:
+      - "HANCESTRO:0612 (Hispanic or Latin) — invalid in CxG schema"
+      - "HANCESTRO:0850 (Southeast Asian) — invalid in CxG schema"
+      - "HANCESTRO:0848 (South Asian) — invalid in CxG schema"
+      - "HANCESTRO:0847 (Asian) — invalid in CxG schema"
+      - "HANCESTRO:0568 || HANCESTRO:0590 — wrong separator (|| vs ,)"
+    resolution: >
+      CxG versions prepared post-submission with Lattice team using --target cxg
+      (downgrades HANCESTRO terms). Not blocking for HCA upload.
+
+# ============================================================================
+# KNOWN GAPS
+# ============================================================================
+
+known_gaps:
+  hancestro_ethnicity:
+    severity: KNOWN-ACCEPTABLE
+    scope: "845,942 cells (39.9%) have 'unknown' ethnicity"  # VERIFIED from raw dump top_values
+    affected_cells: 845942   # VERIFIED (template said ~241,000 — DISCREPANCY)
+    studies_fully_missing: [pal, twigger, murrow]
+    resolution: "Requires author outreach; not fixable from available data"
+    tracker: Activation/hancestro_branch
+    discrepancy_note: >
+      Template said ~241,000 affected cells (11.3%). Raw dump shows 845,942
+      (39.9%). The original estimate likely counted only truly-missing donors,
+      not all cells with "unknown" as their ethnicity value.
+
+  cell_type_unknown:
+    severity: KNOWN-ACCEPTABLE
+    scope: "19 unique CL terms (not 22); some labels mapped to 'unknown'"
+    affected_studies: [kumar, murrow, nee, pal]
+    resolution: >
+      Doublets and single nuclei are computational artifacts, not cell types.
+      "unknown" is the correct CL assignment. 19/22 level1.5 labels have
+      CL terms; some labels share CL terms.
+
+  cxg_label_columns_missing:
+    severity: NEEDS-INVESTIGATION
+    scope: "7 CxG label columns (cell_type_label, assay_label, etc.) not in h5ad"
+    detail: >
+      The template listed 7 label columns but none appear in the raw dump.
+      These may be auto-generated by the CxG validator on upload, or they
+      were never written. If HCA requires them pre-upload, they must be added.
+
+  hancestro_verify_flags:
+    severity: LOW
+    scope: 12 rows in mapping table
+    detail: >
+      Ambiguous ethnicity labels with forced mappings.
+      Examples: "Jewish" → European (HANCESTRO:0324 prohibited),
+      "White/Mexican" → Hispanic, mixed-race with || separator.
+    resolution: "Documented in hancestro_ethnicity_mapping.tsv status column"
+
+  sparse_l1_columns:
+    severity: INFORMATIONAL
+    columns_below_50_pct:
+      - age_at_first_birth (18.4% coverage, 81.6% null)
+      - age_continuous (66.0% coverage, 34.0% null)
+      - dissociation_minutes (37.9% coverage, 62.1% null)
+    columns_with_categorical_unknown:
+      - brca_genotype (100% non-null but includes unknown category)
+      - risk_genotype_only (100% non-null but includes unknown category)
+      - bmi_category (100% non-null but includes unknown category)
+      - metadata_notes (100% non-null but includes placeholder values)
+    resolution: "Expected sparsity — source publications did not collect these fields"
+    notes: >
+      Many columns that appeared sparse in the template (estimated ~30% coverage)
+      actually have 100% non-null because NaN was encoded as an explicit category
+      (e.g., "unknown", "not_reported"). Only float64 columns retain true NaN.
+
+  registry_cell_count_stale:
+    severity: LOW
+    detail: >
+      source_dataset_registry.yaml lists 2,122,065 cells; actual post-Pal-dedup
+      count is 2,119,033. Registry should be updated.
+
+  assay_term_count:
+    severity: LOW
+    detail: >
+      Template listed 3 assay terms (EFO:0009899, EFO:0009922, EFO:0011025)
+      but h5ad contains only 2 (EFO:0009899, EFO:0009922). EFO:0011025
+      (10x 3' v3.1) is absent. Either no study uses v3.1, or the mapping
+      was updated to collapse v3.1 into v3.
+
+  dtype_discrepancies:
+    severity: INFORMATIONAL
+    detail: >
+      Several obs columns stored as category instead of expected numeric dtype.
+      This is a pandas behavior where mixed-type or string-encoded numeric
+      columns become categorical when read back from h5ad. Affected columns:
+      n_genes (expected int64, got category), percent_mito (expected float64,
+      got category), n_counts (expected float64, got category), prob_spikein
+      (expected float64, got category), prob_spikein_dblt (expected float64,
+      got category). These were likely string-typed in the original CxG h5ad
+      and preserved through assembly.
+
+  brca_column_redundancy:
+    severity: CLEANUP-CANDIDATE
+    detail: >
+      4 BRCA-related columns encode overlapping information:
+      - BRCA_tested: Pal-only (76.2% null), Yes/Not_tested
+      - brca_testing: Reed-only (62.1% null), yes/no/unknown
+      - brca_status: Reed-only (62.1% null), BRCA1/BRCA2/WT/assume_WT/unknown
+      - brca_genotype: Atlas-wide harmonized (0% null), BRCA1/BRCA2/RAD51C/negative/unknown
+      brca_genotype is the authoritative harmonized column. The other 3 are study-specific
+      originals carried forward from the CxG h5ad / source annotations.
+      BRCA_tested and brca_testing encode the same concept (was donor tested?).
+      brca_status and brca_genotype encode the same concept (what was the result?).
+    recommendation: >
+      Keep brca_genotype as the harmonized field. Consider dropping BRCA_tested,
+      brca_testing, brca_status — or at minimum, document the relationship in
+      obs_field_descriptions.
+    flagged: 2026-03-17
+
+  unexpected_var_columns:
+    severity: INFORMATIONAL
+    detail: >
+      5 var columns not in original template: gene_id, symbol, highly_variable,
+      means, dispersions, dispersions_norm. These are standard scVI/scanpy
+      outputs carried through from assembly. Not problematic but should be
+      documented.
+
+# ============================================================================
+# SKETCH OBJECT (COMPANION)
+# ============================================================================
+
+sketch:
+  filename: all-breast-cells-sketch.h5ad
+  path: publication/outputs/integrated_objects/all-breast-cells-sketch.h5ad
+  size_gb: 8.6
+  n_cells: 279494
+  n_genes: 15164  # Identical to parent
+  sampling_method: geometric_sketch
+  sampling_library: geosketch v1.3
+  embedding_used: X_scvi_100
+  cells_per_donor: 1000
+  random_state: 42
+  donors_below_threshold: 14
+  is_primary_data: false
+  inherits_from_parent: [obs, var, obsm, uns, layers]
+  validation:
+    cap: PASS
+    hca: PASS
+    cxg: FAIL (HANCESTRO only — same as parent)
+
+# ============================================================================
+# SUMMARY
+# ============================================================================
+
+summary:
+  upload_readiness: READY
+  blocking_issues: 0
+  known_acceptable_gaps: 3  # HANCESTRO, cell_type unknown, VERIFY flags
+  informational_gaps: 5     # sparse L1, stale registry, assay terms, dtypes, unexpected var cols
+  needs_investigation: 1    # CxG label columns missing
+  validation_gate: "8/8 CAP PASS + 8/8 HCA PASS"
+  total_upload_objects: 9   # 7 source + 1 integrated + 1 sketch
+  total_upload_size_gb: ~172
+  sequence: submission_prep
+  plans_complete: [1, 2, 3, 4, 5]
+  plan_remaining: [6 (hca_upload)]
+
+  verification_summary:
+    verified_from: /tmp/integrated_object_audit_raw.yaml
+    verified_date: 2026-03-10
+    discrepancies_found:
+      - "size_gb: template 95.4 → actual 88.9 GB"
+      - "assay_ontology_term_id: 3 terms → 2 terms (EFO:0011025 absent)"
+      - "cell_type_ontology_term_id: 22 CL terms → 19"
+      - "level1.5_annotation: 24 labels → 22"
+      - "ethnicity affected cells: ~241,000 → 845,942"
+      - "age_continuous coverage: ~95% → 66.0%"
+      - "age_at_first_birth coverage: ~50% → 18.4%"
+      - "bmi_continuous coverage: ~15% → 55.5%"
+      - "7 CxG label columns (cell_type_label etc.) not in h5ad"
+      - "14 unexpected obs columns (legacy/passthrough)"
+      - "5 unexpected var columns (gene_id, symbol, highly_variable, means, dispersions, dispersions_norm)"
+      - "4 unexpected uns keys (doi, geo_accession, ihbca_provenance, study_pi)"
+      - "Multiple QC/doublet columns stored as category instead of numeric dtype"
+      - "Many L1 categorical columns show 100% non-null (NaN encoded as category)"

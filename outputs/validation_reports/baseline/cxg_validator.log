@@ -1,0 +1,48 @@
+INFO:cellxgene_schema:Loading dependencies
+INFO:cellxgene_schema:Loading validator modules
+INFO:cellxgene_schema.validate:Starting validation...
+Traceback (most recent call last):
+  File "<hpc>/conda_envs/envs/hca_validators/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas/_libs/index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7096, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'assay_ontology_term_id'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<hpc>/conda_envs/envs/hca_validators/bin/cellxgene-schema", line 6, in <module>
+    sys.exit(schema_cli())
+  File "<hpc>/conda_envs/envs/hca_validators/lib/python3.10/site-packages/click/core.py", line 1485, in __call__
+    return self.main(*args, **kwargs)
+  File "<hpc>/conda_envs/envs/hca_validators/lib/python3.10/site-packages/click/core.py", line 1406, in main
+    rv = self.invoke(ctx)
+  File "<hpc>/conda_envs/envs/hca_validators/lib/python3.10/site-packages/click/core.py", line 1873, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "<hpc>/conda_envs/envs/hca_validators/lib/python3.10/site-packages/click/core.py", line 1269, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "<hpc>/conda_envs/envs/hca_validators/lib/python3.10/site-packages/click/core.py", line 824, in invoke
+    return callback(*args, **kwargs)
+  File "<hpc>/conda_envs/envs/hca_validators/lib/python3.10/site-packages/cellxgene_schema/cli.py", line 50, in schema_validate
+    is_valid, _, _ = validate(h5ad_file, add_labels_file, ignore_labels=ignore_labels)
+  File "<hpc>/conda_envs/envs/hca_validators/lib/python3.10/site-packages/cellxgene_schema/validate.py", line 2162, in validate
+    validator.validate_adata(h5ad_path)
+  File "<hpc>/conda_envs/envs/hca_validators/lib/python3.10/site-packages/cellxgene_schema/validate.py", line 2117, in validate_adata
+    self._deep_check()
+  File "<hpc>/conda_envs/envs/hca_validators/lib/python3.10/site-packages/cellxgene_schema/validate.py", line 2051, in _deep_check
+    self._check_spatial()
+  File "<hpc>/conda_envs/envs/hca_validators/lib/python3.10/site-packages/cellxgene_schema/validate.py", line 1580, in _check_spatial
+    self._check_spatial_obs()
+  File "<hpc>/conda_envs/envs/hca_validators/lib/python3.10/site-packages/cellxgene_schema/validate.py", line 1599, in _check_spatial_obs
+    self._validate_spatial_tissue_positions()
+  File "<hpc>/conda_envs/envs/hca_validators/lib/python3.10/site-packages/cellxgene_schema/validate.py", line 1745, in _validate_spatial_tissue_positions
+    self._validate_spatial_tissue_position("array_col", 0, self.tissue_position_maxes[1])
+  File "<hpc>/conda_envs/envs/hca_validators/lib/python3.10/site-packages/cellxgene_schema/validate.py", line 143, in tissue_position_maxes
+    self.adata.obs["assay_ontology_term_id"]
+  File "<hpc>/conda_envs/envs/hca_validators/lib/python3.10/site-packages/pandas/core/frame.py", line 4113, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "<hpc>/conda_envs/envs/hca_validators/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 3819, in get_loc
+    raise KeyError(key) from err
+KeyError: 'assay_ontology_term_id'

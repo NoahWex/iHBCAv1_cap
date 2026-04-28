@@ -1,0 +1,8 @@
+CapMultiException: 
+AnnDataMissingObsColumns: 
+            Required obs column(s) missing: file must contain 
+            'assay', 'disease', 'organism' and 'tissue' fields or
+            corresponding '<x>_ontology_term_id' fields with valid values.
+        
+For details visit: 
+	https://github.com/cellannotation/cap-validator/wiki/Validation-Errors

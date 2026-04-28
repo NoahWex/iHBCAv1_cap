@@ -1,0 +1,27 @@
+# Large data objects and generated outputs (not version-controlled)
+
+# Source/integrated h5ad objects (live on HCA Tracker)
+outputs/integrated_objects/
+outputs/source_datasets/
+outputs/source_datasets_backup_*/
+outputs/cxg_build/
+
+# Per-cell provenance validation (auto-generated; ~138GB)
+outputs/provenance_validation/
+
+# GENCODE v24 GTF (public reference; redownloadable from gencodegenes.org)
+mappings/gencode.v24.annotation.gtf
+
+# Build logs
+logs/
+
+# OS / editor cruft
+.DS_Store
+._*
+*.swp
+__pycache__/
+*.pyc
+.venv/
+.idea/
+.vscode/
+*.lock

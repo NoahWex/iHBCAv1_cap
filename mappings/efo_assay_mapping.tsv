@@ -1,0 +1,30 @@
+# EFO Assay Ontology Mapping Table
+# Maps each study's assay technology to Experimental Factor Ontology (EFO) terms.
+# CxG schema 6.0.0 requires descendants of EFO:0002772 (assay by molecule) or
+# EFO:0010183 (single cell library construction).
+#
+# 10x kit version details sourced from published methods sections where available.
+# Where the exact chemistry version is ambiguous, the broadest accurate term is used.
+#
+# Source: study publications + external_studies/config/studies.yaml
+# Generated: 2026-02-11
+# Plan: A2_ontology_mappings
+study	assay_description	efo_term_id	efo_label	chemistry_detail	status	notes
+gray	10x scRNA-seq	EFO:0009899	10x 3' v2	Chromium Single Cell 3' v2	OK	Gray 2022 Developmental Cell. Methods state "10X Chromium 3' library construction kit v2".
+kumar	10x scRNA-seq (mixed versions)	EFO:0009922	10x 3' v3	Mix of v2 (CG00052), v3 (CG000183), v3.1 (CG000204)	VERIFY	Kumar 2023 Nature. Methods list three protocol versions. Mapped to v3 as the dominant chemistry. If CxG requires per-cell annotation, individual cells may need v2 vs v3 vs v3.1 labels — but per-dataset annotation should use the most common version.
+murrow	10x scRNA-seq	EFO:0009922	10x 3' v3	Chromium 3' (version not specified in accessible methods)	VERIFY	Murrow 2022 Cell Systems. Full STAR Methods section not accessible via web. Mapped to v3 as the most likely chemistry for a 2022 publication, but could be v2. Check GEO: GSE198732.
+nee	10x scRNA-seq (mixed versions)	EFO:0009899	10x 3' v2	Mix of v1 (CG00026) and v2 (CG00052)	VERIFY	Nee 2023 Nature Genetics. Methods specify v1 for 2 samples, v2 for remaining 20. Mapped to v2 as dominant. Note: "10x 3' v1" = EFO:0009901 if per-sample annotation needed.
+twigger	10x scRNA-seq	EFO:0009922	10x 3' v3	Chromium 3' (version not specified in accessible methods)	VERIFY	Twigger 2022 Nature Communications. Methods not fully accessible. Mapped to v3 as likely for 2022 publication. Check ArrayExpress accession.
+reed	10x scRNA-seq (mixed — iHBCA atlas)	EFO:0009922	10x 3' v3	Multiple chemistries across 55 donors (iHBCA integrates multiple batches)	VERIFY	Reed 2024 Nature Genetics. iHBCA is a meta-atlas integrating samples processed with CellRanger v6.0.2. Exact per-donor chemistry not specified — likely a mix of v2 and v3. Mapped to v3 as the likely dominant chemistry for this timeframe.
+pal	10x scRNA-seq	EFO:0009899	10x 3' v2	Chromium Single Cell 3' Protocol (version not explicitly stated)	VERIFY	Pal 2021 EMBO J. Methods say "Single Cell 3' Protocol" without version number. Given 2021 publication and Australian lab context, v2 is most likely. Check GEO: GSE161529.
+
+# === EFO TERM REFERENCE ===
+# EFO:0008995  10x technology (parent — avoid, use specific child)
+# EFO:0009899  10x 3' v2
+# EFO:0009901  10x 3' v1
+# EFO:0009922  10x 3' v3
+# EFO:0022604  10x 3' v4
+# EFO:0022980  10x 3' v3.1
+# EFO:0009900  10x 5' v2
+# EFO:0011025  10x 5' v1
+# EFO:0010961  Visium Spatial Gene Expression

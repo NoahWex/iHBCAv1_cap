@@ -1,0 +1,38 @@
+WARNING: Could not infer organism from feature ID 'ENSG00000237975' in 'var', make sure it is a valid ID.
+WARNING: Could not infer organism from feature ID 'ENSG00000239332' in 'var', make sure it is a valid ID.
+WARNING: Could not infer organism from feature ID 'ENSG00000223797' in 'var', make sure it is a valid ID.
+WARNING: Could not infer organism from feature ID 'ENSG00000240875' in 'var', make sure it is a valid ID.
+WARNING: Could not infer organism from feature ID 'ENSG00000270604' in 'var', make sure it is a valid ID.
+WARNING: Could not infer organism from feature ID 'ENSG00000224204' in 'var', make sure it is a valid ID.
+WARNING: Could not infer organism from feature ID 'ENSG00000238266' in 'var', make sure it is a valid ID.
+WARNING: Could not infer organism from feature ID 'ENSG00000230565' in 'var', make sure it is a valid ID.
+WARNING: Could not infer organism from feature ID 'ENSG00000227540' in 'var', make sure it is a valid ID.
+WARNING: Could not infer organism from feature ID 'ENSG00000256271' in 'var', make sure it is a valid ID.
+WARNING: Could not infer organism from feature ID 'ENSG00000236094' in 'var', make sure it is a valid ID.
+WARNING: Could not infer organism from feature ID 'ENSG00000203441' in 'var', make sure it is a valid ID.
+WARNING: Could not infer organism from feature ID 'ENSG00000258777' in 'var', make sure it is a valid ID.
+WARNING: Dataframe 'var' only has 15164 rows. Features SHOULD NOT be filtered from expression matrix.
+WARNING: Validation of raw layer was not performed due to current errors, try again after fixing current errors.
+ERROR: The field 'layer_descriptions' is present in 'uns', but it is deprecated.
+ERROR: Add labels error: Column 'feature_biotype' is a reserved column name of 'var'. Remove it from h5ad and try again.
+HCA Validator: validating outputs/integrated_objects/breast-immune-lineage.h5ad
+is_valid: False
+errors (2):
+  ERROR: ERROR: The field 'layer_descriptions' is present in 'uns', but it is deprecated.
+  ERROR: ERROR: Add labels error: Column 'feature_biotype' is a reserved column name of 'var'. Remove it from h5ad and try again.
+warnings (15):
+  WARNING: WARNING: Could not infer organism from feature ID 'ENSG00000237975' in 'var', make sure it is a valid ID.
+  WARNING: WARNING: Could not infer organism from feature ID 'ENSG00000239332' in 'var', make sure it is a valid ID.
+  WARNING: WARNING: Could not infer organism from feature ID 'ENSG00000223797' in 'var', make sure it is a valid ID.
+  WARNING: WARNING: Could not infer organism from feature ID 'ENSG00000240875' in 'var', make sure it is a valid ID.
+  WARNING: WARNING: Could not infer organism from feature ID 'ENSG00000270604' in 'var', make sure it is a valid ID.
+  WARNING: WARNING: Could not infer organism from feature ID 'ENSG00000224204' in 'var', make sure it is a valid ID.
+  WARNING: WARNING: Could not infer organism from feature ID 'ENSG00000238266' in 'var', make sure it is a valid ID.
+  WARNING: WARNING: Could not infer organism from feature ID 'ENSG00000230565' in 'var', make sure it is a valid ID.
+  WARNING: WARNING: Could not infer organism from feature ID 'ENSG00000227540' in 'var', make sure it is a valid ID.
+  WARNING: WARNING: Could not infer organism from feature ID 'ENSG00000256271' in 'var', make sure it is a valid ID.
+  WARNING: WARNING: Could not infer organism from feature ID 'ENSG00000236094' in 'var', make sure it is a valid ID.
+  WARNING: WARNING: Could not infer organism from feature ID 'ENSG00000203441' in 'var', make sure it is a valid ID.
+  WARNING: WARNING: Could not infer organism from feature ID 'ENSG00000258777' in 'var', make sure it is a valid ID.
+  WARNING: WARNING: Dataframe 'var' only has 15164 rows. Features SHOULD NOT be filtered from expression matrix.
+  WARNING: WARNING: Validation of raw layer was not performed due to current errors, try again after fixing current errors.

@@ -1,0 +1,40 @@
+# HsapDv Developmental Stage Mapping Table
+# Maps donor ages to Human Developmental Stages ontology (HsapDv) terms.
+# CxG schema 6.0.0 requires descendants of HsapDv:0000001 for Homo sapiens.
+#
+# All 287 donors in this atlas are adult females (age range 19-69 where recorded).
+# HsapDv:0000087 ("human adult stage") covers all adults >= 19 years.
+# This is the broadest valid term and is universally accepted by CxG for adult samples.
+#
+# More specific year-based terms exist (e.g., HsapDv:0000246 = "25 year-old human stage")
+# but HsapDv:0000087 is standard practice for atlases and avoids the problem of
+# 126 Kumar donors who only have binary age (young/old, no continuous value).
+#
+# Source: external_studies/outputs/harmonized_metadata/harmonized_donor_metadata.csv
+# Generated: 2026-02-11
+# Plan: A2_ontology_mappings
+age_category	age_range_description	donors_in_range	hsapdv_term_id	hsapdv_label	notes
+adult	All donors (19-69 years, or binary young/old)	287	HsapDv:0000087	human adult stage	Single term covers entire cohort. Youngest donor is 19 (N_0092 from Pal, RB3 from Twigger), oldest is 69 (N_0288 from Pal).
+
+# === SUPPLEMENTARY NOTES ===
+#
+# Age data completeness by study:
+#   gray:    14/16 donors have age_continuous (2 missing: PM-F, PM-L)
+#   kumar:   0/126 donors have age_continuous (ALL missing — binary only: 89 young, 32 old, 5 unrecorded)
+#   murrow:  28/28 donors have age_continuous (range 19-39)
+#   nee:     22/22 donors have age_continuous (range 21-54)
+#   pal:     22/22 donors have age_continuous (range 19-69)
+#   reed:    54/55 donors have age_continuous (1 missing: 3108PM; range 19-65)
+#   twigger: 18/18 donors have age_continuous (range 19-65)
+#
+# Kumar age issue:
+#   Kumar et al. 2023 (Nature) reported 126 donors with binary age classification only.
+#   The paper's methods define young = premenopausal, old = postmenopausal.
+#   No continuous ages were published. These donors still map to HsapDv:0000087
+#   since all are confirmed adults. The binary distinction is captured in age_binary
+#   and menopausal_status_binary metadata columns, not in the ontology mapping.
+#
+# If year-specific HsapDv terms are ever needed for the 161 donors with continuous age:
+#   HsapDv:0000246 = 25 year-old human stage (19-25 range)
+#   ... etc. up to HsapDv:0000290+ for 69-year range
+#   But this level of granularity is not required or expected by CxG.

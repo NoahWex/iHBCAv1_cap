@@ -1,0 +1,23 @@
+donor_id,dataset_id,organism_ontology_term_id,manner_of_death,sex_ontology_term,sex_ontology_term_id
+B1_0023,pal2021,NCBITaxon:9606,not applicable,female,PATO:0000383
+B1_0033,pal2021,NCBITaxon:9606,not applicable,female,PATO:0000383
+B1_0090,pal2021,NCBITaxon:9606,not applicable,female,PATO:0000383
+B1_0894,pal2021,NCBITaxon:9606,not applicable,female,PATO:0000383
+N_0019,pal2021,NCBITaxon:9606,not applicable,female,PATO:0000383
+N_0021,pal2021,NCBITaxon:9606,not applicable,female,PATO:0000383
+N_0064,pal2021,NCBITaxon:9606,not applicable,female,PATO:0000383
+N_0092,pal2021,NCBITaxon:9606,not applicable,female,PATO:0000383
+N_0093,pal2021,NCBITaxon:9606,not applicable,female,PATO:0000383
+N_0123,pal2021,NCBITaxon:9606,not applicable,female,PATO:0000383
+N_0169,pal2021,NCBITaxon:9606,not applicable,female,PATO:0000383
+N_0230.16,pal2021,NCBITaxon:9606,not applicable,female,PATO:0000383
+N_0230.17,pal2021,NCBITaxon:9606,not applicable,female,PATO:0000383
+N_0233,pal2021,NCBITaxon:9606,not applicable,female,PATO:0000383
+N_0275,pal2021,NCBITaxon:9606,not applicable,female,PATO:0000383
+N_0280,pal2021,NCBITaxon:9606,not applicable,female,PATO:0000383
+N_0288,pal2021,NCBITaxon:9606,not applicable,female,PATO:0000383
+N_0342,pal2021,NCBITaxon:9606,not applicable,female,PATO:0000383
+N_0372,pal2021,NCBITaxon:9606,not applicable,female,PATO:0000383
+N_0408,pal2021,NCBITaxon:9606,not applicable,female,PATO:0000383
+N_1105,pal2021,NCBITaxon:9606,not applicable,female,PATO:0000383
+N_1469,pal2021,NCBITaxon:9606,not applicable,female,PATO:0000383

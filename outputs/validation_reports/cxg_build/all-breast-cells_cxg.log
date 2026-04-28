@@ -1,0 +1,7 @@
+INFO:cellxgene_schema:Loading dependencies
+INFO:cellxgene_schema:Loading validator modules
+INFO:cellxgene_schema.validate:Starting validation...
+WARNING:cellxgene_schema.validate:WARNING: Dataframe 'var' only has 15164 rows. Features SHOULD NOT be filtered from expression matrix.
+WARNING:cellxgene_schema.validate:WARNING: Validation of raw layer was not performed due to current errors, try again after fixing current errors.
+ERROR:cellxgene_schema.validate:ERROR: Column 'schema_version' is a reserved column name of 'uns'. Remove it from h5ad and try again.
+INFO:cellxgene_schema.validate:Validation complete in 0:05:09.152630 with status is_valid=False

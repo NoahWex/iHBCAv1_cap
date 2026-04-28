@@ -1,0 +1,5 @@
+<hpc>/conda_envs/envs/hca_validators/lib/python3.10/site-packages/hca_schema_validator/_vendored/cellxgene_schema/validate.py:650: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+  is_filtered = column[i]
+HCA Validator: validating outputs/source_datasets/reed2024.h5ad
+is_valid: True
+No errors or warnings.
