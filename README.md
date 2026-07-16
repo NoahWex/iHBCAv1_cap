@@ -1,6 +1,6 @@
-# iHBCA v1.0 — Integrated Human Breast Cell Atlas
+# iHBCA v1.0: Integrated Human Breast Cell Atlas
 
-This repository holds the code, configuration, and metadata used to assemble, annotate, and validate the integrated Human Breast Cell Atlas (iHBCA) v1.0 — a cross-study single-cell reference of the adult human breast.
+This repository holds the code, configuration, and metadata used to assemble, annotate, and validate the integrated Human Breast Cell Atlas (iHBCA) v1.0, a cross-study single-cell reference of the adult human breast.
 
 **Atlas:** 2,128,505 cells from 287 donors across 7 published single-cell breast studies, integrated with scVI and manually annotated at L1 resolution (11 cell-type groups).
 
@@ -18,9 +18,9 @@ This repository holds the code, configuration, and metadata used to assemble, an
 
 ## What's not here (lives elsewhere)
 
-- **Source h5ads + integrated `all-breast-cells.h5ad`** — uploaded to HCA Tracker / CAP. Repo references metadata only.
-- **Per-cell provenance validation** — 138GB of audit data; auto-generated, not version-controlled.
-- **`gencode.v24.annotation.gtf`** — public reference; redownloadable from [GENCODE](https://www.gencodegenes.org/).
+- **Source h5ads + integrated `all-breast-cells.h5ad`**: uploaded to HCA Tracker / CAP. Repo references metadata only.
+- **Per-cell provenance validation**: 138GB of audit data; auto-generated, not version-controlled.
+- **`gencode.v24.annotation.gtf`**: public reference; redownloadable from [GENCODE](https://www.gencodegenes.org/).
 
 ## Source studies
 
@@ -40,10 +40,23 @@ L1 cell-type annotation comprises 11 groups following the hierarchy of Reed et a
 
 Per-label cell counts and CL ontology terms are documented in the CAP metadata template (separate distribution).
 
-## Build provenance
+## How the atlas was built
 
-- Source datasets assembled and validated against the CAP, CELLxGENE, and HCA schemas.
-- Integrated object: `all-breast-cells.h5ad`.
+[`run/pipeline.yaml`](run/pipeline.yaml) is the build record. It defines the full
+dependency graph and is what `run/submit_pipeline.sh` reads to submit the SLURM jobs
+in order, so it reflects the build as it actually ran:
+
+`extract` (counts from Seurat RDS) → `assemble_source` (7 CxG source h5ads) and
+`assemble_integrated` (`all-breast-cells.h5ad`) → `enrich_source_embeddings` (port
+joint scVI, per-study UMAP) → `enrich_source` / `enrich_integrated` (var, obs, uns) →
+`validate` (CxG, CAP, HCA validators on all 8 objects) → `diff_source` / `diff_baseline`
+(regression checks).
+
+These scripts document what was run rather than provide a turnkey pipeline. Cluster
+paths and account names are replaced with placeholders, the source objects live on the
+HCA Tracker and CAP rather than in this repo, and execution assumed a SLURM cluster with
+the Singularity containers referenced in `run/`. Resource values in `pipeline.yaml` are
+descriptive; each script's `#SBATCH` directives are what SLURM applied.
 
 ## License
 

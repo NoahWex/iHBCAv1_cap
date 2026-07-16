@@ -8,6 +8,10 @@
 #   afterok  — data dependency (downstream needs correct outputs)
 #   afterany — diagnostic stage (should run even on partial failure)
 #
+# Resource values below document what each stage requests. submit_pipeline.sh
+# does not read them: each script's own #SBATCH directives are what SLURM
+# applies. Keep the two in sync when editing either.
+#
 # Plan: Submission/polish_and_rebuild
 # =============================================================================
 
@@ -57,7 +61,7 @@ stages:
     sbatch_args: ""
     resources:
       mem: 64G
-      time: "01:00:00"
+      time: "00:45:00"
       cpus: 2
     depends_on:
       - stage: assemble_source
@@ -129,7 +133,7 @@ stages:
     resources:
       mem: 180G
       time: "02:00:00"
-      cpus: 4
+      cpus: 2
     depends_on:
       - stage: enrich_source
         type: afterany
