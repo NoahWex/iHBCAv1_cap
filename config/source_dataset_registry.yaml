@@ -114,16 +114,15 @@ datasets:
     assay_ontology_term_id: null
     tissue: breast
     expected_cells: 110744
-    donors: 17
+    donors: 16
     input_paths:
       published: "02_ExternalStudies/outputs/twigger/published/"
       build_yaml: "02_ExternalStudies/outputs/twigger/published/build.yaml"
     packaging_status: not_started
     packaging_plan: B1_source_datasets_external
-    notes: "17 donors. The harmonized donor table carries 18 rows because HMC2B
-      is a second library from donor HMC2 (sra_run_table_twigger.csv assigns both
-      libraries to HMC2), not a separate donor. RB8 is a distinct donor that is
-      absent from the SRA run table."
+    notes: "The harmonized donor table carries 18 rows: HMC2 appears twice
+      (HMC2 and HMC2B) as fresh and frozen specimens from the same donor, and RB8
+      is not present in the SRA run table."
 
   reed:
     output_filename: "reed2024.h5ad"
@@ -173,7 +172,7 @@ datasets:
 # ---------------------------------------------------------------------------
 integrated_objects:
   - filename: "all-breast-cells.h5ad"
-    description: "Full iHBCA integration (7 studies, 286 donors)"
+    description: "Full iHBCA integration (7 studies, 287 donors)"
     cells: 2122065
     genes: 15153
     size_gb: 90
