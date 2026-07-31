@@ -2,7 +2,9 @@
 
 This repository holds the code, configuration, and metadata used to assemble, annotate, and validate the integrated Human Breast Cell Atlas (iHBCA) v1.0, a cross-study single-cell reference of the adult human breast.
 
-**Atlas:** 2,128,505 cells from 287 donors across 7 published single-cell breast studies, integrated with scVI and manually annotated at L1 resolution (11 cell-type groups).
+**Atlas:** 2,128,505 cells from 286 donors across 7 published single-cell breast studies, integrated with scVI and annotated at L1 resolution (11 cell-type groups).
+
+The scVI integration, the 100-dimensional joint embedding, the harmonization UMAP, and the level 1 / level 1.5 cell-type annotations are the work of A. Reed (Reed et al. 2024). This repository packages those primitives into CxG- and HCA-compliant objects, harmonizes donor and sample metadata across the seven studies, and validates the result for submission.
 
 **Submission:** The atlas is packaged and validated for the HCA Cell Annotation Platform (CAP) and the HCA Atlas Tracker.
 
@@ -30,7 +32,7 @@ This repository holds the code, configuration, and metadata used to assemble, an
 | Kumar 2023 | Nature, [10.1038/s41586-023-06252-9](https://doi.org/10.1038/s41586-023-06252-9) | 714,331 | 126 |
 | Nee 2023 | Nature Genetics, [10.1038/s41588-023-01298-x](https://doi.org/10.1038/s41588-023-01298-x) | 230,100 | 22 |
 | Pal 2021 | EMBO J, [10.15252/embj.2020107333](https://doi.org/10.15252/embj.2020107333) | 131,288 | 22 |
-| Twigger 2022 | Nature Communications, [10.1038/s41467-021-27895-0](https://doi.org/10.1038/s41467-021-27895-0) | 110,744 | 16 |
+| Twigger 2022 | Nature Communications, [10.1038/s41467-021-27895-0](https://doi.org/10.1038/s41467-021-27895-0) | 110,744 | 17 |
 | Murrow 2022 | Cell Systems, [10.1016/j.cels.2022.06.005](https://doi.org/10.1016/j.cels.2022.06.005) | 86,136 | 28 |
 | Gray 2022 | Developmental Cell, [10.1016/j.devcel.2022.05.003](https://doi.org/10.1016/j.devcel.2022.05.003) | 52,681 | 16 |
 

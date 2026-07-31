@@ -97,7 +97,7 @@ from ihbca.hca_fields import (
 
 
 def load_annotations(annotations_path):
-    """Load Austin's level1.5 annotations CSV.
+    """Load the level1.5 annotations CSV (A. Reed, Reed et al. 2024).
 
     Returns DataFrame indexed by cellID.
     """
@@ -342,11 +342,11 @@ def construct_from_author_share(
     adata.obsm["X_umap"] = umap_df.reindex(adata.obs_names).values
 
     # 6b. Count-vector deduplication
-    # Austin's NPZ contains Pal Normal controls in both NormB1Total and NormTotal
-    # sub-studies (different cell IDs, identical count vectors). Austin filters
-    # these in 10e_pal_data_preparation.R:112 before merging, but the raw NPZ
-    # retains both copies. Deduplicate by sparse row hash to catch any identical
-    # count vectors regardless of source.
+    # The source NPZ contains Pal Normal controls in both NormB1Total and
+    # NormTotal sub-studies (different cell IDs, identical count vectors). The
+    # upstream harmonization pipeline filters these before merging, but the raw
+    # NPZ retains both copies. Deduplicate by sparse row hash to catch any
+    # identical count vectors regardless of source.
     if scipy.sparse.issparse(adata.X):
         X_csr = adata.X.tocsr() if adata.X.format != "csr" else adata.X
         print("  Deduplicating count vectors...")
@@ -983,7 +983,8 @@ def fix_tier1_fields(adata, target="hca"):
     From inspection: only organism_ontology_term_id is missing on obs.
     It exists in uns as NCBITaxon:9606.
 
-    target: 'hca' (default) keeps HCA-native HANCESTRO terms (:0601/:0602).
+    target: 'hca' (default) keeps the HCA-native HANCESTRO terms
+        (:0590, :0612, :0847, :0848, :0850).
             'cxg' applies downgrade to :0004 ancestry terms for CxG 5.3.2.
     """
     print("Verifying Tier 1 fields...")
@@ -1021,7 +1022,7 @@ def fix_tier1_fields(adata, target="hca"):
         )
 
     # CxG 5.3.2 compatibility: downgrade HCA-native HANCESTRO terms to :0004 branch
-    # Only applied when --target cxg. HCA builds keep :0601/:0602 terms as-is.
+    # Only applied when --target cxg. HCA builds keep the HCA-native terms as-is.
     if target == "cxg" and "self_reported_ethnicity_ontology_term_id" in adata.obs.columns:
         adata.obs["self_reported_ethnicity_ontology_term_id"] = downgrade_hancestro_terms(
             adata.obs["self_reported_ethnicity_ontology_term_id"]
@@ -1239,7 +1240,8 @@ def main():
                         help="Skip per-lineage splitting")
     parser.add_argument(
         "--target", choices=["hca", "cxg"], default="hca",
-        help="Target schema: hca (default) uses :0601/:0602 HANCESTRO terms; "
+        help="Target schema: hca (default) keeps the HCA-native HANCESTRO terms "
+             "(:0590, :0612, :0847, :0848, :0850); "
              "cxg downgrades to :0004 ancestry terms for CxG 5.3.2 compatibility"
     )
     args = parser.parse_args()

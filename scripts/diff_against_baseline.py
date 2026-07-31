@@ -7,6 +7,7 @@ SHA256 differences are reported but expected when code changes affect outputs.
 
 Usage:
     python3 diff_against_baseline.py \
+        --repo-root /path/to/repo \
         --manifest /path/to/baseline_manifest.yaml \
         --datasets all-breast-cells breast-epithelial-lineage  # optional filter
 """

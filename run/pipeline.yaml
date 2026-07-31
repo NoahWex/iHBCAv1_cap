@@ -94,7 +94,7 @@ stages:
     depends_on:
       - stage: assemble_integrated
         type: afterok
-    description: "Enrich all-breast-cells.h5ad with var, obs, uns, log_normalized layer"
+    description: "Enrich all-breast-cells.h5ad with var, obs, uns annotations"
 
   # Phase 7: Validate all 8 h5ads with CxG, CAP, and HCA validators
   validate:

@@ -30,7 +30,7 @@ def normalize_multi_ethnicity(series, sep=" || "):
 def downgrade_hancestro_terms(series):
     """Downgrade HCA-native HANCESTRO terms to CxG 5.3.2 :0004 branch.
 
-    Replaces :0601/:0602 terms with their :0004 equivalents per
+    Replaces the HCA-native terms with their :0004 ancestry-branch equivalents per
     HCA_TO_CXG_HANCESTRO mapping. Only call this for --target cxg builds.
     """
     result = series

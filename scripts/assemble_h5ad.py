@@ -320,7 +320,8 @@ def populate_cxg_fields(obs, study, efo_mapping, hancestro_mapping, repo_root=No
     Non-CxG studies: populate all 11 Tier 1 fields from mapping tables.
     CL terms looked up from pre-computed crosswalk if available.
 
-    target: 'hca' (default) keeps HCA-native HANCESTRO terms (:0601/:0602).
+    target: 'hca' (default) keeps the HCA-native HANCESTRO terms
+        (:0590, :0612, :0847, :0848, :0850).
             'cxg' applies downgrade to :0004 ancestry terms for CxG 5.3.2.
     """
     is_cxg = study in CXG_STUDIES
@@ -400,7 +401,7 @@ def populate_cxg_fields(obs, study, efo_mapping, hancestro_mapping, repo_root=No
         )
 
     # CxG 5.3.2 compatibility: downgrade HCA-native HANCESTRO terms to :0004 branch
-    # Only applied when --target cxg. HCA builds keep :0601/:0602 terms as-is.
+    # Only applied when --target cxg. HCA builds keep the HCA-native terms as-is.
     if target == "cxg" and "self_reported_ethnicity_ontology_term_id" in obs.columns:
         obs["self_reported_ethnicity_ontology_term_id"] = downgrade_hancestro_terms(
             obs["self_reported_ethnicity_ontology_term_id"]
@@ -1024,7 +1025,8 @@ def main():
     )
     parser.add_argument(
         "--target", choices=["hca", "cxg"], default="hca",
-        help="Target schema: hca (default) uses :0601/:0602 HANCESTRO terms; "
+        help="Target schema: hca (default) keeps the HCA-native HANCESTRO terms "
+             "(:0590, :0612, :0847, :0848, :0850); "
              "cxg downgrades to :0004 ancestry terms for CxG 5.3.2 compatibility"
     )
     args = parser.parse_args()

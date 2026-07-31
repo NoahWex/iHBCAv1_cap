@@ -8,8 +8,9 @@
 #SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/patch_uns_title_%j.out
 #SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/patch_uns_title_%j.err
 
-# Set uns["title"] = "Integrated Human Breast Cell Atlas V1"
-# in both integrated objects in upload-staging.
+# Set uns["title"] (see TITLE below) in both integrated objects in
+# upload-staging. This is the authoritative title; assemble_integrated.py only
+# sets a placeholder when none is present.
 
 set -euo pipefail
 

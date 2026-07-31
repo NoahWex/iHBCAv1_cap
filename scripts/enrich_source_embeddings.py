@@ -68,7 +68,7 @@ STUDY_TO_FILENAME = {
 }
 
 OBSM_DESCRIPTIONS = {
-    "X_umap": "Per-study UMAP from iHBCA harmonization pipeline (batch-corrected embedding basis)",
+    "X_umap": "2D UMAP from the source study's own published embedding",
     "X_ihbca_scvi_100": (
         "100D joint scVI embedding from iHBCA integrated object "
         "(all-breast-cells.h5ad obsm['X_scvi_100'])"

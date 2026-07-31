@@ -51,15 +51,13 @@
 
 ## Notes
 
-1. **study_pi correction**: The previous version of this file listed Devon A. Lawson, Kai Kessenbrock, and Nicholas Navin as study PIs. These are senior authors on the integrated iHBCA paper (Gray et al. 2022, Nature), not on the Reed 2024 standalone paper. The only corresponding/supervising authors on Reed 2024 are Walid T. Khaled and John C. Marioni. Note that J.C.M. has been at Genentech since September 2022.
+1. **gene_annotation_version**: While not explicitly stated in the paper text, the 10x ref-2020-A reference package is well-documented as containing GENCODE v32 (Ensembl 98) annotations. This is a standard inference for 10x-based studies using this reference.
 
-2. **gene_annotation_version**: While not explicitly stated in the paper text, the 10x ref-2020-A reference package is well-documented as containing GENCODE v32 (Ensembl 98) annotations. This is a standard inference for 10x-based studies using this reference.
+2. **intron_inclusion**: CellRanger v6.0.2 uses exon-only counting by default. The --include-introns flag became default only in CellRanger v7.0+. The paper and GitHub code make no mention of intron inclusion, supporting the "no" determination.
 
-3. **intron_inclusion**: CellRanger v6.0.2 uses exon-only counting by default. The --include-introns flag became default only in CellRanger v7.0+. The paper and GitHub code make no mention of intron inclusion, supporting the "no" determination.
+3. **ambient_count_correction**: The analysis pipeline on GitHub (code/analysis/) shows steps 01_genotyping -> 02_quality_control -> 03_doublets -> 04_scanpy with no ambient RNA correction step. The paper methods also make no mention of any ambient correction tool.
 
-4. **ambient_count_correction**: The analysis pipeline on GitHub (code/analysis/) shows steps 01_genotyping -> 02_quality_control -> 03_doublets -> 04_scanpy with no ambient RNA correction step. The paper methods also make no mention of any ambient correction tool.
-
-5. **Cell calling**: Note that cell calling used emptyDrops (DropletUtils) rather than CellRanger's default cell calling. This is a more sophisticated approach that uses statistical testing against the ambient RNA profile.
+4. **Cell calling**: Note that cell calling used emptyDrops (DropletUtils) rather than CellRanger's default cell calling. This is a more sophisticated approach that uses statistical testing against the ambient RNA profile.
 
 ## Sources Consulted
 

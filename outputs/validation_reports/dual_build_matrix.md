@@ -1,12 +1,11 @@
 # Dual Build Validation Matrix
 
 **Date**: 2026-03-08
-**Plan**: Submission/dual_build_validation
 
 ## Validation Matrix (Post-Patch)
 
 After removing `uns['schema_version']` from all 7 HCA-build source h5ads
-via `patch_remove_schema_version.py` and re-validating (job 49415091):
+via `patch_remove_schema_version.py` and re-validating:
 
 ```
                     HCA Build                    CxG Build
@@ -97,23 +96,3 @@ PASS/FAIL status.
 | OUT-OF-SCOPE | Gene ID warnings | None needed |
 
 **Conclusion**: HCA build is 8/8 submission-ready (CAP PASS + HCA PASS).
-
-## Job IDs
-
-| Phase | Job ID | Partition | State | Elapsed |
-|-------|--------|-----------|-------|---------|
-| Source assembly (CxG) | 49412857_[0-6] | free | COMPLETED | 0:32-5:11 |
-| Integrated assembly (CxG) | 49412858 | free | COMPLETED | 16:40 |
-| Embedding enrichment | 49412859_[0-6] + 49413468 (nee retry) | free | COMPLETED | 6:29-38:33 |
-| Source enrichment | 49413469_[0-6] | free | COMPLETED | 0:29-1:47 |
-| Integrated enrichment | 49412861 | free | COMPLETED | 7:56 |
-| HCA validation (pre-patch) | 49412862 | free | COMPLETED | 34:37 |
-| CxG validation | 49413470 | free | COMPLETED | 25:04 |
-| HCA validation (post-patch) | 49415091 | free | COMPLETED | 57:10 |
-
-### Incident: nee embedding CRSP I/O error
-
-Task 49412859_3 (nee) failed with `errno 5` stale file handle reading the
-integrated h5ad. Caused by concurrent reads of the 89GB file from multiple
-nodes. Recovered by resubmitting as standalone job 49413468 after contention
-cleared. No data impact.

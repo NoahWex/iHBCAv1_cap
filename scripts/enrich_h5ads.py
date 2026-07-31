@@ -1,26 +1,18 @@
 #!/usr/bin/env python3
-"""
-enrich_h5ads.py - Post-assembly enrichment for iHBCA h5ads
-==========================================================
-Standalone enrichment script that post-processes all 11 h5ads with:
-  - var annotations (gene_symbol, feature_biotype, chromosome from GENCODE v24)
-  - obs metadata (ethnicity_verbatim, ethnicity_grouped, ihbca_donor_id,
-    metadata_notes -- integrated only)
-  - log_normalized expression layer (integrated only)
-  - uns documentation (obsm_key_descriptions, obs_field_descriptions,
-    layer_descriptions, atlas_metadata, integration_method)
-  - obs polish (column ordering, categoricals, var.index.name)
+"""Post-assembly enrichment of the iHBCA h5ads.
 
-Usage:
-  # Source dataset
-  python enrich_h5ads.py --h5ad path/to/gray2022.h5ad --mode source \
-    --study gray --repo-root /path/to/repo
+Adds to each object:
+  - var: gene_symbol, feature_biotype_gencode, chromosome (GENCODE v24)
+  - obs: the harmonized L1 donor fields, ethnicity_verbatim, ethnicity_grouped,
+    ihbca_donor_id, metadata_notes (integrated object only)
+  - layers: log_normalized (integrated object only; subsequently moved into X by
+    restructure_raw_x.py, so the released object has X = normalized expression,
+    raw.X = counts, and no layers)
+  - uns: obsm_key_descriptions, obs_field_descriptions, atlas_metadata,
+    integration_method
+  - obs column ordering, categorical dtypes, var.index.name
 
-  # Integrated object
-  python enrich_h5ads.py --h5ad path/to/all-breast-cells.h5ad --mode integrated \
-    --repo-root /path/to/repo
-
-Plan: Submission/metadata_var_expression
+Run via run/enrich_source.sh (per-study SLURM array) or run/enrich_integrated.sh.
 """
 
 import argparse
@@ -53,13 +45,28 @@ from ihbca.loaders import (
 
 OBSM_KEY_DESCRIPTIONS = {
     # Source dataset keys
-    "X_umap": "2D UMAP coordinates from study-native embedding (float32)",
+    # X_umap means different things per object; see X_UMAP_DESCRIPTIONS below.
+    "X_umap": "2D UMAP coordinates (float32)",
     "X_scVI_joint": "scVI joint embedding from iHBCA integration, dimensionality varies by study (float32)",
     "X_scVI_native": "Study-native scVI embedding, dimensionality varies by study (float32)",
     "X_ihbca_scvi_100": "100D joint scVI embedding from iHBCA integrated object (float32)",
     "X_umap_ihbca_scvi_100": "Per-study UMAP from X_ihbca_scvi_100 (scanpy, n_neighbors=15, min_dist=0.5, float32)",
     # Integrated keys
     "X_scvi_100": "scVI 100D latent representation (n_latent=100, n_layers=2, batch_key=donor_id, float32)",
+}
+
+# X_umap carries different coordinates in each object type, so its description
+# is resolved by mode rather than taken from OBSM_KEY_DESCRIPTIONS.
+X_UMAP_DESCRIPTIONS = {
+    "source": (
+        "2D UMAP from the source study's own published embedding "
+        "(umap_native.csv; falls back to umap_joint.csv where the study "
+        "published no native embedding) (float32)"
+    ),
+    "integrated": (
+        "2D UMAP computed from the joint scVI 100D latent "
+        "(X_scVI100_UMAP.csv), not the source studies' published UMAPs (float32)"
+    ),
 }
 
 OBS_FIELD_DESCRIPTIONS = {
@@ -126,9 +133,9 @@ OBS_FIELD_DESCRIPTIONS = {
     "reference_genome": "Reference genome used for alignment (from dataset_metadata.yaml)",
     "gene_annotation_version": "Gene annotation version used (from dataset_metadata.yaml)",
     # --- Annotation columns (integrated only) ---
-    "level0_annotation": "Broad lineage: Epithelial, Stromal, or Immune (Austin's refined annotation)",
-    "level1_annotation": "Mid-level cell type annotation (Austin's refined annotation)",
-    "level1.5_annotation": "Fine-grained cell type annotation (Austin's refined annotation)",
+    "level0_annotation": "Broad lineage: Epithelial, Stromal, or Immune (refined annotation by A. Reed, Reed et al. 2024)",
+    "level1_annotation": "Mid-level cell type annotation (refined annotation by A. Reed, Reed et al. 2024)",
+    "level1.5_annotation": "Fine-grained cell type annotation (refined annotation by A. Reed, Reed et al. 2024)",
     "level0": "Original broad lineage from CxG h5ad",
     "level1": "Original mid-level cell type from CxG h5ad",
     "cellTypist_annotation_reed": "CellTypist cross-study prediction using Reed model",
@@ -458,7 +465,9 @@ def enrich_uns(adata, mode, force=False):
     if "obsm_key_descriptions" not in adata.uns or force:
         desc = {}
         for k, v in adata.obsm.items():
-            if k in OBSM_KEY_DESCRIPTIONS:
+            if k == "X_umap" and mode in X_UMAP_DESCRIPTIONS:
+                desc[k] = X_UMAP_DESCRIPTIONS[mode]
+            elif k in OBSM_KEY_DESCRIPTIONS:
                 desc[k] = OBSM_KEY_DESCRIPTIONS[k]
             else:
                 desc[k] = f"Embedding array, shape {v.shape}"
