@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
-"""
-extract_gene_mapping.py
-=======================
-Extract gene symbol <-> Ensembl ID mapping from a Cell Ranger filtered h5 file.
+"""Extract a gene symbol <-> Ensembl ID mapping from a Cell Ranger filtered h5 file.
 
 The h5 features group contains both gene symbols (`name`) and Ensembl IDs
 (`id`), so no GTF parsing is required.

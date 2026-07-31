@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
-"""
-patch_uns_title.py — Set uns["title"] in one or more h5ad files (in-place, h5py).
+"""Set uns["title"] in one or more h5ad files (in-place, h5py).
 
-Usage:
-  python3 patch_uns_title.py --h5ad <file1> [<file2> ...] --title "New Title"
+Run via `run/patch_uns_title.sh`.
 """
 import argparse
 import sys

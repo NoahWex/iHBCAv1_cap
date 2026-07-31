@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
-"""
-build_gtf_gene_mapping.py
-=========================
-Build comprehensive gene symbol → Ensembl ID mapping from a GTF file,
-optionally augmented with HGNC alias/previous symbol resolution.
+"""Build a gene symbol → Ensembl ID mapping from a GTF file, optionally
+augmented with HGNC alias/previous-symbol resolution.
 
 Layer 1: GTF gene-level entries (gene_name → gene_id) — 36K+ genes
 Layer 2: HGNC complete set — adds:
@@ -12,15 +9,9 @@ Layer 2: HGNC complete set — adds:
   - prev_symbol → ensembl_gene_id (deprecated name chain)
 
 Priority: GTF > HGNC direct > HGNC alias > HGNC prev_symbol
+Produces the same format as the h5-derived mapping: gene_symbol<TAB>ensembl_id
 
-Produces same format as the h5-derived mapping: gene_symbol<TAB>ensembl_id
-
-Usage:
-    python build_gtf_gene_mapping.py \
-        --gtf /path/to/genes.gtf \
-        --output /path/to/gene_symbol_to_ensembl_full.tsv \
-        [--hgnc /path/to/hgnc_complete_set.txt] \
-        [--test-features /path/to/features.tsv.gz ...]
+Run via `run/build_gtf_mapping.sh`.
 """
 
 import argparse
