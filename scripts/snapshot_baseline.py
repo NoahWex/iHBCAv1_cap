@@ -5,9 +5,7 @@ Records SHA256, cell counts, gene counts, obs columns/dtypes, and obsm keys
 for all 11 h5ads (7 source + 4 integrated). Output is a YAML file that
 diff_h5ads.py (or manual inspection) can compare against after refactoring.
 
-Usage:
-    python3 snapshot_baseline.py --repo-root /path/to/iHBCAv1_upload \
-                                 --output /path/to/baseline_manifest.yaml
+Run via `run/snapshot_baseline.sh`.
 """
 
 import argparse

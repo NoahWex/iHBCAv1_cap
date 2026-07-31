@@ -13,7 +13,6 @@
 # =============================================================================
 # Diff current h5ads against baseline manifest (structural comparison)
 # =============================================================================
-# Plan: Activation/pipeline_rebuild (Phase 1 gate)
 # Compares cell counts, gene counts, obs columns/dtypes, obsm keys, uns keys
 # against the Phase 0 baseline manifest.
 # =============================================================================
@@ -32,7 +31,7 @@ echo ""
 
 module load singularity
 
-# Diff integrated objects only (source datasets were not rebuilt)
+# Integrated objects only
 singularity exec \
     --no-mount bind-paths \
     --bind /path/to/shared_data:/path/to/shared_data:ro \

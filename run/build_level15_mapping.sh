@@ -13,7 +13,6 @@
 # =============================================================================
 # Build level1.5_annotation -> CL term mapping table
 # =============================================================================
-# Plan: Publication/C1_integrated_objects (hca_field_backfill, INV-A)
 # Reads integrated h5ad (backed mode), extracts label -> CL distributions
 # Output: mappings/level15_to_cl_mapping_raw.csv
 # =============================================================================

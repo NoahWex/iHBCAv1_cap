@@ -1,17 +1,13 @@
 #!/usr/bin/env python3
-"""
-patch_var_uns_h5py.py - Fix CxG 5.3.2 validation blockers via h5py
-====================================================================
+"""Fix CxG 5.3.2 validation blockers via h5py
+
 1. Delete uns["layer_descriptions"] (deprecated in CxG 5.3.2)
 2. Rename var["feature_biotype"] -> var["feature_biotype_gencode"]
    (CxG reserves "feature_biotype" as an auto-populated column)
 
 Memory: ~100 MB (no data loading, just HDF5 group operations)
 
-Usage:
-  python patch_var_uns_h5py.py --h5ad path/to/file.h5ad [--dry-run]
-
-Plan: Submission/metadata_var_expression
+Run via `run/patch_var_uns.sh`.
 """
 
 import argparse

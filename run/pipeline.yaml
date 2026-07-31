@@ -12,7 +12,6 @@
 # does not read them: each script's own #SBATCH directives are what SLURM
 # applies. Keep the two in sync when editing either.
 #
-# Plan: Submission/polish_and_rebuild
 # =============================================================================
 
 stages:

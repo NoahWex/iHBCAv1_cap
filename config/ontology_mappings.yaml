@@ -1,9 +1,8 @@
 # =============================================================================
 # ONTOLOGY MAPPING TABLES
 # =============================================================================
-# Populated by plan A2_ontology_mappings.
 # Mechanical mappings (HANCESTRO, HsapDv, EFO) are complete.
-# CL cell type mapping is OUT OF SCOPE for A2 — requires expert curation.
+# CL cell type mapping is handled separately; it requires expert curation.
 #
 # CxG schema version targeted: 6.0.0
 # Source: https://github.com/chanzuckerberg/single-cell-curation/blob/main/schema/6.0.0/schema.md
@@ -13,7 +12,6 @@
 
 version: "2.0"
 status: partial  # mechanical mappings done, CL pending
-populated_by: A2_ontology_mappings
 schema_target: "CxG 6.0.0"
 
 # ---------------------------------------------------------------------------
@@ -108,7 +106,7 @@ efo_assay:
 # CL — Cell Type Ontology (NOT YET POPULATED)
 # ---------------------------------------------------------------------------
 # This is the heavy lift. Requires expert curation of cluster labels → CL terms.
-# Separate effort, not part of A2_ontology_mappings.
+# Handled as a separate effort.
 cell_ontology:
   mapping_file: null  # TBD
   status: not_started

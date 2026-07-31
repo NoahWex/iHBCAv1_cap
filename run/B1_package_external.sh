@@ -19,7 +19,6 @@
 # Phase 1 array: 0-8 (9 extraction tasks: 6 standalone + 3 Pal sub-studies)
 # Phase 2 array: 0-6 (7 assembly tasks: 6 standalone + 1 Pal consolidated)
 #
-# Plan: B1_source_datasets_external
 # =============================================================================
 
 set -euo pipefail
@@ -75,7 +74,7 @@ submit)
     mkdir -p "$LOG_DIR" "$INTERMEDIATES"
 
     echo "==========================================="
-    echo "B1: Package External Studies as CxG h5ad"
+    echo "Package external studies as CxG h5ad"
     echo "==========================================="
     echo ""
     echo "Phase 1: Extract counts (${#EXTRACT_STUDIES[@]} studies)"

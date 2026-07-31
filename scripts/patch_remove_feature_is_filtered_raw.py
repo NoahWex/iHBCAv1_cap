@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 """Remove feature_is_filtered from raw/var in already-restructured h5ads.
 
-The HCA schema prohibits feature_is_filtered in raw.var. The initial
-restructure_raw_x.py run (job 50031446) copied it along with the rest
-of /var. This patch removes it in-place.
+The HCA schema prohibits feature_is_filtered in raw.var, but
+restructure_raw_x.py copies it along with the rest of /var. This patch removes
+it in-place.
 
-Usage:
-    python3 patch_remove_feature_is_filtered_raw.py file1.h5ad [file2.h5ad ...]
+Run via `run/patch_feature_is_filtered.sh`.
 """
 
 import sys
@@ -14,6 +13,7 @@ import h5py
 
 
 def patch(path: str) -> None:
+    """Remove feature_is_filtered from raw/var in one h5ad, in place."""
     print(f"\n--- {path} ---")
 
     with h5py.File(path, "r") as f:

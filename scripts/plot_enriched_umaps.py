@@ -17,12 +17,14 @@ STUDY_TO_FILENAME = {
 CELL_TYPE_COLS = ["cell_type", "cell_type_label", "level1.5", "level1", "cell_type_ontology_term_id"]
 
 def find_cell_type_col(obs):
+    """Return the first available cell-type annotation column in obs."""
     for col in CELL_TYPE_COLS:
         if col in obs.columns:
             return col
     return None
 
 def plot_study_umap(adata, study, output_dir):
+    """Plot the joint-embedding UMAP for one study alongside its native UMAP."""
     umap_key = "X_umap_ihbca_scvi_100"
     if umap_key not in adata.obsm:
         print(f"  WARNING: {umap_key} not found in {study}")

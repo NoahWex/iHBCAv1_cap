@@ -89,7 +89,7 @@ def populate_dataset_metadata(adata, study, repo_root):
     for field in DATASET_META_FIELDS:
         val = study_meta.get(field)
         if val and val != "unknown":
-            # A7: study_pi must be a list, not a string
+            # study_pi must be a list, not a string
             if field == "study_pi" and isinstance(val, str):
                 val = [val]
             if field not in adata.uns:

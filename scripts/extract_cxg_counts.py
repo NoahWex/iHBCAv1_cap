@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-"""
-extract_cxg_counts.py - Extract raw integer counts from CxG h5ad files
-=======================================================================
+"""Extract raw integer counts from CxG h5ad files
+
 Reads the original CELLxGENE h5ad for a study and writes intermediates
 (counts.mtx.gz, features.tsv.gz, barcodes.tsv.gz) with integer counts.
 
-Fixes A8: gray/twigger Seurat RDS extraction produced log-normalized floats
+The gray and twigger Seurat RDS extraction produced log-normalized floats
 instead of raw counts. CxG h5ads have verified integer counts in raw.X.
 
 Usage:
@@ -13,8 +12,6 @@ Usage:
       --cxg-h5ad /path/to/gray.h5ad \
       --output-dir /path/to/intermediates/gray \
       [--dry-run]
-
-Plan: Activation/validation_fixes (A8)
 """
 
 import argparse

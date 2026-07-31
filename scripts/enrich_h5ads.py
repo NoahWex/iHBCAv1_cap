@@ -536,20 +536,20 @@ def enrich_uns(adata, mode, force=False):
 def polish(adata):
     """Reorder obs columns, convert strings to categoricals, set var.index.name."""
 
-    # F0. Drop redundant BRCA columns superseded by harmonized brca_genotype
+    # Drop redundant BRCA columns superseded by harmonized brca_genotype
     BRCA_REDUNDANT = ["BRCA_tested", "brca_testing"]
     dropped = [c for c in BRCA_REDUNDANT if c in adata.obs.columns]
     if dropped:
         adata.obs.drop(columns=dropped, inplace=True)
         print(f"  Dropped redundant BRCA columns: {dropped}")
 
-    # F1. obs column ordering
+    # obs column ordering
     ordered = [c for c in OBS_COLUMN_ORDER if c in adata.obs.columns]
     remaining = sorted(c for c in adata.obs.columns if c not in set(ordered))
     adata.obs = adata.obs[ordered + remaining]
     print(f"  obs columns reordered: {len(ordered)} priority + {len(remaining)} remaining")
 
-    # F2. Categorical dtypes
+    # Categorical dtypes
     n_converted = 0
     for col in adata.obs.columns:
         if adata.obs[col].dtype == object or adata.obs[col].dtype.name == "object":
@@ -567,7 +567,7 @@ def polish(adata):
             n_converted += 1
     print(f"  Categoricals: converted {n_converted} string columns")
 
-    # F3. Convert nullable float columns to numpy float64 (anndata can't write FloatingArray)
+    # Convert nullable float columns to numpy float64 (anndata can't write FloatingArray)
     n_float_converted = 0
     for col in adata.obs.columns:
         if isinstance(adata.obs[col].dtype, pd.Float64Dtype):
@@ -576,7 +576,7 @@ def polish(adata):
     if n_float_converted:
         print(f"  Nullable floats → float64: {n_float_converted} columns")
 
-    # F4. var.index.name
+    # var.index.name
     adata.var.index.name = "ensembl_id"
     print("  var.index.name = 'ensembl_id'")
 

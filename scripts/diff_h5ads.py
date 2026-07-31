@@ -4,13 +4,7 @@
 Used to validate regenerated h5ads against preprocessing originals.
 Reports PASS/FAIL per check with details on mismatches.
 
-Usage:
-    python3 diff_h5ads.py \
-        --new path/to/regenerated.h5ad \
-        --reference path/to/original.h5ad \
-        [--output report.yaml]
-
-Part of plan: Activation/regen_pilot
+Run via `run/diff_all_source.sh` or `run/diff_integrated.sh`.
 """
 
 import argparse
@@ -225,6 +219,7 @@ def main():
 
     # Custom YAML representer for OrderedDict
     def represent_ordereddict(dumper, data):
+        """Represent OrderedDict as a plain YAML mapping, preserving key order."""
         return dumper.represent_mapping("tag:yaml.org,2002:map", data.items())
     yaml.add_representer(OrderedDict, represent_ordereddict)
 

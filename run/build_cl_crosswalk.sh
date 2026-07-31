@@ -13,7 +13,6 @@
 # =============================================================================
 # Build CL term crosswalk CSVs for non-CxG source datasets
 # =============================================================================
-# Plan: Activation/cl_term_backfill (Phases 1+2)
 # Reads integrated h5ad (backed mode) + source h5ads + cell_id_mapping.csv
 # Outputs: mappings/cl_term_crosswalk_{study}.csv
 # =============================================================================

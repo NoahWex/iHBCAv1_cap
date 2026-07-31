@@ -12,10 +12,7 @@ Review the raw output to produce the final reviewed mapping:
   mappings/level15_to_cl_mapping.csv
   Columns: level15_annotation, assigned_cl_term, decision_rationale
 
-Usage:
-    python build_level15_mapping.py --repo-root /path/to/iHBCAv1_upload
-
-Plan: Publication/C1_integrated_objects (hca_field_backfill)
+Run via `run/build_level15_mapping.sh`.
 """
 
 import argparse

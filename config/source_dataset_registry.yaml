@@ -53,7 +53,6 @@ datasets:
       published: "02_ExternalStudies/outputs/gray/published/"
       build_yaml: "02_ExternalStudies/outputs/gray/published/build.yaml"
     packaging_status: not_started
-    packaging_plan: B1_source_datasets_external
 
   kumar:
     output_filename: "kumar2023.h5ad"
@@ -69,7 +68,6 @@ datasets:
       published: "02_ExternalStudies/outputs/kumar/published/"
       build_yaml: "02_ExternalStudies/outputs/kumar/published/build.yaml"
     packaging_status: not_started
-    packaging_plan: B1_source_datasets_external
     notes: "Largest dataset. 126 donors missing continuous age."
 
   murrow:
@@ -86,7 +84,6 @@ datasets:
       published: "02_ExternalStudies/outputs/murrow/published/"
       build_yaml: "02_ExternalStudies/outputs/murrow/published/build.yaml"
     packaging_status: not_started
-    packaging_plan: B1_source_datasets_external
 
   nee:
     output_filename: "nee2023.h5ad"
@@ -102,7 +99,6 @@ datasets:
       published: "02_ExternalStudies/outputs/nee/published/"
       build_yaml: "02_ExternalStudies/outputs/nee/published/build.yaml"
     packaging_status: not_started
-    packaging_plan: B1_source_datasets_external
     notes: "Risk status mislabeling in iHBCA corrected in harmonized metadata."
 
   twigger:
@@ -119,7 +115,6 @@ datasets:
       published: "02_ExternalStudies/outputs/twigger/published/"
       build_yaml: "02_ExternalStudies/outputs/twigger/published/build.yaml"
     packaging_status: not_started
-    packaging_plan: B1_source_datasets_external
     notes: "The harmonized donor table carries 18 rows: HMC2 appears twice
       (HMC2 and HMC2B) as fresh and frozen specimens from the same donor, and RB8
       is not present in the SRA run table."
@@ -138,7 +133,6 @@ datasets:
       published: "02_ExternalStudies/outputs/reed/published/"
       build_yaml: "02_ExternalStudies/outputs/reed/published/build.yaml"
     packaging_status: not_started
-    packaging_plan: B1_source_datasets_external
     notes: "iHBCA reference atlas. 29/55 donors missing ethnicity."
 
   pal:
@@ -160,7 +154,6 @@ datasets:
       published_total: "02_ExternalStudies/outputs/pal_norm_total/published/"
       published_b1: "02_ExternalStudies/outputs/pal_norm_b1/published/"
     packaging_status: not_started
-    packaging_plan: B1_source_datasets_external
     notes: |
       Consolidated from 3 sub-studies into one source dataset for HCA.
       Shared donor pool across epi/total/b1 sub-cohorts.
@@ -168,7 +161,7 @@ datasets:
       All 22 donors missing ethnicity.
 
 # ---------------------------------------------------------------------------
-# INTEGRATED OBJECTS (populated by plan C1)
+# INTEGRATED OBJECTS
 # ---------------------------------------------------------------------------
 integrated_objects:
   - filename: "all-breast-cells.h5ad"
@@ -179,7 +172,6 @@ integrated_objects:
     schema_version: "5.3.2"
     status: validated
     validators_passed: [CAP, CxG]
-    plan: C1_integrated_objects
   # Per-lineage splits (epithelial/stromal/immune) exist on disk but are not
   # part of the submission — trivial subsets with no lineage-specific re-analysis.
   # HCA process doc section 3 item 6: "All Cells" OR lineage splits (not both required).

@@ -12,7 +12,6 @@
 
 # =============================================================================
 # HCA Atlas Upload — 9 objects to s3://hca-atlas-tracker-data/breast/breast-v1/
-# Plan: Submission/hca_upload (Step 8)
 #
 # Objects:
 #   source-datasets (7):  gray2022 kumar2023 murrow2022 nee2023 twigger2022 reed2024 pal2021

@@ -5,8 +5,7 @@ Phases 1+2 of cl_term_backfill plan:
   Phase 1: Investigate cell ID alignment between integrated and source h5ads
   Phase 2: Build crosswalk CSVs mapping source_cell_id -> cell_type_ontology_term_id
 
-Usage:
-    python build_cl_crosswalk.py --repo-root /path/to/iHBCAv1_upload [--investigate-only]
+Run via `run/build_cl_crosswalk.sh`.
 """
 
 import argparse

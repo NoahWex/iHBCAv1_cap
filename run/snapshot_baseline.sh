@@ -13,7 +13,6 @@
 # =============================================================================
 # Snapshot baseline manifest for pipeline_rebuild regression verification
 # =============================================================================
-# Plan: Activation/pipeline_rebuild (Phase 0)
 # Reads all 11 h5ads (7 source + 4 integrated) in backed mode, records
 # SHA256, cell/gene counts, obs columns/dtypes, obsm keys.
 # Output: outputs/baseline_manifest.yaml

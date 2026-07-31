@@ -13,7 +13,6 @@
 #   # Or as SLURM job (Step 2 only, after manual download):
 #   sbatch run/build_sra_run_tables.sh
 #
-# Plan: Publication/C1_integrated_objects (hca_field_backfill, INV-C)
 # =============================================================================
 #SBATCH --job-name=build_sra_tables
 #SBATCH --partition=standard

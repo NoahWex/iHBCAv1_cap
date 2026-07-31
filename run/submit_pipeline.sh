@@ -14,7 +14,6 @@
 #   --from        Start from a specific stage (includes all downstream)
 #   --skip        Comma-separated stages to skip
 #
-# Plan: Activation/pipeline_rebuild (Phase 6)
 # =============================================================================
 
 set -euo pipefail

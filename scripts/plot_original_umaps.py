@@ -36,6 +36,7 @@ CELL_TYPE_COLS = [
 
 
 def find_cell_type_col(obs_columns):
+    """Return the first available cell-type annotation column in obs."""
     for col in CELL_TYPE_COLS:
         if col in obs_columns:
             return col

@@ -11,11 +11,7 @@ Tier 1 Donor Metadata columns (per Boland2020 HCA template):
 Note: disease_ontology_term_id, development_stage_ontology_term_id, and
 self_reported_ethnicity_ontology_term_id live in the Sample tab (deferred).
 
-Usage:
-    python generate_tier1_donor_sheet.py [--project-root ROOT]
-
-Outputs:
-    outputs/entry_sheets/tier1_donor/{study}_tier1_donor.csv  (7 files)
+Run via `run/generate_tier1_donor.sh`.
 """
 
 import argparse

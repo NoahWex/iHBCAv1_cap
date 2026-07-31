@@ -5,11 +5,7 @@ Reports structural changes (cell counts, gene counts, obs columns, obsm keys,
 var columns, uns keys) between the baseline manifest and current h5ad files.
 SHA256 differences are reported but expected when code changes affect outputs.
 
-Usage:
-    python3 diff_against_baseline.py \
-        --repo-root /path/to/repo \
-        --manifest /path/to/baseline_manifest.yaml \
-        --datasets all-breast-cells breast-epithelial-lineage  # optional filter
+Run via `run/diff_against_baseline.sh`.
 """
 
 import argparse

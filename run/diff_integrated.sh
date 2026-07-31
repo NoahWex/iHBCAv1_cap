@@ -8,7 +8,7 @@
 #SBATCH --output=/path/to/iHBCAv1_upload/logs/diff_integrated_%j.out
 #SBATCH --error=/path/to/iHBCAv1_upload/logs/diff_integrated_%j.err
 
-# Diff integrated object vs CxG published h5ad (OOM'd at 180GB, retrying at 256GB)
+# Diff integrated object vs CxG published h5ad
 
 set -euo pipefail
 

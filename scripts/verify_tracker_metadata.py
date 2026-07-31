@@ -4,8 +4,7 @@
 Reads config/dataset_metadata.yaml and cross-checks against the
 actual uns group in each source h5ad + integrated object.
 
-Usage:
-    python verify_tracker_metadata.py --project-root /path/to/repo
+Run via `run/upload_dry_run.sh`.
 """
 import argparse
 import sys

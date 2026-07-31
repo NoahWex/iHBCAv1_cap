@@ -1,14 +1,11 @@
 #!/usr/bin/env python3
-"""
-provenance.py - Build provenance manifests for assembly outputs
-===============================================================
+"""Build provenance manifests for assembly outputs
+
 Embeds provenance metadata in adata.uns["ihbca_provenance"] and optionally
 writes a sidecar YAML manifest next to the output h5ad.
 
 Used by assemble_h5ad.py (source datasets) and assemble_integrated.py
 (integrated object).
-
-Plan: Activation/build_manifests
 """
 
 import os

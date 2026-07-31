@@ -5,12 +5,7 @@ Produces a ~280K-cell downsampled h5ad that preserves biological diversity
 via geometric sketching (Hie et al. 2019) on the scVI latent space,
 applied per-donor (1000 cells/donor, keeping all cells for small donors).
 
-Usage:
-    python build_sketch.py \
-        --input /path/to/all-breast-cells.h5ad \
-        --output /path/to/all-breast-cells-sketch.h5ad \
-        [--cells-per-donor 1000] \
-        [--seed 42]
+Run via `run/build_sketch.sh`.
 """
 
 import argparse

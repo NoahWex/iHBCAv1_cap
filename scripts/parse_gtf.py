@@ -1,18 +1,12 @@
 #!/usr/bin/env python3
-"""
-parse_gtf.py - Parse GENCODE v24 GTF to gene-level annotation TSV
-==================================================================
+"""Parse GENCODE v24 GTF to gene-level annotation TSV
+
 One-time script: extracts gene-level records from the GENCODE v24 GTF
 and writes a cached TSV for downstream use by enrich_h5ads.py.
 
 Output columns: ensembl_id, gene_symbol, feature_biotype, chromosome
 
-Usage:
-  python parse_gtf.py \
-    --gtf mappings/gencode.v24.annotation.gtf \
-    --output mappings/gencode_v24_gene_annotations.tsv
-
-Plan: Submission/metadata_var_expression
+Run via `run/phase0_prereqs.sh`.
 """
 
 import argparse

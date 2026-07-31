@@ -7,10 +7,7 @@ metadata to produce per-study CSVs with columns:
 
 donor_id values match ihbca_donor_id from L1_harmonized_donor.csv.
 
-Usage:
-    python build_sra_run_tables.py --repo-root /path/to/iHBCAv1_upload
-
-Plan: Publication/C1_integrated_objects (hca_field_backfill, INV-C)
+Run via `run/build_sra_run_tables.sh`.
 """
 
 import argparse

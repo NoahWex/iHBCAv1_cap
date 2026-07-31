@@ -1,21 +1,15 @@
 #!/usr/bin/env python3
-"""
-assemble_h5ad.py - Build CxG-compliant h5ad from extracted intermediates
-=========================================================================
+"""Build CxG-compliant h5ad from extracted intermediates
+
 Reads count matrix intermediates (from extract_counts_for_h5ad.R) plus
 published metadata and UMAP coordinates, maps gene symbols to Ensembl IDs,
 populates CxG-required ontology fields, and writes a single h5ad file.
 
 For Pal (3 sub-studies -> 1 h5ad), handles concatenation and deduplication.
 
-Usage:
-  python assemble_h5ad.py --study gray --repo-root /path/to/iHBCAv1_upload
-  python assemble_h5ad.py --study pal --repo-root /path/to/iHBCAv1_upload
-
-Plan: B1_source_datasets_external
+Run via `run/B1_package_external.sh` or `run/reassemble_all_source.sh`.
 """
 
-# Another day, another file format conversion. At least this one has a schema.
 
 import argparse
 import gzip
@@ -343,7 +337,7 @@ def populate_cxg_fields(obs, study, efo_mapping, hancestro_mapping, repo_root=No
                 {"True": True, "False": False, True: True, False: False}
             ).fillna(True).astype(bool)
 
-        # A4: Drop CxG passthrough column reserved by HCA
+        # Drop CxG passthrough column reserved by HCA
         if "observation_joinid" in obs.columns:
             obs = obs.drop(columns=["observation_joinid"])
             print(f"  Dropped reserved column: observation_joinid")
@@ -411,13 +405,13 @@ def populate_cxg_fields(obs, study, efo_mapping, hancestro_mapping, repo_root=No
             obs["self_reported_ethnicity_ontology_term_id"], sep=","
         )
 
-    # A10: Drop deprecated ethnicity columns
+    # Drop deprecated ethnicity columns
     for col in ["ethnicity", "ethnicity_ontology_term_id"]:
         if col in obs.columns:
             obs = obs.drop(columns=[col])
             print(f"  Dropped deprecated column: {col}")
 
-    # A3: Rename reserved obs columns (HCA reserves these label names)
+    # Rename reserved obs columns (HCA reserves these label names)
     renames = {k: v for k, v in RESERVED_OBS_RENAMES.items() if k in obs.columns}
     if renames:
         obs = obs.rename(columns=renames)
@@ -455,12 +449,12 @@ def populate_hca_obs_fields(adata, study, repo_root):
     obs = adata.obs
     print(f"  Populating HCA obs fields for {study}...")
 
-    # --- B1: Broadcast uns -> obs ---
+    # --- Broadcast uns -> obs ---
     for field in UNS_TO_OBS_FIELDS:
         if field in adata.uns:
             obs[field] = adata.uns[field]
 
-    # --- B2: Derived constant/lookup fields ---
+    # --- Derived constant/lookup fields ---
     obs = populate_derived_obs_fields(obs, FACS_TO_ENRICHMENT, PRESERVATION_NORMALIZE)
 
     # institute: per-study from dataset_metadata.yaml
@@ -468,7 +462,7 @@ def populate_hca_obs_fields(adata, study, repo_root):
     study_meta = dmeta.get("datasets", {}).get(study, {})
     obs["institute"] = study_meta.get("institute", "unknown")
 
-    # --- B3: Library metadata from SRA run tables ---
+    # --- Library metadata from SRA run tables ---
     sra = load_sra_run_table(repo_root, study)
     if sra is not None and "donor_id" in obs.columns:
         # Map library metadata via donor_id -> SRA sample
@@ -645,7 +639,7 @@ def assemble_single_study(study, repo_root, gene_mapping, efo_mapping,
 
     adata.raw = adata.copy()
 
-    # A1: feature_is_filtered in var only (AFTER raw copy — CxG prohibits it in raw.var)
+    # feature_is_filtered in var only (AFTER raw copy — CxG prohibits it in raw.var)
     adata.var["feature_is_filtered"] = False
 
     study_info = registry["datasets"].get(study, {})
@@ -892,7 +886,7 @@ def assemble_pal(repo_root, gene_mapping, efo_mapping, hancestro_mapping,
 
     adata.raw = adata.copy()
 
-    # A1: feature_is_filtered in var only (AFTER raw copy — CxG prohibits it in raw.var)
+    # feature_is_filtered in var only (AFTER raw copy — CxG prohibits it in raw.var)
     adata.var["feature_is_filtered"] = False
 
     study_info = registry["datasets"].get("pal", {})

@@ -1,20 +1,13 @@
 #!/usr/bin/env python3
-"""
-patch_obs_h5py.py - Patch obs columns directly in h5ad via h5py
-================================================================
+"""Patch obs columns directly in h5ad via h5py
+
 Adds/overwrites L1 harmonized donor metadata columns in an h5ad file
 without loading the full object into memory. Operates directly on the
 HDF5 structure that anndata uses.
 
 Memory: ~2-5 GB (only obs dataframe, not X/layers/obsm)
 
-Usage:
-  python patch_obs_h5py.py \
-    --h5ad path/to/all-breast-cells.h5ad \
-    --repo-root /path/to/repo \
-    --reorder  # also reorder obs columns
-
-Plan: Submission/metadata_var_expression
+Run via `run/patch_obs_integrated.sh`.
 """
 
 import argparse

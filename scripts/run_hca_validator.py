@@ -4,8 +4,7 @@
 hca-schema-validator 0.5.0 has no CLI entry point (__main__.py missing).
 This wrapper imports HCAValidator and runs it programmatically.
 
-Usage:
-    python3 run_hca_validator.py <file.h5ad> [--output <report.log>]
+Run via `run/validate_all.sh` or `run/validate_sketch.sh`.
 """
 
 import argparse

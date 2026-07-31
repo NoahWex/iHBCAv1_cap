@@ -12,6 +12,7 @@ import numpy as np
 
 
 def inspect_uns(path: str):
+    """Print the current uns keys and title for one h5ad."""
     print(f"\n--- uns in {path} ---")
     with h5py.File(path, "r") as f:
         if "uns" not in f:
@@ -31,6 +32,7 @@ def inspect_uns(path: str):
 
 
 def patch_title(path: str, title: str, dry_run: bool = False):
+    """Set uns['title'] on one h5ad, in place."""
     with h5py.File(path, "r" if dry_run else "r+") as f:
         if "uns" not in f:
             print(f"  ERROR: no 'uns' group in {path}")

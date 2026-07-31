@@ -13,7 +13,6 @@
 # =============================================================================
 # Run all 3 validators (CxG, CAP, HCA) on all 8 h5ads (7 source + 1 integrated)
 # =============================================================================
-# Session: validation_run
 # Logs per file per validator to outputs/validation_reports/
 # =============================================================================
 

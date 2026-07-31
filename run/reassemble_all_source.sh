@@ -12,7 +12,7 @@
 # =============================================================================
 # Phase 3: Re-assemble all 7 source h5ads after validation fixes
 # =============================================================================
-# Fixes applied: A1-A4, A5-partial, A6-A10 (script changes),
+# Applies the CxG/HCA schema fixes implemented in the assembly scripts,
 #                A8 (CxG raw counts for gray/twigger),
 #                A12 (v24+v32 gene mapping for murrow/nee/pal)
 #

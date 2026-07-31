@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
-"""
-patch_hca_validation.py - Fix HCA Data Portal schema validation errors in obs
-=============================================================================
-Applies the validation fixes the HCA Tracker team flagged on the iHBCA v1
-objects (2026-07), operating directly on the h5ad obs group via h5py without
-loading X / layers into memory.
+"""Fix HCA Data Portal schema validation errors in obs
+
+Applies obs-level fixes required by HCA Data Portal schema validation,
+operating directly on the h5ad obs group via h5py without loading X or layers
+into memory.
 
 Fixes:
   1. Remove obs columns HCA does not collect. HCA does not store
@@ -169,6 +168,7 @@ PLACEHOLDERS = {"unknown", "", "nan", "none", "na"}
 def to_single_or_nan(series):
     """Keep single identifiers; set comma-joined aggregates and placeholders to NaN."""
     def clean(v):
+        """Return a single identifier, or NaN for placeholders and comma-joined aggregates."""
         if v is None:
             return np.nan
         s = str(v).strip()
@@ -181,6 +181,7 @@ def to_single_or_nan(series):
 
 
 def patch(h5ad_path):
+    """Apply the obs fixes to one h5ad in place."""
     print(f"Patching HCA validation fields in: {h5ad_path}")
     obs = read_obs_from_h5ad(h5ad_path)
     print(f"  obs shape: {obs.shape}")

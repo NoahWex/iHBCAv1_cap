@@ -980,8 +980,6 @@ summary:
   total_upload_objects: 9   # 7 source + 1 integrated + 1 sketch
   total_upload_size_gb: ~172
   sequence: submission_prep
-  plans_complete: [1, 2, 3, 4, 5]
-  plan_remaining: [6 (hca_upload)]
 
   verification_summary:
     verified_from: /tmp/integrated_object_audit_raw.yaml

@@ -13,7 +13,6 @@
 # Runs diff_h5ads.py for each study, comparing post-fix h5ads against
 # preprocessing originals (source) and CxG published h5ad (integrated).
 #
-# Plan: Activation/validation_fixes (Phase 4 verification)
 # =============================================================================
 
 set -euo pipefail
@@ -194,7 +193,7 @@ echo ""
 echo "PASS: $PASS_COUNT  FAIL: $FAIL_COUNT  SKIP: $SKIP_COUNT"
 echo ""
 echo "NOTE: FAIL is expected for studies with structural changes from"
-echo "validation fixes (A1-A12). Key check: cell counts must match."
+echo "schema validation fixes. Key check: cell counts must match."
 echo ""
 
 if [[ $SKIP_COUNT -gt 0 ]]; then

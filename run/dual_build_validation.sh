@@ -2,7 +2,6 @@
 # =============================================================================
 # Dual Build Validation: CxG build + triple-validate both HCA and CxG sets
 # =============================================================================
-# Plan: Submission/dual_build_validation
 #
 # Orchestrates the full CxG build pipeline via SLURM dependency chains:
 #   Phase 1: Assemble CxG h5ads (source × 7 + integrated × 1)

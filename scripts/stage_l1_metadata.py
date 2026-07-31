@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
-"""
-stage_l1_metadata.py - Create L1 harmonized donor staging CSV
-================================================================
+"""Create L1 harmonized donor staging CSV
+
 Reads harmonized_donor_metadata.csv, selects/renames columns for obs
 injection, normalizes missing values, and writes L1_harmonized_donor.csv.
 
 Run once to produce the staging file. Assembly scripts consume the output.
 
-Usage:
-  python stage_l1_metadata.py --repo-root /path/to/iHBCAv1_upload
+Run via `run/phase0_prereqs.sh`.
 """
 
 import argparse

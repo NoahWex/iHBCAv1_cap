@@ -8,9 +8,8 @@
 #SBATCH --error=/path/to/iHBCAv1_upload/logs/setup_validator_env_%j.err
 
 # =============================================================================
-# A4: Create conda environment with HCA/CxG/CAP validators
+# Create conda environment with HCA/CxG/CAP validators
 # =============================================================================
-# Publication plan: A4_validator_setup
 # Creates: hca_validators conda env with all 3 validators pinned
 #
 # Run once. After this, use run_baseline_validation.sh.
@@ -69,8 +68,7 @@ which cellxgene-schema && echo "cellxgene-schema CLI: OK" || echo "cellxgene-sch
 which cap_upload_validator && echo "cap_upload_validator CLI: OK" || echo "cap_upload_validator CLI: NOT FOUND — trying alternate name"
 which hca-schema-validator && echo "hca-schema-validator CLI: OK" || echo "hca-schema-validator CLI: NOT FOUND — trying alternate name"
 
-# Nobody knows the exact CLI entry points until we install them
-# Document whatever we find
+# Record the installed CLI entry points; they vary by validator version
 echo ""
 echo "=== All installed executables ==="
 ls -la "$(dirname $(which python3))/" | grep -E "cellxgene|cap|hca" || echo "No matching executables found in PATH"

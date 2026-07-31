@@ -4,8 +4,8 @@ extract_gene_mapping.py
 =======================
 Extract gene symbol <-> Ensembl ID mapping from a Cell Ranger filtered h5 file.
 
-The h5 features group contains both gene symbols (name) and Ensembl IDs (id),
-so we don't need to go groveling through GTF files like it's 2015.
+The h5 features group contains both gene symbols (`name`) and Ensembl IDs
+(`id`), so no GTF parsing is required.
 
 Reads /matrix/features/{id, name, feature_type} and writes a two-column TSV
 (gene_symbol, ensembl_id) filtered to Gene Expression features only.

@@ -11,9 +11,8 @@
 #SBATCH --error=/path/to/iHBCAv1_upload/logs/c1_assemble_%j.err
 
 # =============================================================================
-# C1: Assemble iHBCA integrated h5ad from author share primitives
+# Assemble the iHBCA integrated h5ad from the author-share primitives
 # =============================================================================
-# Plan: Activation/provenance_rebuild
 # Constructs AnnData from author share files (NPZ counts, gene_data.csv,
 # annotations CSV, embedding CSVs). Enriches ethnicity, populates Tier 1
 # fields, writes all-breast-cells.h5ad.

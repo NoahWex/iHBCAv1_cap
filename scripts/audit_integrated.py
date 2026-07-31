@@ -5,10 +5,7 @@ Produces a YAML report covering shape, obs/var/obsm/uns/layers/raw with
 full column-level detail. Designed for the iHBCA integrated object (~2.12M
 cells, ~95GB on disk).
 
-Usage:
-    python3 audit_integrated.py path/to/all-breast-cells.h5ad [--output report.yaml]
-
-Without --output, YAML is written to stdout.
+Run via `run/audit_integrated.sh`.
 """
 
 import argparse
@@ -61,6 +58,7 @@ class _OrderedDumper(yaml.SafeDumper):
     pass
 
 def _ordered_representer(dumper, data):
+    """Represent OrderedDict as a plain YAML mapping, preserving key order."""
     return dumper.represent_mapping("tag:yaml.org,2002:map", data.items())
 
 _OrderedDumper.add_representer(OrderedDict, _ordered_representer)
@@ -330,6 +328,7 @@ def audit_raw(adata) -> OrderedDict:
 # ---------------------------------------------------------------------------
 
 def _human_size(nbytes: int) -> str:
+    """Format a byte count as a human-readable size string."""
     size = float(nbytes)
     for unit in ("B", "KB", "MB", "GB", "TB"):
         if abs(size) < 1024.0:

@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
-"""
-assemble_integrated.py - Assemble iHBCA integrated h5ad
-=======================================================
+"""Assemble iHBCA integrated h5ad
+
 Two build modes:
 
   AUTHOR SHARE MODE (preferred):
@@ -33,11 +32,8 @@ Usage (legacy):
     --embeddings /path/to/X_scVI100.csv \
     --repo-root /path/to/iHBCAv1_upload \
     --output-dir /path/to/outputs/integrated_objects
-
-Plan: Activation/provenance_rebuild, Publication/C1_integrated_objects
 """
 
-# Two million cells walk into a bar. The bartender says "we're going to need a bigger RAM."
 
 import argparse
 import os
@@ -928,19 +924,19 @@ def populate_hca_obs_fields_integrated(adata, repo_root):
     n_mapped = study_series.notna().sum()
     print(f"  Study assignment: {n_mapped:,}/{len(adata):,} cells mapped")
 
-    # --- B1: Broadcast study-level fields to obs ---
+    # --- Broadcast study-level fields to obs ---
     for field in UNS_TO_OBS_FIELDS_INT:
         study_vals = {s: d.get(field, "unknown") for s, d in datasets.items()}
         adata.obs[field] = study_series.map(study_vals).fillna("unknown")
 
-    # --- B2: Derived constant/lookup fields ---
+    # --- Derived constant/lookup fields ---
     populate_derived_obs_fields(adata.obs, FACS_TO_ENRICHMENT_INT, PRESERVATION_NORMALIZE)
 
     # institute: per-study (integrated needs per-cell mapping)
     institute_map = {s: d.get("institute", "unknown") for s, d in datasets.items()}
     adata.obs["institute"] = study_series.map(institute_map).fillna("unknown")
 
-    # --- B3: Library metadata from SRA run tables ---
+    # --- Library metadata from SRA run tables ---
     # For integrated: map donor_id -> study -> SRA run table
     for field in ["library_id", "library_sequencing_run", "library_preparation_batch"]:
         adata.obs[field] = "unknown"
@@ -1005,7 +1001,7 @@ def fix_tier1_fields(adata, target="hca"):
         ).fillna(False).astype(bool)
         # Note: False for integrated object — primary data exists in source datasets
 
-    # A3: Rename reserved obs columns (HCA reserves these label names)
+    # Rename reserved obs columns (HCA reserves these label names)
     renames = {k: v for k, v in RESERVED_OBS_RENAMES.items()
                if k in adata.obs.columns}
     if renames:
@@ -1032,7 +1028,7 @@ def fix_tier1_fields(adata, target="hca"):
             adata.obs["self_reported_ethnicity_ontology_term_id"], sep=","
         )
 
-    # A10: Drop deprecated ethnicity columns
+    # Drop deprecated ethnicity columns
     for col in ["ethnicity", "ethnicity_ontology_term_id"]:
         if col in adata.obs.columns:
             adata.obs = adata.obs.drop(columns=[col])
@@ -1328,11 +1324,11 @@ def main():
         print(f"  Shape: {adata.n_obs:,} cells x {adata.n_vars:,} genes")
         print(f"  X dtype: {adata.X.dtype}, format: {getattr(adata.X, 'format', 'dense')}")
 
-        # A1: Add feature_is_filtered (required by CxG + HCA validators)
+        # Add feature_is_filtered (required by CxG + HCA validators)
         adata.var["feature_is_filtered"] = False
         print(f"  Added var['feature_is_filtered'] = False")
 
-        # A6: Rename reserved var columns (HCA reserves these names)
+        # Rename reserved var columns (HCA reserves these names)
         var_renames = {k: v for k, v in RESERVED_VAR_RENAMES.items()
                        if k in adata.var.columns}
         if var_renames:
@@ -1440,7 +1436,7 @@ def main():
     adata = fix_tier1_fields(adata, target=args.target)
     adata = update_schema(adata, version=args.schema_version)
 
-    # A7: Set study_pi as deduplicated list of all source study PIs
+    # Set study_pi as deduplicated list of all source study PIs
     study_pis = collect_study_pis(repo_root)
     if study_pis:
         adata.uns["study_pi"] = study_pis

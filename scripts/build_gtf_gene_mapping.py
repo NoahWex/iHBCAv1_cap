@@ -37,7 +37,6 @@ def parse_gtf_genes(gtf_path: str) -> dict:
     Returns dict: gene_name → ensembl_id (without version).
     For duplicate gene_names, keeps the first occurrence.
     """
-    # Apparently it's 2015 again
     gene_id_re = re.compile(r'gene_id "([^"]+)"')
     gene_name_re = re.compile(r'gene_name "([^"]+)"')
     gene_type_re = re.compile(r'gene_type "([^"]+)"')

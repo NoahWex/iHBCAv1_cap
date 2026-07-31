@@ -17,10 +17,8 @@
 #     --input-rds /path/to/seurat.rds \
 #     --output-dir /path/to/intermediates/
 #
-# Plan: B1_source_datasets_external
 # =============================================================================
 
-# Seurat objects are like onions — layers, layers, and they make you cry.
 
 suppressPackageStartupMessages({
   library(Seurat)

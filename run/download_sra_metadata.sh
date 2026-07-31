@@ -5,7 +5,6 @@
 # Run on HPC login node (requires internet access) or locally.
 # Downloads raw metadata to mappings/sra_raw/
 #
-# Plan: Publication/C1_integrated_objects (hca_field_backfill, INV-C)
 # =============================================================================
 set -euo pipefail
 

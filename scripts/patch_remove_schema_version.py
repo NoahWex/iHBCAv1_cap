@@ -13,6 +13,7 @@ import h5py
 
 
 def patch_file(path):
+    """Remove the CxG-reserved uns/schema_version key from one h5ad, in place."""
     print(f"\nPatching: {path}")
     with h5py.File(path, "r+") as f:
         uns = f["uns"]

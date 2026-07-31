@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
-"""
-enrich_source_embeddings.py - Port joint scVI embeddings to source h5ads
-========================================================================
+"""Port joint scVI embeddings to source h5ads
+
 Reads integrated all-breast-cells.h5ad, extracts per-study X_scvi_100
 embeddings, computes per-study UMAP, and writes enriched source h5ads.
 
@@ -15,12 +14,7 @@ Removes:
   obsm["X_scVI_joint"]           - misleading, superseded by X_ihbca_scvi_100
   obsm["X_scVI_native"]          - misleading, original studies have different integrations
 
-Usage:
-  python enrich_source_embeddings.py \
-    --study gray \
-    --repo-root /path/to/iHBCAv1_upload
-
-Plan: Submission/source_embedding_enrichment
+Run via `run/enrich_source_embeddings.sh`.
 """
 
 import argparse

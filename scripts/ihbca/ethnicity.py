@@ -17,6 +17,7 @@ def normalize_multi_ethnicity(series, sep=" || "):
     sep: ' || ' for HCA (default), ',' for CxG.
     """
     def _normalize(val):
+        """Lowercase and strip a raw ethnicity string for lookup."""
         if pd.isna(val) or val in ("unknown", "nan", ""):
             return val
         # Split on either ' || ' or ',' (handle both inputs)

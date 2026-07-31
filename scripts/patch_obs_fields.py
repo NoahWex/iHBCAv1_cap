@@ -6,8 +6,7 @@ Fixes:
      (L1 CSV is donor-level; FACS_status from source is sample-level and correct)
   2. n_genes, n_counts, percent_mito: convert from categorical-of-strings to float32
 
-Usage:
-    python3 patch_obs_fields.py file1.h5ad [file2.h5ad ...]
+Run via `run/patch_obs_fields.sh`.
 """
 
 import sys
@@ -58,6 +57,7 @@ def get_category_index(categories, value):
 
 
 def patch(path: str) -> None:
+    """Apply the obs field corrections to one h5ad in place."""
     print(f"\n--- {path} ---")
 
     with h5py.File(path, "r") as f:

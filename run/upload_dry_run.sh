@@ -12,7 +12,6 @@
 
 # =============================================================================
 # Upload Dry Run: metadata verification + staging directory setup
-# Plan: Submission/hca_upload (Steps 2 + 6 + 7)
 # =============================================================================
 
 set -euo pipefail
