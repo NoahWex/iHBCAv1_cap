@@ -7,14 +7,14 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=2G
 #SBATCH --time=00:10:00
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/tier1_donor_%j.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/tier1_donor_%j.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/tier1_donor_%j.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/tier1_donor_%j.err
 
 # =============================================================================
 # Generate Tier 1 Donor Metadata CSVs for HCA Tracker entry sheets
 #
 # Produces 7 CSVs (one per study) in:
-#   publication/outputs/entry_sheets/tier1_donor/
+#   outputs/entry_sheets/tier1_donor/
 #
 # Each CSV contains 8 Tier 1 Donor Metadata columns per CxG schema 5.3.2:
 #   donor_id, dataset_id, organism_ontology_term_id, manner_of_death,
@@ -36,9 +36,9 @@ echo ""
 
 module load python/3.10.2
 
-python "$ROOT/publication/scripts/generate_tier1_donor_sheet.py" \
+python "$ROOT/scripts/generate_tier1_donor_sheet.py" \
     --project-root "$ROOT"
 
 echo ""
-echo "Output: $ROOT/publication/outputs/entry_sheets/tier1_donor/"
+echo "Output: $ROOT/outputs/entry_sheets/tier1_donor/"
 echo "Done: $(date)"

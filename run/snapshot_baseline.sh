@@ -7,8 +7,8 @@
 #SBATCH --cpus-per-task=2
 #SBATCH --mem=64G
 #SBATCH --time=01:00:00
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/snapshot_baseline_%j.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/snapshot_baseline_%j.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/snapshot_baseline_%j.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/snapshot_baseline_%j.err
 
 # =============================================================================
 # Snapshot baseline manifest for pipeline_rebuild regression verification
@@ -16,7 +16,7 @@
 # Plan: Activation/pipeline_rebuild (Phase 0)
 # Reads all 11 h5ads (7 source + 4 integrated) in backed mode, records
 # SHA256, cell/gene counts, obs columns/dtypes, obsm keys.
-# Output: publication/outputs/baseline_manifest.yaml
+# Output: outputs/baseline_manifest.yaml
 # =============================================================================
 
 set -euo pipefail

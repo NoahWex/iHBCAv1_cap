@@ -368,11 +368,11 @@ def main():
     # Resolve paths
     integrated_path = (
         Path(args.integrated) if args.integrated
-        else repo_root / "publication/outputs/integrated_objects/all-breast-cells.h5ad"
+        else repo_root / "outputs/integrated_objects/all-breast-cells.h5ad"
     )
     source_path = (
         Path(args.source) if args.source
-        else repo_root / "publication/outputs/source_datasets" / STUDY_TO_FILENAME[study]
+        else repo_root / "outputs/source_datasets" / STUDY_TO_FILENAME[study]
     )
     output_path = Path(args.output) if args.output else None
 

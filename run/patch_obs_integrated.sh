@@ -5,8 +5,8 @@
 #SBATCH --cpus-per-task=2
 #SBATCH --mem=16G
 #SBATCH --time=01:00:00
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/patch_obs_%j.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/patch_obs_%j.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/patch_obs_%j.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/patch_obs_%j.err
 
 # Patch obs in integrated h5ads: add 21 L1 columns via h5py (no full load)
 # Memory: ~2-5 GB per file (obs only, not X/layers)
@@ -14,8 +14,8 @@
 set -euo pipefail
 
 REPO_ROOT="/path/to/iHBCAv1_upload"
-SCRIPTS="${REPO_ROOT}/publication/scripts"
-OUTDIR="${REPO_ROOT}/publication/outputs/integrated_objects"
+SCRIPTS="${REPO_ROOT}/scripts"
+OUTDIR="${REPO_ROOT}/outputs/integrated_objects"
 CONTAINER="/dfs8/singularity_containers/rcic/devel/Jupyter_R_4.4.2_Giotto_Spatial_Python_2025Q2.sif"
 
 echo "============================================="

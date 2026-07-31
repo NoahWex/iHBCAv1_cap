@@ -9,8 +9,8 @@ Output columns: ensembl_id, gene_symbol, feature_biotype, chromosome
 
 Usage:
   python parse_gtf.py \
-    --gtf publication/mappings/gencode.v24.annotation.gtf \
-    --output publication/mappings/gencode_v24_gene_annotations.tsv
+    --gtf mappings/gencode.v24.annotation.gtf \
+    --output mappings/gencode_v24_gene_annotations.tsv
 
 Plan: Submission/metadata_var_expression
 """

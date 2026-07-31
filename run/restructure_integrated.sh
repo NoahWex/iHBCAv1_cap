@@ -7,17 +7,17 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=32G
 #SBATCH --time=02:00:00
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/restructure_integrated_%j.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/restructure_integrated_%j.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/restructure_integrated_%j.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/restructure_integrated_%j.err
 
 set -euo pipefail
 
 PROJECT="/path/to/iHBCAv1_upload"
-SCRIPT="$PROJECT/publication/scripts/restructure_raw_x.py"
-INTEGRATED="$PROJECT/publication/outputs/integrated_objects/all-breast-cells.h5ad"
-SKETCH="$PROJECT/publication/outputs/integrated_objects/all-breast-cells-sketch.h5ad"
-BACKUP_INT="$PROJECT/publication/outputs/integrated_objects/all-breast-cells.h5ad.pre_restructure"
-BACKUP_SKT="$PROJECT/publication/outputs/integrated_objects/all-breast-cells-sketch.h5ad.pre_restructure"
+SCRIPT="$PROJECT/scripts/restructure_raw_x.py"
+INTEGRATED="$PROJECT/outputs/integrated_objects/all-breast-cells.h5ad"
+SKETCH="$PROJECT/outputs/integrated_objects/all-breast-cells-sketch.h5ad"
+BACKUP_INT="$PROJECT/outputs/integrated_objects/all-breast-cells.h5ad.pre_restructure"
+BACKUP_SKT="$PROJECT/outputs/integrated_objects/all-breast-cells-sketch.h5ad.pre_restructure"
 
 CONTAINER="/dfs8/singularity_containers/rcic/devel/Jupyter_R_4.4.2_Giotto_Spatial_Python_2025Q2.sif"
 BINDS="--bind /path/to/shared_data:/path/to/shared_data:ro \

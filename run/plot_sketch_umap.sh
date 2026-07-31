@@ -5,14 +5,14 @@
 #SBATCH --time=00:15:00
 #SBATCH --mem=32G
 #SBATCH --cpus-per-task=2
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/plot_sketch_umap_%j.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/plot_sketch_umap_%j.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/plot_sketch_umap_%j.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/plot_sketch_umap_%j.err
 
 set -euo pipefail
 
 PROJECT=/path/to/iHBCAv1_upload
-SKETCH=$PROJECT/publication/outputs/integrated_objects/all-breast-cells-sketch.h5ad
-OUTDIR=$PROJECT/publication/outputs/figures
+SKETCH=$PROJECT/outputs/integrated_objects/all-breast-cells-sketch.h5ad
+OUTDIR=$PROJECT/outputs/figures
 CONTAINER=/dfs8/singularity_containers/rcic/devel/Jupyter_R_4.4.2_Giotto_Spatial_Python_2025Q2.sif
 
 mkdir -p "$OUTDIR"

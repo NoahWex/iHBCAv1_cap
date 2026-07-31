@@ -108,8 +108,8 @@ def main():
         manifest = yaml.safe_load(f)
 
     repo = args.repo_root
-    source_dir = os.path.join(repo, "publication", "outputs", "source_datasets")
-    integrated_dir = os.path.join(repo, "publication", "outputs", "integrated_objects")
+    source_dir = os.path.join(repo, "outputs", "source_datasets")
+    integrated_dir = os.path.join(repo, "outputs", "integrated_objects")
 
     datasets = manifest["datasets"]
     if args.datasets:

@@ -7,8 +7,8 @@
 #SBATCH --cpus-per-task=2
 #SBATCH --mem=180G
 #SBATCH --time=02:00:00
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/diff_baseline_%j.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/diff_baseline_%j.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/diff_baseline_%j.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/diff_baseline_%j.err
 
 # =============================================================================
 # Diff current h5ads against baseline manifest (structural comparison)

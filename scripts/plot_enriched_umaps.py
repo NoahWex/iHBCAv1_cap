@@ -79,8 +79,8 @@ def main():
     parser.add_argument("--study", help="Single study (default: all)")
     args = parser.parse_args()
     repo_root = Path(args.repo_root)
-    source_dir = repo_root / "publication/outputs/source_datasets"
-    output_dir = repo_root / "publication/outputs/figures"
+    source_dir = repo_root / "outputs/source_datasets"
+    output_dir = repo_root / "outputs/figures"
     output_dir.mkdir(parents=True, exist_ok=True)
     studies = [args.study] if args.study else list(STUDY_TO_FILENAME.keys())
     for study in studies:

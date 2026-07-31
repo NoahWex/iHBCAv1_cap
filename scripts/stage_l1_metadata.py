@@ -67,7 +67,7 @@ def stage_l1(repo_root):
         "external_studies/harmonization/outputs/harmonized_metadata/"
         "harmonized_donor_metadata.csv",
     )
-    out_dir = os.path.join(repo_root, "publication/config/metadata_stages")
+    out_dir = os.path.join(repo_root, "config/metadata_stages")
     out_path = os.path.join(out_dir, "L1_harmonized_donor.csv")
 
     # --- Load ---

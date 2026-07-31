@@ -53,7 +53,7 @@ def load_level15_mapping(repo_root):
 
     Returns: dict {level15_annotation: assigned_cl_term} or empty dict.
     """
-    path = repo_root / "publication/mappings/level15_to_cl_mapping.csv"
+    path = repo_root / "mappings/level15_to_cl_mapping.csv"
     if not path.exists():
         return {}
     df = pd.read_csv(path)
@@ -73,7 +73,7 @@ def load_integrated_cl_terms(repo_root):
 
     Returns: dict {obs_name: cl_term} for all 2.12M cells.
     """
-    path = repo_root / "publication/outputs/integrated_objects/all-breast-cells.h5ad"
+    path = repo_root / "outputs/integrated_objects/all-breast-cells.h5ad"
     print(f"\n{'='*70}")
     print(f"Loading integrated h5ad (backed mode): {path}")
     print(f"{'='*70}")
@@ -149,7 +149,7 @@ def load_integrated_cl_terms(repo_root):
 
 def load_source_obs_names(repo_root, study):
     """Load obs_names from a source h5ad (backed mode)."""
-    path = repo_root / "publication/outputs/source_datasets" / SOURCE_H5AD[study]
+    path = repo_root / "outputs/source_datasets" / SOURCE_H5AD[study]
     print(f"\n  Loading source h5ad: {path.name}")
     adata = ad.read_h5ad(path, backed="r")
     obs_names = list(adata.obs_names)
@@ -363,7 +363,7 @@ def build_crosswalk(repo_root, study, cl_lookup, result):
     print(f"  Total unique CL terms: {vc.shape[0]}")
 
     # Save
-    out_path = repo_root / f"publication/mappings/cl_term_crosswalk_{study}.csv"
+    out_path = repo_root / f"mappings/cl_term_crosswalk_{study}.csv"
     df.to_csv(out_path, index=False)
     print(f"  Saved: {out_path} ({len(df):,} rows)")
 
@@ -392,8 +392,8 @@ def main():
     args = parser.parse_args()
 
     repo_root = args.repo_root.resolve()
-    if not (repo_root / "publication").exists():
-        print(f"ERROR: {repo_root} doesn't look like iHBCAv1_upload root")
+    if not (repo_root / "mappings").exists():
+        print(f"ERROR: {repo_root} doesn't look like the repository root")
         sys.exit(1)
 
     # Phase 1: Load integrated and investigate each study

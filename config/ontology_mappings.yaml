@@ -19,12 +19,12 @@ schema_target: "CxG 6.0.0"
 # ---------------------------------------------------------------------------
 # HANCESTRO — Self-Reported Ethnicity
 # ---------------------------------------------------------------------------
-# Full mapping table: publication/mappings/hancestro_ethnicity_mapping.tsv
+# Full mapping table: mappings/hancestro_ethnicity_mapping.tsv
 # 28 unique ethnicity_verbatim values across 287 donors.
 # 106 donors (37%) have no recorded ethnicity → "unknown".
 # 11 mappings flagged VERIFY (ambiguous verbatim labels or harmonization errors).
 hancestro:
-  mapping_file: "publication/mappings/hancestro_ethnicity_mapping.tsv"
+  mapping_file: "mappings/hancestro_ethnicity_mapping.tsv"
   status: complete
   coverage:
     total_donors: 287
@@ -61,10 +61,10 @@ hancestro:
 # ---------------------------------------------------------------------------
 # HsapDv — Developmental Stage
 # ---------------------------------------------------------------------------
-# Full mapping table: publication/mappings/hsapdv_age_mapping.tsv
+# Full mapping table: mappings/hsapdv_age_mapping.tsv
 # All 287 donors are adults → single term HsapDv:0000087.
 hsapdv:
-  mapping_file: "publication/mappings/hsapdv_age_mapping.tsv"
+  mapping_file: "mappings/hsapdv_age_mapping.tsv"
   status: complete
   coverage:
     total_donors: 287
@@ -83,10 +83,10 @@ hsapdv:
 # ---------------------------------------------------------------------------
 # EFO — Assay
 # ---------------------------------------------------------------------------
-# Full mapping table: publication/mappings/efo_assay_mapping.tsv
+# Full mapping table: mappings/efo_assay_mapping.tsv
 # 7 study entries mapped to EFO terms.
 efo_assay:
-  mapping_file: "publication/mappings/efo_assay_mapping.tsv"
+  mapping_file: "mappings/efo_assay_mapping.tsv"
   status: complete
   coverage:
     total_studies: 7

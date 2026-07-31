@@ -5,19 +5,19 @@
 #SBATCH --mem=256G
 #SBATCH --time=02:00:00
 #SBATCH --job-name=diff_integrated
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/diff_integrated_%j.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/diff_integrated_%j.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/diff_integrated_%j.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/diff_integrated_%j.err
 
 # Diff integrated object vs CxG published h5ad (OOM'd at 180GB, retrying at 256GB)
 
 set -euo pipefail
 
 REPO_ROOT="/path/to/iHBCAv1_upload"
-SCRIPTS="$REPO_ROOT/publication/scripts"
-REPORT_DIR="$REPO_ROOT/publication/outputs/validation_reports"
+SCRIPTS="$REPO_ROOT/scripts"
+REPORT_DIR="$REPO_ROOT/outputs/validation_reports"
 CONTAINER="/dfs8/singularity_containers/rcic/devel/Jupyter_R_4.4.2_Giotto_Spatial_Python_2025Q2.sif"
 
-NEW="$REPO_ROOT/publication/outputs/integrated_objects/all-breast-cells.h5ad"
+NEW="$REPO_ROOT/outputs/integrated_objects/all-breast-cells.h5ad"
 REF="/path/to/shared_data/3_Downloaded_Datasets/iHBCA_Reed_2024/integrated_atlas/integration_iHBCA.h5ad"
 
 echo "DIFF: integrated (all-breast-cells vs CxG published)"

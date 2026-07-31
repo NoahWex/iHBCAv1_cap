@@ -7,8 +7,8 @@
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=8G
 #SBATCH --time=12:00:00
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/hca_upload_%j.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/hca_upload_%j.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/hca_upload_%j.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/hca_upload_%j.err
 
 # =============================================================================
 # HCA Atlas Upload — 9 objects to s3://hca-atlas-tracker-data/breast/breast-v1/

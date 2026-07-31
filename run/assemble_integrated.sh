@@ -7,8 +7,8 @@
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=180G
 #SBATCH --time=02:00:00
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/c1_assemble_%j.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/c1_assemble_%j.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/c1_assemble_%j.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/c1_assemble_%j.err
 
 # =============================================================================
 # C1: Assemble iHBCA integrated h5ad from author share primitives

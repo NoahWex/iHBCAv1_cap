@@ -7,8 +7,8 @@
 #SBATCH --cpus-per-task=2
 #SBATCH --mem=8G
 #SBATCH --time=00:30:00
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/upload_dry_run_%j.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/upload_dry_run_%j.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/upload_dry_run_%j.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/upload_dry_run_%j.err
 
 # =============================================================================
 # Upload Dry Run: metadata verification + staging directory setup
@@ -41,7 +41,7 @@ singularity exec \
     --env "NUMBA_CACHE_DIR=/tmp/numba_cache" \
     --env "MPLCONFIGDIR=/tmp/matplotlib_config" \
     "$PYTHON_CONTAINER" \
-    python "$PROJECT_ROOT/publication/scripts/verify_tracker_metadata.py" \
+    python "$PROJECT_ROOT/scripts/verify_tracker_metadata.py" \
         --project-root "$PROJECT_ROOT" || echo "(metadata check reported mismatches — see above)"
 
 echo ""
@@ -57,7 +57,7 @@ mkdir -p "$STAGING/integrated-objects"
 
 # Source datasets — absolute symlinks
 for study in gray2022 kumar2023 murrow2022 nee2023 twigger2022 reed2024 pal2021; do
-    src="$PROJECT_ROOT/publication/outputs/source_datasets/${study}.h5ad"
+    src="$PROJECT_ROOT/outputs/source_datasets/${study}.h5ad"
     dst="$STAGING/source-datasets/${study}.h5ad"
     if [ -L "$dst" ]; then
         echo "  Symlink exists: $dst → $(readlink "$dst")"
@@ -71,7 +71,7 @@ done
 
 # Integrated objects — absolute symlinks
 for obj in all-breast-cells.h5ad all-breast-cells-sketch.h5ad; do
-    src="$PROJECT_ROOT/publication/outputs/integrated_objects/$obj"
+    src="$PROJECT_ROOT/outputs/integrated_objects/$obj"
     dst="$STAGING/integrated-objects/$obj"
     if [ -L "$dst" ]; then
         echo "  Symlink exists: $dst → $(readlink "$dst")"

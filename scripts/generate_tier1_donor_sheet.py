@@ -15,7 +15,7 @@ Usage:
     python generate_tier1_donor_sheet.py [--project-root ROOT]
 
 Outputs:
-    publication/outputs/entry_sheets/tier1_donor/{study}_tier1_donor.csv  (7 files)
+    outputs/entry_sheets/tier1_donor/{study}_tier1_donor.csv  (7 files)
 """
 
 import argparse
@@ -87,13 +87,13 @@ def main():
     if args.project_root:
         root = Path(args.project_root)
     else:
-        root = Path(__file__).resolve().parent.parent.parent
+        root = Path(__file__).resolve().parent.parent
 
     harmonized_path = (
         root
         / "external_studies/harmonization/outputs/harmonized_metadata/harmonized_donor_metadata.csv"
     )
-    output_dir = root / "publication/outputs/entry_sheets/tier1_donor"
+    output_dir = root / "outputs/entry_sheets/tier1_donor"
 
     # Validate inputs
     if not harmonized_path.exists():

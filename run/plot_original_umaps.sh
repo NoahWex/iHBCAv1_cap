@@ -7,14 +7,14 @@
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=64G
 #SBATCH --time=01:00:00
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/plot_orig_umaps_%j.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/plot_orig_umaps_%j.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/plot_orig_umaps_%j.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/plot_orig_umaps_%j.err
 
 set -euo pipefail
 
 PROJECT_ROOT="/path/to/iHBCAv1_upload"
 CONTAINER="/dfs8/singularity_containers/rcic/devel/Jupyter_R_4.4.2_Giotto_Spatial_Python_2025Q2.sif"
-SCRIPT="$PROJECT_ROOT/publication/scripts/plot_original_umaps.py"
+SCRIPT="$PROJECT_ROOT/scripts/plot_original_umaps.py"
 
 echo "============================================================================"
 echo "Plot Original Per-Study UMAPs for Fig 1A Schematic"
@@ -36,8 +36,8 @@ if [ ! -f "$CONTAINER" ]; then
 fi
 
 # Ensure log and output dirs exist
-mkdir -p "$PROJECT_ROOT/publication/logs"
-mkdir -p "$PROJECT_ROOT/publication/outputs/figures"
+mkdir -p "$PROJECT_ROOT/logs"
+mkdir -p "$PROJECT_ROOT/outputs/figures"
 
 module load singularity/3.11.3
 
@@ -68,4 +68,4 @@ echo "==========================================================================
 # Verify outputs
 echo ""
 echo "Output files:"
-ls -lh "$PROJECT_ROOT/publication/outputs/figures/umap_original_"*.png 2>/dev/null || echo "  WARNING: No output files found"
+ls -lh "$PROJECT_ROOT/outputs/figures/umap_original_"*.png 2>/dev/null || echo "  WARNING: No output files found"

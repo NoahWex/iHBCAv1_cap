@@ -439,7 +439,7 @@ def load_sra_run_table(repo_root, study):
 
     Returns: DataFrame with at least 'sample_id' column, or None.
     """
-    path = repo_root / f"publication/mappings/sra_run_table_{study}.csv"
+    path = repo_root / f"mappings/sra_run_table_{study}.csv"
     if not path.exists():
         return None
     return pd.read_csv(path, dtype=str)
@@ -546,7 +546,7 @@ def assemble_single_study(study, repo_root, gene_mapping, efo_mapping,
 
     if intermediates_dir is None:
         intermediates_dir = (
-            repo_root / "publication/outputs/source_datasets"
+            repo_root / "outputs/source_datasets"
             / "intermediates" / study
         )
     if published_dir is None:
@@ -556,7 +556,7 @@ def assemble_single_study(study, repo_root, gene_mapping, efo_mapping,
     if output_path is None:
         filename = registry["datasets"][study]["output_filename"]
         output_path = (
-            repo_root / "publication/outputs/source_datasets" / filename
+            repo_root / "outputs/source_datasets" / filename
         )
 
     print(f"\n{'=' * 70}")
@@ -681,11 +681,11 @@ def assemble_single_study(study, repo_root, gene_mapping, efo_mapping,
     if emb_native_path.exists():
         prov_inputs["embedding_native"] = emb_native_path
     prov_config = {
-        "registry": repo_root / "publication/config/source_dataset_registry.yaml",
-        "dataset_metadata": repo_root / "publication/config/dataset_metadata.yaml",
-        "gene_mapping": repo_root / "publication/mappings/gene_symbol_to_ensembl_full.tsv",
-        "hancestro": repo_root / "publication/mappings/hancestro_ethnicity_mapping.tsv",
-        "efo": repo_root / "publication/mappings/efo_assay_mapping.tsv",
+        "registry": repo_root / "config/source_dataset_registry.yaml",
+        "dataset_metadata": repo_root / "config/dataset_metadata.yaml",
+        "gene_mapping": repo_root / "mappings/gene_symbol_to_ensembl_full.tsv",
+        "hancestro": repo_root / "mappings/hancestro_ethnicity_mapping.tsv",
+        "efo": repo_root / "mappings/efo_assay_mapping.tsv",
     }
     sidecar = output_path.parent / f"{output_path.stem}.manifest.yaml"
     build_provenance_manifest(
@@ -718,7 +718,7 @@ def assemble_pal(repo_root, gene_mapping, efo_mapping, hancestro_mapping,
 
     if output_path is None:
         output_path = (
-            repo_root / "publication/outputs/source_datasets/pal2021.h5ad"
+            repo_root / "outputs/source_datasets/pal2021.h5ad"
         )
 
     print(f"\n{'=' * 70}")
@@ -740,7 +740,7 @@ def assemble_pal(repo_root, gene_mapping, efo_mapping, hancestro_mapping,
             sub_intermediates = intermediates_dir / sub
         else:
             sub_intermediates = (
-                repo_root / "publication/outputs/source_datasets"
+                repo_root / "outputs/source_datasets"
                 / "intermediates" / sub
             )
         if published_dir is not None:
@@ -920,7 +920,7 @@ def assemble_pal(repo_root, gene_mapping, efo_mapping, hancestro_mapping,
             sub_int = intermediates_dir / sub
         else:
             sub_int = (
-                repo_root / "publication/outputs/source_datasets"
+                repo_root / "outputs/source_datasets"
                 / "intermediates" / sub
             )
         if published_dir is not None:
@@ -932,11 +932,11 @@ def assemble_pal(repo_root, gene_mapping, efo_mapping, hancestro_mapping,
         prov_inputs[f"{sub}_barcodes"] = sub_int / "barcodes.tsv.gz"
         prov_inputs[f"{sub}_metadata"] = sub_pub / "metadata.csv"
     prov_config = {
-        "registry": repo_root / "publication/config/source_dataset_registry.yaml",
-        "dataset_metadata": repo_root / "publication/config/dataset_metadata.yaml",
-        "gene_mapping": repo_root / "publication/mappings/gene_symbol_to_ensembl_full.tsv",
-        "hancestro": repo_root / "publication/mappings/hancestro_ethnicity_mapping.tsv",
-        "efo": repo_root / "publication/mappings/efo_assay_mapping.tsv",
+        "registry": repo_root / "config/source_dataset_registry.yaml",
+        "dataset_metadata": repo_root / "config/dataset_metadata.yaml",
+        "gene_mapping": repo_root / "mappings/gene_symbol_to_ensembl_full.tsv",
+        "hancestro": repo_root / "mappings/hancestro_ethnicity_mapping.tsv",
+        "efo": repo_root / "mappings/efo_assay_mapping.tsv",
     }
     sidecar = output_path.parent / f"{output_path.stem}.manifest.yaml"
     build_provenance_manifest(

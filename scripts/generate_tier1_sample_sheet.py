@@ -11,7 +11,7 @@ Usage:
     python generate_tier1_sample_sheet.py [--project-root ROOT]
 
 Outputs:
-    publication/outputs/entry_sheets/tier1_sample/{study}_tier1_sample.csv  (7 files)
+    outputs/entry_sheets/tier1_sample/{study}_tier1_sample.csv  (7 files)
 """
 
 import argparse
@@ -188,7 +188,7 @@ def load_sra_mapping(sra_path: Path) -> dict:
 # These donors were multiplexed into pooled 10x libraries and demultiplexed
 # computationally. Individual SRA accessions do not exist; pool accessions
 # are the closest traceable provenance.
-# Source: publication/mappings/sra_raw/ena_murrow.tsv (sample_title field)
+# Source: mappings/sra_raw/ena_murrow.tsv (sample_title field)
 MURROW_POOL_ACCESSIONS = {
     "Batch_3": {
         "library_id": "Batch3_V3_Live,Batch3_V3_Epithelial (pooled, demultiplexed)",
@@ -222,7 +222,7 @@ MURROW_DONOR_BATCHES = {
 # Source: sdrf_twigger_E-MTAB-10855.txt (LMC2B), sdrf_twigger_E-MTAB-10885.txt (NMC1B)
 # Nee BRCA1_Pt10/Pt11: present in raw ENA data (ena_nee.tsv) as BRCA10/BRCA11
 # but build_sra_run_tables.py failed to map the title format to ihbca_donor_id.
-# Source: publication/mappings/sra_raw/ena_nee.tsv (sample_title: BRCA10, BRCA11)
+# Source: mappings/sra_raw/ena_nee.tsv (sample_title: BRCA10, BRCA11)
 NEE_MISSING_MAPPING = {
     "BRCA1_Pt10": {
         "library_id": "GSM5320172",
@@ -398,14 +398,14 @@ def main():
     if args.project_root:
         root = Path(args.project_root)
     else:
-        root = Path(__file__).resolve().parent.parent.parent
+        root = Path(__file__).resolve().parent.parent
 
     harmonized_path = (
         root
         / "external_studies/harmonization/outputs/harmonized_metadata/harmonized_donor_metadata.csv"
     )
-    sra_dir = root / "publication/mappings"
-    output_dir = root / "publication/outputs/entry_sheets/tier1_sample"
+    sra_dir = root / "mappings"
+    output_dir = root / "outputs/entry_sheets/tier1_sample"
 
     if not harmonized_path.exists():
         raise FileNotFoundError(f"Harmonized metadata not found: {harmonized_path}")

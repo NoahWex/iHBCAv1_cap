@@ -5,15 +5,15 @@
 #SBATCH --time=00:30:00
 #SBATCH --mem=8G
 #SBATCH --cpus-per-task=1
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/gtf_gene_map_%j.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/gtf_gene_map_%j.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/gtf_gene_map_%j.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/gtf_gene_map_%j.err
 
 set -euo pipefail
 
 REPO_ROOT="/path/to/iHBCAv1_upload"
-SCRIPTS="${REPO_ROOT}/publication/scripts"
-MAPPINGS="${REPO_ROOT}/publication/mappings"
-INTERMEDIATES="${REPO_ROOT}/publication/outputs/source_datasets/intermediates"
+SCRIPTS="${REPO_ROOT}/scripts"
+MAPPINGS="${REPO_ROOT}/mappings"
+INTERMEDIATES="${REPO_ROOT}/outputs/source_datasets/intermediates"
 GTF="/path/to/shared_data/spaceranger-data/refdata-gex-GRCh38-2020-A/genes/genes.gtf"
 CONTAINER="/dfs8/singularity_containers/rcic/devel/Jupyter_R_4.4.2_Giotto_Spatial_Python_2025Q2.sif"
 

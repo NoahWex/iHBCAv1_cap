@@ -5,8 +5,8 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=8G
 #SBATCH --time=00:30:00
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/patch_uns_title_%j.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/patch_uns_title_%j.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/patch_uns_title_%j.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/patch_uns_title_%j.err
 
 # Set uns["title"] (see TITLE below) in both integrated objects in
 # upload-staging. This is the authoritative title; assemble_integrated.py only
@@ -15,7 +15,7 @@
 set -euo pipefail
 
 REPO_ROOT="/path/to/iHBCAv1_upload"
-SCRIPTS="${REPO_ROOT}/publication/scripts"
+SCRIPTS="${REPO_ROOT}/scripts"
 STAGING="${REPO_ROOT}/upload-staging/integrated-objects"
 CONTAINER="/dfs8/singularity_containers/rcic/devel/Jupyter_R_4.4.2_Giotto_Spatial_Python_2025Q2.sif"
 

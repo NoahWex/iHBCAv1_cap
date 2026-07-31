@@ -846,7 +846,7 @@ def apply_cl_level15_fallback(adata, repo_root):
     cells with cell_type_ontology_term_id == 'unknown' using their
     level1.5_annotation label.
     """
-    mapping_path = repo_root / "publication/mappings/level15_to_cl_mapping.csv"
+    mapping_path = repo_root / "mappings/level15_to_cl_mapping.csv"
     if not mapping_path.exists():
         print("  Level1.5 CL mapping not found — skipping fallback")
         return adata
@@ -947,7 +947,7 @@ def populate_hca_obs_fields_integrated(adata, repo_root):
 
     # Try to load per-study SRA tables and assign
     for study_name in datasets.keys():
-        sra_path = repo_root / f"publication/mappings/sra_run_table_{study_name}.csv"
+        sra_path = repo_root / f"mappings/sra_run_table_{study_name}.csv"
         if not sra_path.exists():
             continue
         sra = pd.read_csv(sra_path, dtype=str)
@@ -1480,8 +1480,8 @@ def main():
     prov_inputs = {
         "annotations": args.annotations,
         "embeddings": args.embeddings,
-        "hancestro": repo_root / "publication/mappings/hancestro_ethnicity_mapping.tsv",
-        "l1_donor_metadata": repo_root / "publication/config/metadata_stages/L1_harmonized_donor.csv",
+        "hancestro": repo_root / "mappings/hancestro_ethnicity_mapping.tsv",
+        "l1_donor_metadata": repo_root / "config/metadata_stages/L1_harmonized_donor.csv",
     }
     if author_share_mode:
         prov_inputs["gene_data"] = args.gene_data
@@ -1494,7 +1494,7 @@ def main():
         prov_inputs["h5ad"] = args.h5ad
         prov_inputs["build_mode"] = "legacy_cxg"
     prov_config = {
-        "dataset_metadata": repo_root / "publication/config/dataset_metadata.yaml",
+        "dataset_metadata": repo_root / "config/dataset_metadata.yaml",
     }
     out_path = os.path.join(args.output_dir, "all-breast-cells.h5ad")
     build_provenance_manifest(

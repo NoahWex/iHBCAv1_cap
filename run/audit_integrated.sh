@@ -7,8 +7,8 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=256G
 #SBATCH --time=04:00:00
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/audit_integrated_%j.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/audit_integrated_%j.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/audit_integrated_%j.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/audit_integrated_%j.err
 
 # =============================================================================
 # Structural audit of the iHBCA integrated h5ad object

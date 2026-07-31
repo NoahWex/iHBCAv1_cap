@@ -8,7 +8,7 @@
 
 object:
   filename: all-breast-cells.h5ad
-  path: publication/outputs/integrated_objects/all-breast-cells.h5ad
+  path: outputs/integrated_objects/all-breast-cells.h5ad
   size_gb: 88.9           # VERIFIED: 95,421,442,934 bytes = 88.9 GB (template had 95.4 — was wrong)
   n_cells: 2119033        # VERIFIED: matches raw dump n_obs
   n_genes: 15164          # VERIFIED: matches raw dump n_vars
@@ -25,12 +25,12 @@ object:
 
 provenance:
   build_mode: author_share  # Preferred; legacy mode uses stale CxG h5ad
-  assembly_script: publication/scripts/assemble_integrated.py
+  assembly_script: scripts/assemble_integrated.py
   enrichment_scripts:
-    - publication/scripts/enrich_h5ads.py          # var, obs, uns, log_normalized
-    - publication/scripts/patch_obs_h5py.py         # L1 broadcast (h5py direct)
-    - publication/scripts/patch_var_uns_h5py.py     # CxG fixes (feature_biotype rename, layer_descriptions removal)
-    - publication/scripts/patch_remove_schema_version.py  # schema_version removal from uns
+    - scripts/enrich_h5ads.py          # var, obs, uns, log_normalized
+    - scripts/patch_obs_h5py.py         # L1 broadcast (h5py direct)
+    - scripts/patch_var_uns_h5py.py     # CxG fixes (feature_biotype rename, layer_descriptions removal)
+    - scripts/patch_remove_schema_version.py  # schema_version removal from uns
 
   input_files:
     counts:
@@ -54,40 +54,40 @@ provenance:
       source: <author-share>/
       description: scVI 100D latent representation
     harmonized_donors:
-      file: publication/config/metadata_stages/L1_harmonized_donor.csv
+      file: config/metadata_stages/L1_harmonized_donor.csv
       source: Activation/donor_metadata_alignment
       description: 287 donors × 21 clinical/demographic columns
     hancestro_mapping:
-      file: publication/mappings/hancestro_ethnicity_mapping.tsv
+      file: mappings/hancestro_ethnicity_mapping.tsv
       source: Activation/hancestro_branch
       description: Ethnicity verbatim → HANCESTRO term ID (~500 entries)
     dataset_metadata:
-      file: publication/config/dataset_metadata.yaml
+      file: config/dataset_metadata.yaml
       source: Activation/dataset_metadata
       description: 7 studies × 12 tracker fields
     cl_mapping:
-      file: publication/mappings/level15_to_cl_mapping.csv
+      file: mappings/level15_to_cl_mapping.csv
       source: Publication/hca_field_backfill
       description: 24 level1.5 labels → CL ontology terms
     gencode:
-      file: publication/mappings/gene_symbol_to_ensembl_v24.tsv
+      file: mappings/gene_symbol_to_ensembl_v24.tsv
       source: GENCODE v24 GTF
       description: Gene symbol ↔ Ensembl ID + biotype + chromosome
     sra_run_tables:
       files:
-        - publication/mappings/sra_run_table_gray.csv
-        - publication/mappings/sra_run_table_kumar.csv
-        - publication/mappings/sra_run_table_murrow.csv
-        - publication/mappings/sra_run_table_nee.csv
-        - publication/mappings/sra_run_table_twigger.csv
-        - publication/mappings/sra_run_table_reed.csv
-        - publication/mappings/sra_run_table_pal.csv
+        - mappings/sra_run_table_gray.csv
+        - mappings/sra_run_table_kumar.csv
+        - mappings/sra_run_table_murrow.csv
+        - mappings/sra_run_table_nee.csv
+        - mappings/sra_run_table_twigger.csv
+        - mappings/sra_run_table_reed.csv
+        - mappings/sra_run_table_pal.csv
       source: Publication/hca_field_backfill
       description: Per-study library_id, sequencing_run, preparation_batch
     donor_id_translations:
       files:
-        - publication/mappings/donor_id_translation_reed.csv
-        - publication/mappings/donor_id_translation_pal.csv
+        - mappings/donor_id_translation_reed.csv
+        - mappings/donor_id_translation_pal.csv
       source: Activation/donor_id_bridge
       description: ID mismatches between source studies and integrated object
     harmonized_donor_metadata:
@@ -95,18 +95,18 @@ provenance:
       source: Publication supplemental tables (per-study)
       description: Donor-level ethnicity mappings for HANCESTRO enrichment; consumed by assemble_integrated.py:enrich_ethnicity_from_harmonized()
     cxg_approved_genes:
-      file: publication/mappings/cxg_approved_genes.txt
+      file: mappings/cxg_approved_genes.txt
       source: CxG schema 5.3.2
       description: 62,700 approved Ensembl IDs; 15,164 present in object
 
   pipeline_dag:
     # Full 9-stage DAG; integrated path is stages 3 → 6
     - stage: assemble_integrated
-      script: publication/run/assemble_integrated.sh
+      script: run/assemble_integrated.sh
       resources: 180GB, 2hr
       output: all-breast-cells.h5ad (pre-enrichment)
     - stage: enrich_integrated
-      script: publication/run/enrich_integrated.sh
+      script: run/enrich_integrated.sh
       resources: 256GB, 6hr
       output: all-breast-cells.h5ad (enriched in-place)
       depends_on: [assemble_integrated]
@@ -247,7 +247,7 @@ obs:
       dtype: category       # VERIFIED
       n_unique: 8            # VERIFIED
       origin: assemble_integrated.py:enrich_ethnicity() + enrich_ethnicity_from_harmonized()
-      input: publication/mappings/hancestro_ethnicity_mapping.tsv
+      input: mappings/hancestro_ethnicity_mapping.tsv
       coverage: 100%         # VERIFIED: pct_null=0.0 (NB: "unknown" is a valid category, not null)
       top_values:
         unknown: 845942      # 39.9% of cells
@@ -349,9 +349,9 @@ obs:
 
   l1_harmonized_donor:
     # 21 columns broadcast from L1_harmonized_donor.csv via patch_obs_h5py.py
-    origin_script: publication/scripts/patch_obs_h5py.py
+    origin_script: scripts/patch_obs_h5py.py
     origin_plan: Submission/metadata_var_expression
-    source_file: publication/config/metadata_stages/L1_harmonized_donor.csv
+    source_file: config/metadata_stages/L1_harmonized_donor.csv
     broadcast_key: donor_id
     n_donors: 287
     columns:
@@ -796,14 +796,14 @@ uns:
 validation:
   cap:
     status: PASS
-    log: publication/outputs/validation_reports/all-breast-cells_cap.log
+    log: outputs/validation_reports/all-breast-cells_cap.log
     result: "Validation passed!"
     warnings: 0
     errors: 0
 
   hca:
     status: PASS
-    log: publication/outputs/validation_reports/all-breast-cells_hca.log
+    log: outputs/validation_reports/all-breast-cells_hca.log
     result: "is_valid: True"
     warnings: 15
     warning_detail:
@@ -818,7 +818,7 @@ validation:
   cxg:
     status: FAIL
     category: KNOWN-ACCEPTABLE
-    log: publication/outputs/validation_reports/all-breast-cells_cxg.log
+    log: outputs/validation_reports/all-breast-cells_cxg.log
     result: "is_valid: False"
     errors: 5
     error_detail:
@@ -949,7 +949,7 @@ known_gaps:
 
 sketch:
   filename: all-breast-cells-sketch.h5ad
-  path: publication/outputs/integrated_objects/all-breast-cells-sketch.h5ad
+  path: outputs/integrated_objects/all-breast-cells-sketch.h5ad
   size_gb: 8.6
   n_cells: 279494
   n_genes: 15164  # Identical to parent

@@ -7,14 +7,14 @@
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=180G
 #SBATCH --time=06:00:00
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/validate_all_%j.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/validate_all_%j.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/validate_all_%j.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/validate_all_%j.err
 
 # =============================================================================
 # Run all 3 validators (CxG, CAP, HCA) on all 8 h5ads (7 source + 1 integrated)
 # =============================================================================
 # Session: validation_run
-# Logs per file per validator to publication/outputs/validation_reports/
+# Logs per file per validator to outputs/validation_reports/
 # =============================================================================
 
 set -euo pipefail

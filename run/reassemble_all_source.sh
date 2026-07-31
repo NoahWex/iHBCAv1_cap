@@ -6,8 +6,8 @@
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=128G
 #SBATCH --time=02:00:00
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/reassemble_src_%a_%j.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/reassemble_src_%a_%j.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/reassemble_src_%a_%j.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/reassemble_src_%a_%j.err
 
 # =============================================================================
 # Phase 3: Re-assemble all 7 source h5ads after validation fixes
@@ -25,7 +25,7 @@
 set -euo pipefail
 
 REPO_ROOT="/path/to/iHBCAv1_upload"
-SCRIPTS="${REPO_ROOT}/publication/scripts"
+SCRIPTS="${REPO_ROOT}/scripts"
 CONTAINER="/dfs8/singularity_containers/rcic/devel/Jupyter_R_4.4.2_Giotto_Spatial_Python_2025Q2.sif"
 
 STUDIES=(gray kumar murrow nee twigger reed pal)
@@ -35,7 +35,7 @@ STUDY="${STUDIES[$INDEX]}"
 FILENAME="${FILENAMES[$INDEX]}"
 
 # Env-var overrides for alternate builds (e.g., TARGET=cxg OUTPUT_DIR=.../cxg_build/)
-OUTPUT_DIR="${OUTPUT_DIR:-${REPO_ROOT}/publication/outputs/source_datasets}"
+OUTPUT_DIR="${OUTPUT_DIR:-${REPO_ROOT}/outputs/source_datasets}"
 
 echo "============================================="
 echo "Re-assemble source h5ad: ${STUDY}"

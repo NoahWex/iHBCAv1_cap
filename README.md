@@ -23,6 +23,7 @@ The scVI integration, the 100-dimensional joint embedding, the harmonization UMA
 - **Source h5ads + integrated `all-breast-cells.h5ad`**: uploaded to HCA Tracker / CAP. Repo references metadata only.
 - **Per-cell provenance validation**: 138GB of audit data; auto-generated, not version-controlled.
 - **`gencode.v24.annotation.gtf`**: public reference; redownloadable from [GENCODE](https://www.gencodegenes.org/).
+- **Upstream per-study preprocessing** (`external_studies/`): the per-study QC and harmonization tree that produced the inputs to this repo. Scripts that read it expect it as a sibling of the repository root, passed via `--project-root`.
 
 ## Source studies
 

@@ -3,14 +3,14 @@
 # Download SRA run tables and ArrayExpress SDRF files
 # =============================================================================
 # Run on HPC login node (requires internet access) or locally.
-# Downloads raw metadata to publication/mappings/sra_raw/
+# Downloads raw metadata to mappings/sra_raw/
 #
 # Plan: Publication/C1_integrated_objects (hca_field_backfill, INV-C)
 # =============================================================================
 set -euo pipefail
 
 REPO_ROOT="${1:?Usage: $0 /path/to/iHBCAv1_upload}"
-RAW_DIR="$REPO_ROOT/publication/mappings/sra_raw"
+RAW_DIR="$REPO_ROOT/mappings/sra_raw"
 mkdir -p "$RAW_DIR"
 
 echo "=== Downloading SRA/SDRF metadata ==="

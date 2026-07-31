@@ -7,15 +7,15 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=64G
 #SBATCH --time=01:00:00
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/l15_mapping_%j.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/l15_mapping_%j.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/l15_mapping_%j.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/l15_mapping_%j.err
 
 # =============================================================================
 # Build level1.5_annotation -> CL term mapping table
 # =============================================================================
 # Plan: Publication/C1_integrated_objects (hca_field_backfill, INV-A)
 # Reads integrated h5ad (backed mode), extracts label -> CL distributions
-# Output: publication/mappings/level15_to_cl_mapping_raw.csv
+# Output: mappings/level15_to_cl_mapping_raw.csv
 # =============================================================================
 
 set -euo pipefail
@@ -30,7 +30,7 @@ echo "Job ID: ${SLURM_JOB_ID}"
 echo ""
 
 # Verify key inputs exist
-INTEGRATED="${REPO_ROOT}/publication/outputs/integrated_objects/all-breast-cells.h5ad"
+INTEGRATED="${REPO_ROOT}/outputs/integrated_objects/all-breast-cells.h5ad"
 if [ ! -f "$INTEGRATED" ]; then
     echo "ERROR: Integrated h5ad not found: $INTEGRATED"
     exit 1
@@ -38,8 +38,8 @@ fi
 echo "Input: $INTEGRATED ($(ls -lh "$INTEGRATED" | awk '{print $5}'))"
 
 # Create output directories
-mkdir -p "${REPO_ROOT}/publication/mappings"
-mkdir -p "${REPO_ROOT}/publication/logs"
+mkdir -p "${REPO_ROOT}/mappings"
+mkdir -p "${REPO_ROOT}/logs"
 
 # Load singularity
 module load singularity
@@ -55,7 +55,7 @@ singularity exec \
     --env "NUMBA_CACHE_DIR=/tmp/numba_cache" \
     --env "MPLCONFIGDIR=/tmp/matplotlib_config" \
     "$PY_CONTAINER" \
-    python3 "${REPO_ROOT}/publication/scripts/build_level15_mapping.py" \
+    python3 "${REPO_ROOT}/scripts/build_level15_mapping.py" \
         --repo-root "$REPO_ROOT"
 
 echo ""

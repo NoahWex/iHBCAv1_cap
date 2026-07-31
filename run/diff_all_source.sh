@@ -5,8 +5,8 @@
 #SBATCH --mem=256G
 #SBATCH --time=06:00:00
 #SBATCH --job-name=diff_all_source
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/diff_all_source_%j.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/diff_all_source_%j.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/diff_all_source_%j.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/diff_all_source_%j.err
 # =============================================================================
 # diff_all_source.sh — Diff all 8 h5ads against pre-fix references
 # =============================================================================

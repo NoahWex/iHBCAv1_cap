@@ -5,8 +5,8 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=256G
 #SBATCH --time=06:00:00
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/enrich_integrated_%j.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/enrich_integrated_%j.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/enrich_integrated_%j.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/enrich_integrated_%j.err
 
 # =============================================================================
 # Enrich integrated h5ad: all-breast-cells
@@ -19,9 +19,9 @@
 set -euo pipefail
 
 REPO_ROOT="/path/to/iHBCAv1_upload"
-SCRIPTS="${REPO_ROOT}/publication/scripts"
+SCRIPTS="${REPO_ROOT}/scripts"
 # Env-var override for alternate builds (e.g., INTEGRATED_DIR=.../cxg_build/integrated_objects)
-OUTDIR="${INTEGRATED_DIR:-${REPO_ROOT}/publication/outputs/integrated_objects}"
+OUTDIR="${INTEGRATED_DIR:-${REPO_ROOT}/outputs/integrated_objects}"
 CONTAINER="/dfs8/singularity_containers/rcic/devel/Jupyter_R_4.4.2_Giotto_Spatial_Python_2025Q2.sif"
 
 echo "============================================="

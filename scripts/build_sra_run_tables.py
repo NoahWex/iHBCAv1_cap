@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build standardized SRA run table CSVs from downloaded ENA/SDRF metadata.
 
-Reads raw downloads from publication/mappings/sra_raw/ and existing per-study
+Reads raw downloads from mappings/sra_raw/ and existing per-study
 metadata to produce per-study CSVs with columns:
     donor_id, library_id, library_sequencing_run, library_preparation_batch
 
@@ -28,7 +28,7 @@ import pandas as pd
 
 def load_l1_donors(repo_root, study):
     """Load ihbca_donor_ids for a study from L1 CSV."""
-    path = repo_root / "publication/config/metadata_stages/L1_harmonized_donor.csv"
+    path = repo_root / "config/metadata_stages/L1_harmonized_donor.csv"
     df = pd.read_csv(path)
     return sorted(df.loc[df["study"] == study, "ihbca_donor_id"].tolist())
 
@@ -57,7 +57,7 @@ def load_sdrf(raw_dir, filename):
 
 def save_run_table(df, repo_root, study):
     """Save standardized run table CSV."""
-    out = repo_root / f"publication/mappings/sra_run_table_{study}.csv"
+    out = repo_root / f"mappings/sra_run_table_{study}.csv"
     df.to_csv(out, index=False)
     print(f"  Saved: {out.name} ({len(df)} rows)")
 
@@ -576,7 +576,7 @@ def main():
     args = parser.parse_args()
 
     repo_root = args.repo_root.resolve()
-    raw_dir = repo_root / "publication/mappings/sra_raw"
+    raw_dir = repo_root / "mappings/sra_raw"
 
     if not raw_dir.exists():
         print(f"ERROR: raw download dir not found: {raw_dir}")
@@ -603,7 +603,7 @@ def main():
     print("DONE")
     print(f"{'='*60}")
     print("\nOutput files:")
-    for f in sorted((repo_root / "publication/mappings").glob("sra_run_table_*.csv")):
+    for f in sorted((repo_root / "mappings").glob("sra_run_table_*.csv")):
         print(f"  {f.name}")
 
 

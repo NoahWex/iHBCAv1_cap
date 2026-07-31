@@ -6,8 +6,8 @@
 #SBATCH --cpus-per-task=2
 #SBATCH --mem=64G
 #SBATCH --time=00:45:00
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/enrich_emb_%a_%j.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/enrich_emb_%a_%j.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/enrich_emb_%a_%j.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/enrich_emb_%a_%j.err
 
 # =============================================================================
 # Enrich source h5ads with joint scVI embeddings from integrated object
@@ -25,7 +25,7 @@
 set -euo pipefail
 
 REPO_ROOT="/path/to/iHBCAv1_upload"
-SCRIPTS="${REPO_ROOT}/publication/scripts"
+SCRIPTS="${REPO_ROOT}/scripts"
 CONTAINER="/dfs8/singularity_containers/rcic/devel/Jupyter_R_4.4.2_Giotto_Spatial_Python_2025Q2.sif"
 
 STUDIES=(gray kumar murrow nee twigger reed pal)
@@ -35,7 +35,7 @@ STUDY="${STUDIES[$INDEX]}"
 FILENAME="${FILENAMES[$INDEX]}"
 
 # Env-var override for alternate builds (e.g., SOURCE_DIR=.../cxg_build/source_datasets)
-SOURCE_DIR="${SOURCE_DIR:-${REPO_ROOT}/publication/outputs/source_datasets}"
+SOURCE_DIR="${SOURCE_DIR:-${REPO_ROOT}/outputs/source_datasets}"
 
 echo "============================================="
 echo "Enrich source embeddings: ${STUDY}"

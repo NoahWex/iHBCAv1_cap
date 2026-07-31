@@ -5,8 +5,8 @@
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=128G
 #SBATCH --time=02:00:00
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/validate_sketch_%j.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/validate_sketch_%j.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/validate_sketch_%j.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/validate_sketch_%j.err
 
 # =============================================================================
 # Validate sketch object with CxG, CAP, and HCA validators
@@ -16,9 +16,9 @@ set -uo pipefail
 # Note: not using -e because validators return non-zero on validation failures
 
 REPO_ROOT="/path/to/iHBCAv1_upload"
-SKETCH="${REPO_ROOT}/publication/outputs/integrated_objects/all-breast-cells-sketch.h5ad"
-REPORTS="${REPO_ROOT}/publication/outputs/validation_reports"
-HCA_WRAPPER="${REPO_ROOT}/publication/scripts/run_hca_validator.py"
+SKETCH="${REPO_ROOT}/outputs/integrated_objects/all-breast-cells-sketch.h5ad"
+REPORTS="${REPO_ROOT}/outputs/validation_reports"
+HCA_WRAPPER="${REPO_ROOT}/scripts/run_hca_validator.py"
 
 echo "============================================="
 echo "Validate sketch object"

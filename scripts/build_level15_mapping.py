@@ -5,11 +5,11 @@ Reads all-breast-cells.h5ad in backed mode, extracts every unique
 (level1.5_annotation, cell_type_ontology_term_id) pair with cell counts
 and per-label distribution percentages.
 
-Output: publication/mappings/level15_to_cl_mapping_raw.csv
+Output: mappings/level15_to_cl_mapping_raw.csv
   Columns: level15_annotation, cl_term, n_cells, pct_of_label, total_label_cells
 
 Review the raw output to produce the final reviewed mapping:
-  publication/mappings/level15_to_cl_mapping.csv
+  mappings/level15_to_cl_mapping.csv
   Columns: level15_annotation, assigned_cl_term, decision_rationale
 
 Usage:
@@ -27,7 +27,7 @@ import anndata as ad
 
 def build_mapping(repo_root):
     """Extract level1.5 -> CL term distribution from integrated h5ad."""
-    h5ad_path = repo_root / "publication/outputs/integrated_objects/all-breast-cells.h5ad"
+    h5ad_path = repo_root / "outputs/integrated_objects/all-breast-cells.h5ad"
     print(f"Loading {h5ad_path} (backed mode)...")
 
     adata = ad.read_h5ad(h5ad_path, backed="r")
@@ -125,8 +125,8 @@ def main():
     args = parser.parse_args()
 
     repo_root = args.repo_root.resolve()
-    if not (repo_root / "publication").exists():
-        print(f"ERROR: {repo_root} doesn't look like iHBCAv1_upload root")
+    if not (repo_root / "mappings").exists():
+        print(f"ERROR: {repo_root} doesn't look like the repository root")
         sys.exit(1)
 
     # Build raw mapping
@@ -136,7 +136,7 @@ def main():
     print_summary(mapping_df)
 
     # Write raw output
-    out_path = repo_root / "publication/mappings/level15_to_cl_mapping_raw.csv"
+    out_path = repo_root / "mappings/level15_to_cl_mapping_raw.csv"
     out_path.parent.mkdir(parents=True, exist_ok=True)
     mapping_df.to_csv(out_path, index=False)
     print(f"Written: {out_path} ({len(mapping_df)} rows)")

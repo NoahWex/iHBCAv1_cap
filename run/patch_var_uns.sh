@@ -5,8 +5,8 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=4G
 #SBATCH --time=00:20:00
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/patch_var_uns_%j.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/patch_var_uns_%j.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/patch_var_uns_%j.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/patch_var_uns_%j.err
 
 # Fix CxG 5.3.2 validation blockers on 8 h5ads (7 source + all-breast-cells)
 # - Delete uns["layer_descriptions"] (deprecated)
@@ -16,9 +16,9 @@
 set -euo pipefail
 
 REPO_ROOT="/path/to/iHBCAv1_upload"
-SCRIPTS="${REPO_ROOT}/publication/scripts"
-SOURCE_DIR="${REPO_ROOT}/publication/outputs/source_datasets"
-INTEGRATED_DIR="${REPO_ROOT}/publication/outputs/integrated_objects"
+SCRIPTS="${REPO_ROOT}/scripts"
+SOURCE_DIR="${REPO_ROOT}/outputs/source_datasets"
+INTEGRATED_DIR="${REPO_ROOT}/outputs/integrated_objects"
 CONTAINER="/dfs8/singularity_containers/rcic/devel/Jupyter_R_4.4.2_Giotto_Spatial_Python_2025Q2.sif"
 
 echo "============================================="

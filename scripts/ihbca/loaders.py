@@ -15,7 +15,7 @@ import yaml
 
 def load_hancestro_mapping(repo_root):
     """Load HANCESTRO ethnicity mapping (ethnicity_verbatim -> term_id)."""
-    path = repo_root / "publication/mappings/hancestro_ethnicity_mapping.tsv"
+    path = repo_root / "mappings/hancestro_ethnicity_mapping.tsv"
     df = pd.read_csv(path, sep="\t", comment="#")
     return dict(zip(df["ethnicity_verbatim"], df["hancestro_term_id"]))
 
@@ -26,8 +26,8 @@ def load_gene_mapping(repo_root):
     Prefers the comprehensive GTF+HGNC mapping (_full.tsv) if it exists,
     falls back to the original Cell Ranger h5-derived mapping.
     """
-    full_path = repo_root / "publication/mappings/gene_symbol_to_ensembl_full.tsv"
-    base_path = repo_root / "publication/mappings/gene_symbol_to_ensembl.tsv"
+    full_path = repo_root / "mappings/gene_symbol_to_ensembl_full.tsv"
+    base_path = repo_root / "mappings/gene_symbol_to_ensembl.tsv"
     path = full_path if full_path.exists() else base_path
     df = pd.read_csv(path, sep="\t", comment="#")
     return dict(zip(df["gene_symbol"], df["ensembl_id"]))
@@ -35,7 +35,7 @@ def load_gene_mapping(repo_root):
 
 def load_efo_assay_mapping(repo_root):
     """Load EFO assay mapping (study -> efo_term_id)."""
-    path = repo_root / "publication/mappings/efo_assay_mapping.tsv"
+    path = repo_root / "mappings/efo_assay_mapping.tsv"
     df = pd.read_csv(path, sep="\t", comment="#")
     return dict(zip(df["study"], df["efo_term_id"]))
 
@@ -46,7 +46,7 @@ def load_cl_crosswalk(repo_root, study):
     Returns dict: source_cell_id -> cell_type_ontology_term_id.
     Returns empty dict if crosswalk file not found (graceful degradation).
     """
-    path = repo_root / f"publication/mappings/cl_term_crosswalk_{study}.csv"
+    path = repo_root / f"mappings/cl_term_crosswalk_{study}.csv"
     if not path.exists():
         return {}
     df = pd.read_csv(path)
@@ -58,7 +58,7 @@ def load_cxg_approved_genes(repo_root):
 
     Returns set of approved Ensembl IDs, or None if file not found.
     """
-    path = repo_root / "publication/mappings/cxg_approved_genes.txt"
+    path = repo_root / "mappings/cxg_approved_genes.txt"
     if path.exists():
         return set(path.read_text().strip().split("\n"))
     print(f"  WARNING: CxG approved gene list not found: {path}")
@@ -71,7 +71,7 @@ def load_gencode_annotations(repo_root):
     Returns DataFrame indexed by ensembl_id with gene_symbol, feature_biotype,
     chromosome columns, or None if file not found.
     """
-    path = repo_root / "publication/mappings/gencode_v24_gene_annotations.tsv"
+    path = repo_root / "mappings/gencode_v24_gene_annotations.tsv"
     if not path.exists():
         print(f"  WARNING: GENCODE annotations not found: {path}")
         return None
@@ -85,7 +85,7 @@ def load_gencode_annotations(repo_root):
 
 def load_registry(repo_root):
     """Load source dataset registry YAML."""
-    path = repo_root / "publication/config/source_dataset_registry.yaml"
+    path = repo_root / "config/source_dataset_registry.yaml"
     with open(path) as f:
         return yaml.safe_load(f)
 
@@ -95,7 +95,7 @@ def load_dataset_metadata(repo_root):
 
     Returns the full parsed YAML dict, or empty dict if not found.
     """
-    path = repo_root / "publication/config/dataset_metadata.yaml"
+    path = repo_root / "config/dataset_metadata.yaml"
     if not path.exists():
         print(f"  WARNING: {path} not found")
         return {}
@@ -113,7 +113,7 @@ def load_l1_metadata(repo_root):
 
     Returns DataFrame or None if file not found (graceful degradation).
     """
-    path = repo_root / "publication/config/metadata_stages/L1_harmonized_donor.csv"
+    path = repo_root / "config/metadata_stages/L1_harmonized_donor.csv"
     if not path.exists():
         print(f"  WARNING: L1 metadata not found: {path}")
         return None
@@ -133,7 +133,7 @@ def load_donor_translations(repo_root):
     """
     translations = {}
     for study in ("reed", "pal"):
-        path = repo_root / f"publication/mappings/donor_id_translation_{study}.csv"
+        path = repo_root / f"mappings/donor_id_translation_{study}.csv"
         if not path.exists():
             continue
         df = pd.read_csv(path, dtype=str)

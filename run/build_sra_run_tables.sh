@@ -8,10 +8,10 @@
 #
 # Usage:
 #   # Run both steps on login node (or interactive session with internet):
-#   bash publication/run/build_sra_run_tables.sh
+#   bash run/build_sra_run_tables.sh
 #
 #   # Or as SLURM job (Step 2 only, after manual download):
-#   sbatch publication/run/build_sra_run_tables.sh
+#   sbatch run/build_sra_run_tables.sh
 #
 # Plan: Publication/C1_integrated_objects (hca_field_backfill, INV-C)
 # =============================================================================
@@ -23,19 +23,19 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=8G
 #SBATCH --time=00:30:00
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/build_sra_tables_%j.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/build_sra_tables_%j.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/build_sra_tables_%j.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/build_sra_tables_%j.err
 
 set -euo pipefail
 
 REPO_ROOT="/path/to/iHBCAv1_upload"
-RAW_DIR="$REPO_ROOT/publication/mappings/sra_raw"
+RAW_DIR="$REPO_ROOT/mappings/sra_raw"
 CONTAINER="/dfs8/singularity_containers/rcic/devel/Jupyter_R_4.4.2_Giotto_Spatial_Python_2025Q2.sif"
 
 # Step 1: Download (skip if raw files already exist)
 if [ ! -d "$RAW_DIR" ] || [ -z "$(ls -A "$RAW_DIR" 2>/dev/null)" ]; then
     echo "=== Step 1: Downloading raw SRA/SDRF metadata ==="
-    bash "$REPO_ROOT/publication/run/download_sra_metadata.sh" "$REPO_ROOT"
+    bash "$REPO_ROOT/run/download_sra_metadata.sh" "$REPO_ROOT"
 else
     echo "=== Step 1: Raw files already exist in $RAW_DIR, skipping download ==="
     ls -lh "$RAW_DIR/"
@@ -54,7 +54,7 @@ singularity exec \
     --env "NUMBA_CACHE_DIR=/tmp/numba_cache" \
     --env "MPLCONFIGDIR=/tmp/matplotlib_config" \
     "$CONTAINER" \
-    python "$REPO_ROOT/publication/scripts/build_sra_run_tables.py" \
+    python "$REPO_ROOT/scripts/build_sra_run_tables.py" \
         --repo-root "$REPO_ROOT"
 
 echo ""

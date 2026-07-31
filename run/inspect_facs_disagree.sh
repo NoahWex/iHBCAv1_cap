@@ -5,13 +5,13 @@
 #SBATCH --time=00:15:00
 #SBATCH --mem=32G
 #SBATCH --cpus-per-task=1
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/inspect_facs_%j.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/inspect_facs_%j.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/inspect_facs_%j.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/inspect_facs_%j.err
 
 set -euo pipefail
 
 SIF=/dfs8/singularity_containers/rcic/devel/Jupyter_R_4.4.2_Giotto_Spatial_Python_2025Q2.sif
-H5AD=/path/to/iHBCAv1_upload/publication/outputs/integrated_objects/all-breast-cells.h5ad
+H5AD=/path/to/iHBCAv1_upload/outputs/integrated_objects/all-breast-cells.h5ad
 
 module load singularity
 

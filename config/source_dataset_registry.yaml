@@ -14,8 +14,8 @@ version: "1.0"
 paths:
   source_inputs:
     external_studies: "external_studies/outputs"
-  packaging_outputs: "publication/outputs/source_datasets"
-  validation_reports: "publication/outputs/validation_reports"
+  packaging_outputs: "outputs/source_datasets"
+  validation_reports: "outputs/validation_reports"
 
 # ---------------------------------------------------------------------------
 # ATLAS IDENTITY

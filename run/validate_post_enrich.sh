@@ -7,8 +7,8 @@
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=256G
 #SBATCH --time=06:00:00
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/validate_post_enrich_%j.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/validate_post_enrich_%j.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/validate_post_enrich_%j.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/validate_post_enrich_%j.err
 
 # Post-enrichment validation: CAP validator on all 11 h5ads
 # Uses validate_all.sh logic but with 256GB for enlarged integrated objects

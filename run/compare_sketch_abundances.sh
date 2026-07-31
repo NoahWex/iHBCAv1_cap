@@ -5,14 +5,14 @@
 #SBATCH --time=00:15:00
 #SBATCH --mem=48G
 #SBATCH --cpus-per-task=1
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/sketch_abund_%j.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/sketch_abund_%j.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/sketch_abund_%j.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/sketch_abund_%j.err
 
 set -euo pipefail
 
 PROJECT=/path/to/iHBCAv1_upload
-INTEGRATED=$PROJECT/publication/outputs/integrated_objects/all-breast-cells.h5ad
-SKETCH=$PROJECT/publication/outputs/integrated_objects/all-breast-cells-sketch.h5ad
+INTEGRATED=$PROJECT/outputs/integrated_objects/all-breast-cells.h5ad
+SKETCH=$PROJECT/outputs/integrated_objects/all-breast-cells-sketch.h5ad
 CONTAINER=/dfs8/singularity_containers/rcic/devel/Jupyter_R_4.4.2_Giotto_Spatial_Python_2025Q2.sif
 
 module load singularity
@@ -107,7 +107,7 @@ ax.set_ylabel('% of cells'); ax.set_title('Dataset proportions')
 ax.legend()
 
 plt.tight_layout()
-out = '$PROJECT/publication/outputs/figures/sketch_abundance_fidelity.png'
+out = '$PROJECT/outputs/figures/sketch_abundance_fidelity.png'
 plt.savefig(out, dpi=150, bbox_inches='tight')
 print(f'Saved: {out}')
 "

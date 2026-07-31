@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Verify tracker dataset-level metadata alignment between YAML config and h5ad uns.
 
-Reads publication/config/dataset_metadata.yaml and cross-checks against the
+Reads config/dataset_metadata.yaml and cross-checks against the
 actual uns group in each source h5ad + integrated object.
 
 Usage:
@@ -79,9 +79,9 @@ def main():
     args = parser.parse_args()
 
     root = args.project_root
-    yaml_path = root / "publication/config/dataset_metadata.yaml"
-    source_dir = root / "publication/outputs/source_datasets"
-    integrated_path = root / "publication/outputs/integrated_objects/all-breast-cells.h5ad"
+    yaml_path = root / "config/dataset_metadata.yaml"
+    source_dir = root / "outputs/source_datasets"
+    integrated_path = root / "outputs/integrated_objects/all-breast-cells.h5ad"
 
     with open(yaml_path) as f:
         config = yaml.safe_load(f)

@@ -6,13 +6,13 @@
 #SBATCH --cpus-per-task=2
 #SBATCH --mem=32G
 #SBATCH --time=00:30:00
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/plot_umaps_%a_%j.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/plot_umaps_%a_%j.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/plot_umaps_%a_%j.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/plot_umaps_%a_%j.err
 
 set -euo pipefail
 
 REPO_ROOT="/path/to/iHBCAv1_upload"
-SCRIPTS="${REPO_ROOT}/publication/scripts"
+SCRIPTS="${REPO_ROOT}/scripts"
 CONTAINER="/dfs8/singularity_containers/rcic/devel/Jupyter_R_4.4.2_Giotto_Spatial_Python_2025Q2.sif"
 
 STUDIES=(gray kumar murrow nee twigger reed)

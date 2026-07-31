@@ -11,8 +11,8 @@
 #   Phase 4: Triple-validate both HCA and CxG builds
 #
 # Usage:
-#   bash publication/run/dual_build_validation.sh [--dry-run]
-#   PARTITION=free bash publication/run/dual_build_validation.sh
+#   bash run/dual_build_validation.sh [--dry-run]
+#   PARTITION=free bash run/dual_build_validation.sh
 #
 # All sbatch commands use env-var overrides — no clone scripts needed.
 # =============================================================================
@@ -20,10 +20,10 @@
 set -euo pipefail
 
 REPO_ROOT="/path/to/iHBCAv1_upload"
-RUN_DIR="${REPO_ROOT}/publication/run"
-CXG_SOURCE="${REPO_ROOT}/publication/outputs/cxg_build/source_datasets"
-CXG_INTEGRATED="${REPO_ROOT}/publication/outputs/cxg_build/integrated_objects"
-CXG_REPORTS="${REPO_ROOT}/publication/outputs/validation_reports/cxg_build"
+RUN_DIR="${REPO_ROOT}/run"
+CXG_SOURCE="${REPO_ROOT}/outputs/cxg_build/source_datasets"
+CXG_INTEGRATED="${REPO_ROOT}/outputs/cxg_build/integrated_objects"
+CXG_REPORTS="${REPO_ROOT}/outputs/validation_reports/cxg_build"
 
 # Partition override (free = no billing limits but preemptible)
 PARTITION="${PARTITION:-standard}"
@@ -148,7 +148,7 @@ echo "  CxG build:         ${P4_CXG}  (after ${P3_SRC}, ${P3_INT})"
 echo ""
 echo "Monitor: squeue -u \$USER"
 echo "After completion: parse logs in"
-echo "  HCA: ${REPO_ROOT}/publication/outputs/validation_reports/"
+echo "  HCA: ${REPO_ROOT}/outputs/validation_reports/"
 echo "  CxG: ${CXG_REPORTS}/"
 echo ""
 echo "Total: 6 submissions, ~22 SLURM tasks"

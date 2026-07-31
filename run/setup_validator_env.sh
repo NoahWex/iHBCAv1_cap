@@ -4,8 +4,8 @@
 #SBATCH --cpus-per-task=2
 #SBATCH --mem=8G
 #SBATCH --time=00:30:00
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/setup_validator_env_%j.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/setup_validator_env_%j.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/setup_validator_env_%j.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/setup_validator_env_%j.err
 
 # =============================================================================
 # A4: Create conda environment with HCA/CxG/CAP validators

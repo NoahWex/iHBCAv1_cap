@@ -6,8 +6,8 @@
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=128G
 #SBATCH --time=02:00:00
-#SBATCH --output=/path/to/iHBCAv1_upload/publication/logs/enrich_source_%A_%a.out
-#SBATCH --error=/path/to/iHBCAv1_upload/publication/logs/enrich_source_%A_%a.err
+#SBATCH --output=/path/to/iHBCAv1_upload/logs/enrich_source_%A_%a.out
+#SBATCH --error=/path/to/iHBCAv1_upload/logs/enrich_source_%A_%a.err
 
 # =============================================================================
 # Enrich source h5ads with var annotations, uns documentation, obs polish
@@ -21,7 +21,7 @@
 set -euo pipefail
 
 REPO_ROOT="/path/to/iHBCAv1_upload"
-SCRIPTS="${REPO_ROOT}/publication/scripts"
+SCRIPTS="${REPO_ROOT}/scripts"
 CONTAINER="/dfs8/singularity_containers/rcic/devel/Jupyter_R_4.4.2_Giotto_Spatial_Python_2025Q2.sif"
 
 STUDIES=(gray kumar murrow nee twigger reed pal)
@@ -32,7 +32,7 @@ STUDY="${STUDIES[$INDEX]}"
 FILENAME="${FILENAMES[$INDEX]}"
 
 # Env-var override for alternate builds (e.g., SOURCE_DIR=.../cxg_build/source_datasets)
-SOURCE_DIR="${SOURCE_DIR:-${REPO_ROOT}/publication/outputs/source_datasets}"
+SOURCE_DIR="${SOURCE_DIR:-${REPO_ROOT}/outputs/source_datasets}"
 H5AD="${SOURCE_DIR}/${FILENAME}"
 
 echo "============================================="
