@@ -4,7 +4,7 @@ This repository holds the code, configuration, and metadata used to assemble, an
 
 **Atlas:** 2,128,505 cells from 287 donors across 7 published single-cell breast studies, integrated with scVI and annotated at L1 resolution (11 cell-type groups).
 
-The scVI integration, the 100-dimensional joint embedding, the harmonization UMAP, and the level 1 / level 1.5 cell-type annotations are the work of A. Reed (Reed et al. 2024). This repository packages those primitives into CxG- and HCA-compliant objects, harmonizes donor and sample metadata across the seven studies, and validates the result for submission.
+The scVI integration, the 100-dimensional joint embedding, the harmonization UMAP, and the level 1 / level 1.5 cell-type annotations are the work of A. Reed (Reed et al. 2024). Their construction code is vendored here under [`assembly/`](assembly/), a frozen copy from the paper repository [NoahWex/iHBCA_v1](https://github.com/NoahWex/iHBCA_v1) pinned in [`assembly/COPIED_FROM.md`](assembly/COPIED_FROM.md), so this repository is self-contained for readers arriving from CAP. On that construction, this repository packages the atlas into CxG- and HCA-compliant objects, harmonizes donor and sample metadata across the seven studies, and validates the result for submission.
 
 **Submission:** The atlas is packaged and validated for the HCA Cell Annotation Platform (CAP) and the HCA Atlas Tracker.
 
@@ -12,6 +12,7 @@ The scVI integration, the 100-dimensional joint embedding, the harmonization UMA
 
 | Directory | Contents |
 |---|---|
+| `assembly/` | Frozen copy of the atlas construction code from iHBCA_v1 — scVI/Harmony/scPoli integration, external-study harmonization, integration metrics, annotation, and the publication pipeline |
 | `config/` | Source dataset registry, ontology mappings, dataset metadata, donor harmonization stages |
 | `scripts/` | Build + validation scripts (assembly, harmonization, packaging, CAP/CxG validation) |
 | `run/` | SLURM wrappers for HPC execution |
@@ -24,6 +25,12 @@ The scVI integration, the 100-dimensional joint embedding, the harmonization UMA
 - **Per-cell provenance validation**: 138GB of audit data; auto-generated, not version-controlled.
 - **`gencode.v24.annotation.gtf`**: public reference; redownloadable from [GENCODE](https://www.gencodegenes.org/).
 - **Upstream per-study preprocessing** (`external_studies/`): the per-study QC and harmonization tree that produced the inputs to this repo. Scripts that read it expect it as a sibling of the repository root, passed via `--project-root`.
+
+## Related repositories
+
+This repository is the **CAP/HCA submission companion**. It holds the construction code (vendored in `assembly/`) plus the packaging, harmonization, and validation that produced the deposited objects, so it stands alone for anyone arriving from the CAP portal.
+
+The paper/analysis repository is [NoahWex/iHBCA_v1](https://github.com/NoahWex/iHBCA_v1) (note the underscore — a different repo). It carries the full downstream analysis beyond the construction vendored here: Chromium FLEX and Xenium preprocessing, differential abundance, and spatial-motif analysis for the iHBCA paper.
 
 ## Source studies
 
